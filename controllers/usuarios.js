@@ -168,10 +168,10 @@ module.exports = {
             })
         }
     },
-    delete : (req, res) => {
+    delete : async (req, res) => {
         let id = req.params.id;
         try {
-            let result = db.usuarios.destroy({
+            let result = await db.usuarios.destroy({
                 where : { id }
             })
             if(result){
