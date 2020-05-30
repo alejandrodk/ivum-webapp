@@ -181,12 +181,7 @@ module.exports = {
                 logging : false
             })
             if(result){
-                return res
-                .status(204)
-                .json({
-                    message : 'Deleting resource successfull',
-                    description : `User with id ${id} is deleted from database`,
-                })
+                return res.status(204)
             }
         }
         catch(err){
