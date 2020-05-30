@@ -1,5 +1,5 @@
 module.exports = (sequelize, dataTypes) => {
-    const alias = 'pacientes';
+    const alias = 'comprobantes';
     const cols = {
         id: {
             primaryKey: true,
