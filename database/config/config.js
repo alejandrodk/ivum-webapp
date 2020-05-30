@@ -1,11 +1,13 @@
+const { DB_USERNAME, DB_PASSWORD, DB_NAME, DB_HOST } = process.env
+
 module.exports = {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "ivum",
-    "host": "localhost",
+    "username": DB_USERNAME,
+    "password": DB_PASSWORD,
+    "database": DB_NAME,
+    "host": DB_HOST,
     "dialect": "mysql",
-    "operatorsAliases": false
+    //"operatorsAliases": false
   },
   "test": {
     "username": "root",

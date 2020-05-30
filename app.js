@@ -7,7 +7,12 @@ const cors = require('cors');
 const methodOverride = require('method-override');
 const session = require("express-session");
 const compression = require('compression');
-const jwt = require('jsonwebtoken');
+const dotenv = require('dotenv')
+
+// ENV variable config
+const result = dotenv.config()
+if(result.error) throw result.error
+//console.log(result.parsed)
 
 // Express()
 const app = express();
