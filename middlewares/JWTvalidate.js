@@ -13,8 +13,18 @@ module.exports = (req, res, next) => {
     }
 
     try {
-        const decoded = jwt.verify(token, process.env.JWT_SECRET)
-        if(decoded) return next()
+        const decoded = jwt.verify(token, process.env.JWT_SECRET, (err, decoded){
+            if(err) {
+                return res
+                .status(401)
+                .json({
+                    message : 'Authentication Failer',
+                    error : err
+                })
+            }
+
+            next()
+        })
     } 
     catch(err){
         return res
