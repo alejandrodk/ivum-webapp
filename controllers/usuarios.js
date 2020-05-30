@@ -5,7 +5,12 @@ const bcrypt = require('bcrypt');
 module.exports = {
     usuarios : async (req, res) => {
         try {
-            usuarios = await db.usuarios.findAll({logging : false})
+            let usuarios = await db.usuarios.findAll({
+                attributes : {
+                    exclude : ['createdAt','updatedAt']
+                },
+                logging : false
+            })
             return res
             .status(200)
             .json({ usuarios })
@@ -67,7 +72,6 @@ module.exports = {
                 .status(201)
                 .header('Location', `/usuarios/${user.id}`)
                 .json({
-                    status_code : res.statusCode,
                     user
                 })
             }
@@ -141,7 +145,8 @@ module.exports = {
                     usuario,
                     clave : hashPass
                 },{ 
-                    where : { id }
+                    where : { id },
+                    logging : false
                 })
                 if(user){
                     return res
@@ -172,7 +177,8 @@ module.exports = {
         let id = req.params.id;
         try {
             let result = await db.usuarios.destroy({
-                where : { id }
+                where : { id },
+                logging : false
             })
             if(result){
                 return res

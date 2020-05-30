@@ -8,7 +8,7 @@ module.exports = (sequelize, dataTypes) => {
         },
         usuario_id : {
             type: dataTypes.INTEGER,
-            allowNull: false
+            allowNull: true
         },
         nombre : {
             type: dataTypes.STRING(15),

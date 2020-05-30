@@ -29,10 +29,12 @@ module.exports = (sequelize, dataTypes) => {
 
     Usuario.associate = function(models){
         Usuario.hasOne(models.pacientes, {
-            as : 'paciente'
+            as : 'paciente',
+            foreignKey : 'id'
         })
         Usuario.hasOne(models.medicos, {
-            as : 'medico'
+            as : 'medico',
+            foreignKey : 'id'
         })
     }
 
