@@ -16,8 +16,9 @@ if(result.error) throw result.error
 
 // Express()
 const app = express();
+
 // Compress all responses
-app.use(compression())
+app.use(compression());
 
 // Middlewares
 app.use(express.static(path.join(__dirname, 'public')));
@@ -27,15 +28,15 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(cookieParser());
 
+// Custom Middlewares
+
+// Session Storage
 app.use(session({
 	resave: true, 
 	saveUninitialized: true, 
 	secret: 'ivum-2020',
 	_expires: 600000
 }));
-// Custom Middlewares
-
-// Session Storage
 
 // CORS
 app.use(cors())
