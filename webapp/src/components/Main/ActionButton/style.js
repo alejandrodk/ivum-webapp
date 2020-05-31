@@ -29,4 +29,13 @@ export const Div = styled.div`
 	-moz-box-shadow: 0px 0px 12px -6px rgba(0,0,0,0.58);
 	box-shadow: 0px 0px 18px -6px rgb(0, 0, 0);
 }
+
+@media (max-width: 768px) {
+   width: 100%;
+   background: white;
+   justify-content: center;
+   margin: 5% 10%;
+   padding: 1%;
+   border-radius: 5px;
+}
 `

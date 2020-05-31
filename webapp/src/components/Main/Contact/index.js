@@ -37,6 +37,22 @@ iframe {
 .redes a p{
     width : 70%;
 }
+
+@media (max-width: 768px) {
+    .mapa{
+        padding: 10%;
+    }
+    .redes div {
+        justify-content: center;
+    }
+    .redes a p {
+        display : none;
+    }
+    .redes a i{
+        width: 30px;
+        font-size: 20px;
+    }
+}
 `
 
 const Contact = (props) => {

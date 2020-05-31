@@ -29,3 +29,18 @@
 	flex-wrap: wrap;
 	justify-content: space-between;
 }
+
+@media (max-width: 768px) {
+  .mainHeader {
+	overflow: hidden;
+	background-size: auto 100%;
+	background-position: center;
+  }
+  .mainServices {
+	  margin: 10% 0;
+  }
+  .mainFooter {
+	  height: auto;
+	  padding-bottom: 10%;
+  }
+}

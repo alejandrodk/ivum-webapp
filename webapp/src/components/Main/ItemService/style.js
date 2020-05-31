@@ -32,4 +32,17 @@ export const Item = styled.div`
 		animation: flotar 3s infinite;
 		animation-direction: alternate;
 	}
+
+	@media (max-width: 768px) {
+		top: auto;
+		width: 43%;
+		
+		img {
+			height: 70%;
+		}
+		h1{
+		  text-align: center;
+		  font-size: 1.2rem;
+		}
+	}
 `

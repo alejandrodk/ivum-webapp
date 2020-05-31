@@ -1,13 +1,14 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import HeaderComp from './Header';
+import HeaderComp from './Header/index.js';
 import Intro from './Intro';
 import ActionButton from './ActionButton';
 import Services from './Services';
 import Presentation from './Presentation';
 import Contact from './Contact';
 import ItemContact from './ItemContact';
+import Footer from './Footer';
 import styles from './container.module.css';
 
 const Main = () => {
@@ -104,9 +105,7 @@ const Main = () => {
             <Container fluid className={styles.mainFooter}>
                 <Container>
                     <Row>
-                        <Col>
-                        
-                        </Col>
+                        <Footer />
                     </Row>
                 </Container>
             </Container>

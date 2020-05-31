@@ -7,16 +7,22 @@ import ivum_logo from './ivum_logo_blanco.png';
 const HeaderComp = () => {
     return (
         <Header>
-            <nav className="wrap">
-                <Link to="/" className="logo wrap"><img src={ivum_logo} alt="IVUM Ecografías"></img></Link>
-                <ul className="menu wrap">
-                    <li><Link to="/">Inicio</Link></li>
-                    <li><Link to="#nosotros">Nosotros</Link></li>
-                    <li><Link to="#servicios">Servicios</Link></li>
-                    <li><Link to="#Contacto">Contacto</Link></li>
-                    <li><Link to="#Contacto">Ingresar</Link></li>
+            <div class="container">
+              <nav id="navigation">
+                <Link to="" className="logo"><img src={ivum_logo} alt="IVUM Ecografías" /></Link>
+                <a aria-label="mobile menu" class="nav-toggle">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </a>
+                <ul class="menu-left">
+                  <li><a href="#h_inicio">Inicio</a></li>
+                  <li><a href="#h_nosotros">Nosotros</a></li>
+                  <li><a href="#h_servicios">Servicios</a></li>
+                  <li><a href="#h_contacto">Contacto</a></li>
                 </ul>
-            </nav>
+              </nav>
+            </div>
         </Header>
     )
 }

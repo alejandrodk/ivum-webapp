@@ -14,4 +14,9 @@ export const Div = styled.div`
   		background: -o-linear-gradient(top, rgba(12,116,219,1) 0%, rgba(47,172,255,1) 77%, rgba(47,172,255,1) 100%);
   		background: linear-gradient(to bottom, rgba(12,116,219,1) 0%, rgba(47,172,255,1) 77%, rgba(47,172,255,1) 100%);
 	}
+	@media (max-width: 768px) {
+		.boton {
+			margin-top: 17%;
+		}
+	}
 `

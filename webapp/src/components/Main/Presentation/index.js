@@ -18,6 +18,12 @@ p {
 	margin-top: 7%;
 	font-size: 1.1rem;
 }
+
+@media (max-width: 768px) {
+    p {
+        width: 80%;
+    }
+}
 `
 
 const Presentation = () => {
