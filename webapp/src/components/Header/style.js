@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Header = styled.header`
+margin-top: 1%;
 .logo img {
   max-width: 100px;
   height: auto;
