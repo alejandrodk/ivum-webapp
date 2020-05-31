@@ -17,7 +17,9 @@
 	background-size: contain;
 }
 .mainContact {
-    background: var(--azul)
+	background: var(--azul);
+	justify-content: space-between;
+	padding: 5% 0%;
 }
 .mainFooter {
 	background-color: #0059b3;

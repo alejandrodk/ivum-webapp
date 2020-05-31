@@ -6,6 +6,8 @@ import Intro from './Intro';
 import ActionButton from './ActionButton';
 import Services from './Services';
 import Presentation from './Presentation';
+import Contact from './Contact';
+import ItemContact from './ItemContact';
 import styles from './container.module.css';
 
 const Main = () => {
@@ -69,7 +71,32 @@ const Main = () => {
                 <Container>
                     <Row>
                         <Col>
-                        
+                            <Contact>
+                                <ItemContact 
+                                link='tel: +584168047978'
+                                alt='Whatsapp'
+                                icon='fab fa-whatsapp'
+                                title='0416-804-7978'
+                                />
+                                <ItemContact 
+                                link='https://instagram.com/_u/ivum.ecografias/'
+                                alt='Instagram'
+                                icon='fab fa-instagram'
+                                title='ivum.ecografias'
+                                />
+                                <ItemContact 
+                                link='https://fb.me/ivum.ecografias'
+                                alt='Facebook'
+                                icon='fab fa-facebook'
+                                title='ivum.ecografias'
+                                />
+                                <ItemContact 
+                                link='mailto: contacto@ivum.org'
+                                alt='Email'
+                                icon='fas fa-at'
+                                title='contacto@ivum.org'
+                                />
+                            </Contact>
                         </Col>
                     </Row>
                 </Container>
