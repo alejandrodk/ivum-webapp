@@ -3,7 +3,9 @@ import { Container, Row, Col } from 'react-bootstrap';
 import HeaderComp from '../Header';
 import Intro from './Intro';
 import ActionButton from './ActionButton';
+import Services from './Services';
 import styles from './container.module.css';
+import { Link } from 'react-router-dom';
 
 const Main = () => {
 
@@ -34,6 +36,21 @@ const Main = () => {
                                 desc='ivum.ecografias'
                                 />
                             </Intro>
+                        </Col>
+                    </Row>
+                </Container>
+            </Container>
+            <Container fluid className={styles.mainServices}>
+                <Container>
+                    <Row>
+                        <Col>
+                            <Services>
+                                <Link to='/' className="boton">
+                                    <div>
+                                        <h3>Más Información</h3>
+                                    </div>
+                                </Link>
+                            </Services>
                         </Col>
                     </Row>
                 </Container>

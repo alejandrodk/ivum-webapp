@@ -4,3 +4,9 @@
     background-repeat: no-repeat;
     min-height: 700px;
 }
+.mainServices {
+    background: url("./pattern_servicios.png");
+    background-size: 100% auto;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
