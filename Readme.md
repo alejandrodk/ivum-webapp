@@ -1,5 +1,4 @@
 # IVUM | Instituto Venezolano de Ultrasonido en Medicina
-Tu trabajo como desarrollador más cerca.
 -----------------------------------------------------------------------------------
 ### API
 |Collection     |Method  |Description           |Endpoint       |
