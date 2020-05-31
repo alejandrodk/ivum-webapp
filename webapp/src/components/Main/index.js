@@ -1,11 +1,12 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import HeaderComp from '../Header';
+import { Link } from 'react-router-dom';
+import HeaderComp from './Header';
 import Intro from './Intro';
 import ActionButton from './ActionButton';
 import Services from './Services';
+import Presentation from './Presentation';
 import styles from './container.module.css';
-import { Link } from 'react-router-dom';
 
 const Main = () => {
 
@@ -51,6 +52,33 @@ const Main = () => {
                                     </div>
                                 </Link>
                             </Services>
+                        </Col>
+                    </Row>
+                </Container>
+            </Container>
+            <Container fluid className={styles.mainPresentation}>
+                <Container>
+                    <Row>
+                        <Col>
+                            <Presentation />
+                        </Col>
+                    </Row>
+                </Container>
+            </Container>
+            <Container fluid className={styles.mainContact}>
+                <Container>
+                    <Row>
+                        <Col>
+                        
+                        </Col>
+                    </Row>
+                </Container>
+            </Container>
+            <Container fluid className={styles.mainFooter}>
+                <Container>
+                    <Row>
+                        <Col>
+                        
                         </Col>
                     </Row>
                 </Container>
