@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { contact, services } from './data';
 import HeaderComp from './Header/index.js';
 import Intro from './Intro';
 import ActionButton from './ActionButton';
@@ -48,7 +49,9 @@ const Main = () => {
                 <Container>
                     <Row>
                         <Col>
-                            <Services>
+                            <Services
+                            data={services}
+                            >
                                 <Link to='/' className="boton">
                                     <div>
                                         <h3>Más Información</h3>
@@ -73,30 +76,14 @@ const Main = () => {
                     <Row>
                         <Col>
                             <Contact>
-                                <ItemContact 
-                                link='tel: +584168047978'
-                                alt='Whatsapp'
-                                icon='fab fa-whatsapp'
-                                title='0416-804-7978'
-                                />
-                                <ItemContact 
-                                link='https://instagram.com/_u/ivum.ecografias/'
-                                alt='Instagram'
-                                icon='fab fa-instagram'
-                                title='ivum.ecografias'
-                                />
-                                <ItemContact 
-                                link='https://fb.me/ivum.ecografias'
-                                alt='Facebook'
-                                icon='fab fa-facebook'
-                                title='ivum.ecografias'
-                                />
-                                <ItemContact 
-                                link='mailto: contacto@ivum.org'
-                                alt='Email'
-                                icon='fas fa-at'
-                                title='contacto@ivum.org'
-                                />
+                                {contact.map(item => (
+                                    <ItemContact 
+                                    link={item.link}
+                                    alt={item.alt}
+                                    icon={item.icon}
+                                    title={item.title}
+                                    />
+                                ))}
                             </Contact>
                         </Col>
                     </Row>
