@@ -6,6 +6,22 @@ module.exports = (sequelize, dataTypes) => {
             autoIncrement: true,
             type: dataTypes.INTEGER
         },
+        nombre : {
+            type: dataTypes.STRING(100),
+            allowNull : false
+        },
+        cedula : {
+            type: dataTypes.STRING(15),
+            allowNull : false
+        },
+        direccion : {
+            type: dataTypes.STRING(200),
+            allowNull : false
+        },
+        telefono : {
+            type: dataTypes.STRING(20),
+            allowNull : false
+        },
         paciente_id : {
             type: dataTypes.INTEGER,
             allowNull: false
@@ -23,7 +39,7 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         iva : {
-            type: dataTypes.INTEGER,
+            type: dataTypes.FLOAT,
             allowNull: false
         },
         observacion : {
