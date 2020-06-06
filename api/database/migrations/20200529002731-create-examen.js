@@ -6,33 +6,33 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       nombre: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       especialidad: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       precio: {
-        type: Sequelize.FLOAT
+        type: Sequelize.DataTypes.FLOAT
       },
       createdAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       updatedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       }
     });
   },

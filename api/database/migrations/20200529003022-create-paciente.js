@@ -6,45 +6,45 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       usuario_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       nombre: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       apellido: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       cedula: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       correo: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       direccion: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       telefono: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       createdAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       updatedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       }
     });
   },

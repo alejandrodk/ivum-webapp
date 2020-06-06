@@ -6,48 +6,48 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       paciente_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       medico_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       examen_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       observacion: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       fecha: {
-        type: Sequelize.DATEONLY
+        type: Sequelize.DataTypes.DATEONLY
       },
       hora: {
-        type: Sequelize.TIME
+        type: Sequelize.DataTypes.TIME
       },
       estado: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       comprobante_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       createdAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       updatedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       }
     });
   },

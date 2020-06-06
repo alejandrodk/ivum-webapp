@@ -6,39 +6,39 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       consulta_id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       diagnostico: {
-        type: Sequelize.TEXT
+        type: Sequelize.DataTypes.TEXT
       },
       tratamiento: {
-        type: Sequelize.TEXT
+        type: Sequelize.DataTypes.TEXT
       },
       observacion: {
-        type: Sequelize.TEXT
+        type: Sequelize.DataTypes.TEXT
       },
       fecha: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       createdAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       updatedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       }
     });
   },

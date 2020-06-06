@@ -3,36 +3,35 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('usuarios', {
       id: {
-        allowNull: false,
-        autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER
+        autoIncrement: true,
+        type: Sequelize.DataTypes.INTEGER
       },
       id: {
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
       },
       usuario: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       clave: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       tipo: {
-        type: Sequelize.STRING
+        type: Sequelize.DataTypes.STRING
       },
       createdAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       updatedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE
       }
     });
   },

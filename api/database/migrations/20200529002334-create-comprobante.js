@@ -5,57 +5,59 @@ module.exports = {
       id: {
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.INTEGER
+        type: Sequelize.DataTypes.INTEGER
     },
     nombre : {
-        type: Sequelize.STRING,
+        type: Sequelize.DataTypes.STRING,
         allowNull : false
     },
     cedula : {
-        type: Sequelize.STRING,
+        type: Sequelize.DataTypes.STRING,
         allowNull : false
     },
     direccion : {
-        type: Sequelize.STRING,
+        type: Sequelize.DataTypes.STRING,
         allowNull : false
     },
     telefono : {
-        type: Sequelize.STRING,
+        type: Sequelize.DataTypes.STRING,
         allowNull : false
     },
     paciente_id : {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: false
     },
     metodo_pago : {
-        type: Sequelize.STRING(15),
+        type: Sequelize.DataTypes.STRING(15),
         allowNull: false
     },
     moneda : {
-        type: Sequelize.STRING(5),
+        type: Sequelize.DataTypes.STRING(5),
         allowNull: false
     },
     monto : {
-        type: Sequelize.FLOAT,
+        type: Sequelize.DataTypes.FLOAT,
         allowNull: false
     },
     iva : {
-        type: Sequelize.INTEGER,
+        type: Sequelize.DataTypes.INTEGER,
         allowNull: false
     },
     observacion : {
-        type: Sequelize.STRING,
+        type: Sequelize.DataTypes.STRING,
         allowNull: false
     },
     fecha : {
-        type: Sequelize.DATE,
+        type: Sequelize.DataTypes.DATE,
         allowNull: false
     },
     createdAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE,
+        allowNull: false
     },
     updatedAt: {
-        type: Sequelize.DATE
+        type: Sequelize.DataTypes.DATE,
+        allowNull: false
     }
     });
   },
