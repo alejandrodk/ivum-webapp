@@ -19,10 +19,10 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         createdAt: {
-            type: dataTypes.DATE
+            type: dataTypes.DATE,
         },
         updatedAt: {
-            type: dataTypes.DATE
+            type: dataTypes.DATE,
         }
     };
     const Examen = sequelize.define(alias, cols, { tableName: 'examenes' });

@@ -46,11 +46,13 @@ const usuariosRouter = require('./routes/usuarios')
 const medicosRouter = require('./routes/medicos')
 const pacientesRouter = require('./routes/pacientes')
 const consultasRouter = require('./routes/consultas')
+const examenesRouter = require('./routes/examenes')
 
 app.use('/usuarios', usuariosRouter);
 app.use('/medicos', medicosRouter);
 app.use('/pacientes', pacientesRouter);
 app.use('/consultas', consultasRouter);
+app.use('/examenes', examenesRouter);
 
 // catch 404 
 app.use(function(req, res, next) {
