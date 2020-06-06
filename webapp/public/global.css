@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;600;700;800&display=swap');
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -10,11 +11,8 @@ html {
 }
 
 body {
-    font-family: 'Open Sans', sans-serif;
-}
-body {
+  font-family: 'Nunito Sans', sans-serif;
   height: 100%;
-  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
   -webkit-text-size-adjust: 100%;
 }
@@ -27,7 +25,32 @@ a {
 }
 
 :root {
-    --azul: #0c73db;
-    --gris: #737373;
+  /* Home */
+  --azul: #0c73db;
+  --gris: #737373;
+  /* App */
+    --verde: #23e8b4;
+    --azul-dark: #00288c;
+    --azul-claro: #10a0f9;
+    --gris-dark: #4d4c4c;
+    --gris-med: #7c7c7c;
+    --gris-light: #f9fafd;
+    --blanco: white;
+
+    --gradient-verde : linear-gradient(131deg, rgba(35,232,180,1) 0%, rgba(16,160,249,1) 100%);
+    
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1367px;
+
+
+    --titulo : 15px;
+    --texto : 14px;
+    --font-family-sans-serif: "Nunito",sans-serif;
+
+    --padding: 20px;
+    --border-radius: 10px;
 }
    

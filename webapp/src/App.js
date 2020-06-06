@@ -1,11 +1,13 @@
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
-import Main from './components/Main';
+import Home from './Home';
+import Recepcion from './Recepcion';
 
 const App = () => (
-		<BrowserRouter>
-			<Route path='/' exact render={ Main }/>
-		</BrowserRouter>
+	<BrowserRouter>
+		<Route path='/' exact render={ Home }/>
+		<Route path='/recepcion' exact render={ Recepcion }/>
+	</BrowserRouter>
 )
 
 export default App;

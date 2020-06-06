@@ -1,18 +1,18 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { contact, services } from './data';
-import HeaderComp from './Header/index.js';
-import Intro from './Intro';
-import ActionButton from './ActionButton';
-import Services from './Services';
-import Presentation from './Presentation';
-import Contact from './Contact';
-import ItemContact from './ItemContact';
-import Footer from './Footer';
-import styles from './container.module.css';
+import { contact, services } from './components/Main/data';
+import HeaderComp from './components/Main/Header/index.js';
+import Intro from './components/Main/Intro';
+import ActionButton from './components/Main/ActionButton';
+import Services from './components/Main/Services';
+import Presentation from './components/Main/Presentation';
+import Contact from './components/Main/Contact';
+import ItemContact from './components/Main/ItemContact';
+import Footer from './components/Main/Footer';
+import styles from './components/Main/container.module.css';
 
-const Main = () => {
+const Home = () => {
 
     return (
         <React.Fragment>
@@ -50,7 +50,7 @@ const Main = () => {
                     <Row>
                         <Col>
                             <Services
-                            data={services}
+                                data={services}
                             >
                                 <Link to='/' className="boton">
                                     <div>
@@ -100,4 +100,4 @@ const Main = () => {
     )
 }
 
-export default Main;
+export default Home;
