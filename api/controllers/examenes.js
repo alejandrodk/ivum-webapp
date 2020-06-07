@@ -1,14 +1,49 @@
 const db = require("../database/models");
+const Sequelize = require("sequelize");
+const Op = Sequelize.Op;
 
 module.exports = {
     examenes : async (req, res) => {
+        let search = req.query.search;
+        let limit = req.query.limit ? parseInt(req.query.limit) : null;
+        let price_detail = req.query.price_detail;
+
+        let where = search ? 
+            {
+                [Op.or] : [
+                    { nombre: {[Op.like]: '%'+ search +'%' } },
+                    { especialidad: {[Op.like]: '%'+ search +'%' } },
+                ]
+            }
+            :
+            { }
+
         try {
             let examenes = await db.examenes.findAll({
+                where,
+                attributes : {
+                    exclude : ['createdAt','updatedAt']
+                },
+                limit,
+                logging: false
+            });
+            let cotizaciones = await db.cotizaciones.findAll({
                 attributes : {
                     exclude : ['createdAt','updatedAt']
                 },
                 logging: false
             });
+            
+            if(price_detail){
+                examenes.map( item => {
+                    item.precio = { 
+                        usd: item.precio * cotizaciones[0].valor_usd,
+                        eur: item.precio * cotizaciones[1].valor_usd,
+                        bsf: item.precio * cotizaciones[2].valor_usd
+                    }
+                })
+            }
+
             return res
             .status(200)
             .json(examenes)
@@ -25,12 +60,33 @@ module.exports = {
     },
     detail : async (req, res) => {
         let id = req.params.id;
+        let price_detail = req.query.price_detail;
 
         try {
-            let examen = await db.examenes.findByPk(id);
+            let examen = await db.examenes.findOne({
+                where : { id },
+                attributes : { exclude : ['createdAt','updatedAt'] },
+                logging: false
+            });
+
+            let cotizaciones = await db.cotizaciones.findAll({
+                attributes : {
+                    exclude : ['createdAt','updatedAt']
+                },
+                logging: false
+            });
+            
+            if(price_detail){
+                examen.precio = { 
+                    usd: examen.precio * cotizaciones[0].valor_usd,
+                    eur: examen.precio * cotizaciones[1].valor_usd,
+                    bsf: examen.precio * cotizaciones[2].valor_usd
+                }
+            }
+
             return res
             .status(200)
-            .json({ examen })
+            .json(examen)
         }
         catch (err){
             return res
