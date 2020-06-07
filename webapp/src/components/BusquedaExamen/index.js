@@ -1,33 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import BusquedaDiv from './style';
 import SearchBar from '../SearchBar';
-
+import useDataFetching from '../hooks/useDataFetching';
 
 const BusquedaExamen = () => {
+
+    const [ params, setParams ] = useState(null);
+    
+    const { loading, data, error } = useDataFetching(`http://localhost:3000/examenes?search=${params}&price_detail=true&limit=1`)
+    console.log(data)
+    const stateHandler = (search) => {
+        setParams(search);
+    }
+
     return (
         <BusquedaDiv className="wrap">
-            <SearchBar 
+            <SearchBar
                 input_name='examen_search'
                 label='Búsqueda rápida de exámenes'
                 placeholder='Ingrese el nombre del examen a buscar'
                 action='/recepcion'
                 method='GET'
-                button_text={<i class="fas fa-search"></i>}
+                stateHandler={stateHandler}
             />
-            <div className="data">
-                <ul className="wrap">
-                    <li>Exámen</li>
-                    <li>Especialidad</li>
-                    <li>Especialista</li>
-                    <li>Precio</li>
-                </ul>
-                <ul className="wrap">
-                    <li>Ecografia Tiroidea</li>
-                    <li>Ecografias</li>
-                    <li>Olivia Garcia</li>
-                    <li><b>USD</b> $15 / <b>BsF</b> 11.750.000</li>
-                </ul>
-            </div>
+            { !loading && data.length > 0 ?
+                <div className="data">
+                    <ul className="wrap">
+                        <li>Exámen</li>
+                        <li>Especialidad</li>
+                        <li>Precio</li>
+                    </ul>
+                    <ul className="wrap">
+                        <li>{data[0].nombre}</li>
+                        <li>{data[0].especialidad}</li>
+                        <li><b>USD</b> ${data[0].precio.usd} / <b>BsF</b> {new Intl.NumberFormat(["de-DE"]).format(data[0].precio.bsf)}</li>
+                    </ul>
+                </div>
+             : ''
+            }
         </BusquedaDiv>
     )
 }

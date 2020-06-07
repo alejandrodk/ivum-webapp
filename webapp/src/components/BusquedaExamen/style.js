@@ -5,7 +5,8 @@ const BusquedaDiv = styled.div`
     width: 100%;
     min-height: 150px;
     padding: var(--padding);
-
+    border-radius: var(--border-radius);
+    
     .data {
         width: 100%;
         border: solid 2px var(--azul-claro);
@@ -27,16 +28,13 @@ const BusquedaDiv = styled.div`
         color: var(--gris-med);
     }
     ul li:nth-child(1){
-        width: 25%;
+        width: 30%;
     }
     ul li:nth-child(2){
         width: 20%;
     }
     ul li:nth-child(3){
-        width: 20%;
-    }
-    ul li:nth-child(4){
-        width: 35;
+        width: 40%;
     }
 `;
 

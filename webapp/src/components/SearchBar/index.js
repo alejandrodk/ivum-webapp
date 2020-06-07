@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Search from './styles';
 
 const SearchBar = (props) => {
+
+    const input = useRef();
+
+    const buttonHandler = (e) => {
+        e.preventDefault();
+        props.stateHandler(input.current.value)
+    }
+
     return (
-        <Search 
+        <Search
             action={props.action} 
             method={props.method}
             className="wrap"
         >
             <label htmlFor={props.input_name}>{props.label}</label>
             <input 
+                ref={input}
                 type="text" 
                 name={props.input_name} 
                 placeholder={props.placeholder}
             />
-            <button type="submit">{props.button_text}</button>
+            <button onClick={buttonHandler}>
+                <i className="fas fa-search"></i>
+            </button>
         </Search>
     )
 }
@@ -25,6 +36,6 @@ SearchBar.defaultProps = {
     placeholder : 'Default Placeholder',
     action : '/',
     method : 'POST',
-    button_text : 'Submit'
 }
+
 export default SearchBar;

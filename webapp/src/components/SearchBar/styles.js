@@ -26,8 +26,6 @@ const Search = styled.form`
         width: 10%;
         border: none;
     }
-
-
 `;
 
 export default Search;
