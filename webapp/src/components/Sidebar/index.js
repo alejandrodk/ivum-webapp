@@ -15,7 +15,7 @@ const Sidebar = React.memo((props) => {
                 <h3>{title}</h3>
             </div>
             <div className="navigation">
-                <NavLink to={props.home}>Inicio</NavLink>
+                <NavLink to={home}>Inicio</NavLink>
                 {links.map(item => (
                     <React.Fragment key={item.category + 1}>
                         <div className="header wrap" key={item.category + 2}>
@@ -39,20 +39,20 @@ const Sidebar = React.memo((props) => {
 })
 
 Sidebar.defaultProps = {
-    title : 'titulo',
+    title : 'Title',
     home : '/',
     links : [
         {   
-            category : 'Consultas',
+            category : 'Category',
             icon : 'fas fa-link',
             links : [
                 {
-                    title : 'Programar consulta',
-                    url : 'consultas/nueva'
+                    title : 'Item 1',
+                    url : 'www.google.com'
                 },
                 {
-                    title : 'consultas',
-                    url : 'consultas'
+                    title : 'Item 2',
+                    url : 'www.google.com'
                 }
             ]
         }

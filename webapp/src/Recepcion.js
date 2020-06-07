@@ -4,6 +4,8 @@ import styled from 'styled-components';
 import Header from './components/Header/';
 import Sidebar from './components/Sidebar';
 import BusquedaExamen from './components/BusquedaExamen';
+import Cotizaciones from './components/Cotizaciones';
+
 
 const Wrapper = styled.div`
     background: var(--gris-light);
@@ -77,7 +79,7 @@ const Recepcion = () => {
                                 <BusquedaExamen />
                             </Col>
                             <Col md={3} lg={3}>
-                                <div className="prueba"></div>
+                                <Cotizaciones />
                             </Col>
                         </Row>
                     </Container>
