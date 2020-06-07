@@ -8,23 +8,14 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.DataTypes.INTEGER
       },
-      id: {
-        type: Sequelize.DataTypes.INTEGER
-      },
       moneda: {
         type: Sequelize.DataTypes.STRING
       },
       simbolo: {
         type: Sequelize.DataTypes.STRING
       },
-      cambio_actual: {
+      valor_usd: {
         type: Sequelize.DataTypes.FLOAT
-      },
-      createdAt: {
-        type: Sequelize.DataTypes.DATE
-      },
-      updatedAt: {
-        type: Sequelize.DataTypes.DATE
       },
       createdAt: {
         allowNull: false,

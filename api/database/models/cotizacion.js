@@ -14,7 +14,7 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(3),
             allowNull: true
         },
-        cambio_actual : {
+        valor_usd : {
             type: dataTypes.FLOAT,
             allowNull: false
         },
@@ -29,6 +29,10 @@ module.exports = (sequelize, dataTypes) => {
 
     Cotizacion.associate = function(models){
 
+    }
+    Cotizacion.prototype.formatPrice = (price) => {
+        let num = new Intl.NumberFormat(["de-DE"]).format(price);
+        return num;
     }
 
     return Cotizacion
