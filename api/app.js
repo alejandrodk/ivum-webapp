@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use(session({
 	resave: true, 
 	saveUninitialized: true, 
-	secret: 'ivum-2020',
+	secret: process.env.SESSION_SECRET,
 	_expires: 600000
 }));
 
