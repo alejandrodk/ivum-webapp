@@ -2,13 +2,8 @@ module.exports = (sequelize, dataTypes) => {
     const alias = 'pacientes';
     const cols = {
         id: {
-            primaryKey: true,
             autoIncrement: true,
             type: dataTypes.INTEGER
-        },
-        usuario_id : {
-            type: dataTypes.INTEGER,
-            allowNull: true
         },
         nombre : {
             type: dataTypes.STRING(15),
@@ -19,6 +14,7 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         cedula : {
+            primaryKey: true,
             type: dataTypes.INTEGER,
             allowNull: false
         },
@@ -46,7 +42,7 @@ module.exports = (sequelize, dataTypes) => {
     Paciente.associate = function(models){
         Paciente.belongsTo(models.usuarios, {
             as : 'usuario',
-            foreignKey : 'usuario_id'
+            foreignKey : 'cedula'
         })
         Paciente.hasMany(models.consultas, {
             as : 'consulta'

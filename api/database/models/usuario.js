@@ -2,7 +2,6 @@ module.exports = (sequelize, dataTypes) => {
     const alias = 'usuarios';
     const cols = {
         id: {
-            primaryKey: true,
             autoIncrement: true,
             type: dataTypes.INTEGER
         },
@@ -18,6 +17,11 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(15),
             allowNull: false
         },
+        cedula : {
+            primaryKey: true,
+            type: dataTypes.INTEGER,
+            allowNull: false
+        },
         createdAt: {
             type: dataTypes.DATE
         },
@@ -30,11 +34,11 @@ module.exports = (sequelize, dataTypes) => {
     Usuario.associate = function(models){
         Usuario.hasOne(models.pacientes, {
             as : 'paciente',
-            foreignKey : 'id'
+            foreignKey : 'cedula'
         })
         Usuario.hasOne(models.medicos, {
             as : 'medico',
-            foreignKey : 'id'
+            foreignKey : 'cedula'
         })
     }
 
