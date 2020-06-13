@@ -27,12 +27,13 @@ module.exports = {
     detail : async (req, res) => {
         let id = req.params.id;
         try {
-            let user = await db.usuarios.findByPk(id)
+            let user = await db.usuarios.findOne({ 
+                where : { id },
+                attributes : ['id','']
+            })
             return res
             .status(200)
-            .json({
-                user
-            })
+            .json(user)
         }
         catch(err){
             return res
@@ -91,7 +92,7 @@ module.exports = {
         try {
             let user = await db.usuarios.findOne({ 
                 where : { usuario : usuario }, 
-                attributes : ['usuario','clave'], 
+                attributes : { exclude : ['createdAt','updatedAt']},
                 logging : false
             })
             let match = await bcrypt.compare(clave, user.clave);
@@ -102,16 +103,20 @@ module.exports = {
                         if(err) throw err;
                         res
                         .status(200)
-                        .header('token', token)
                         .json({
                             message : 'Authentication Successful',
+                            user : {
+                                id : user.id,
+                                tipo : user.tipo,
+                                cedula : user.cedula
+                            },
                             token
                         })
                     }
                 )
             } else {
                 return res
-                .status(401)
+                .status(res.statusCode)
                 .json({
                     message : 'Authentication Failed',
                     description : 'Wrong Password passed'
