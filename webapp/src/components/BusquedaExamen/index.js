@@ -8,6 +8,9 @@ const BusquedaExamen = () => {
     const [ params, setParams ] = useState(null);
     
     const { loading, data, error } = useDataFetching(`http://localhost:3000/examenes?search=${params}&price_detail=true&limit=1`)
+
+    if(error) console.error(error)
+    
     const stateHandler = (search) => {
         setParams(search);
     }

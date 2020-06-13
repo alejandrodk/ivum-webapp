@@ -19,7 +19,7 @@ const CurrentsDiv = styled.div`
         margin-top: 5%;
         border-radius: var(--border-radius-med);
         padding: 2px;
-        box-shadow: 0px 0px 14px -4px rgba(0,0,0,0.22);
+        box-shadow: var(--shadow);
     }
 `;
 

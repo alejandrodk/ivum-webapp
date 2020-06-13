@@ -38,6 +38,7 @@ a {
     --blanco: white;
 
     --gradient-verde : linear-gradient(131deg, rgba(35,232,180,1) 0%, rgba(16,160,249,1) 100%);
+    --shadow: 0px 0px 14px -4px rgba(0,0,0,0.15);
     
     --breakpoint-xs: 0;
     --breakpoint-sm: 576px;

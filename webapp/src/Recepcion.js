@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './components/Header/';
 import Sidebar from './components/Sidebar';
-import BusquedaExamen from './components/BusquedaExamen';
-import Cotizaciones from './components/Cotizaciones';
+import Main from './components/Recepcion/Main';
+
 
 
 const Wrapper = styled.div`
@@ -20,7 +20,7 @@ const Wrapper = styled.div`
     }
 `;
 
-const Recepcion = () => {
+const Recepcion = ({match}) => {
     return (
         <React.Fragment>
             <Header />
@@ -73,16 +73,7 @@ const Recepcion = () => {
                     ]}
                 />
                 <div className="content">
-                    <Container>
-                        <Row>
-                            <Col md={9} lg={9}>
-                                <BusquedaExamen />
-                            </Col>
-                            <Col md={3} lg={3}>
-                                <Cotizaciones />
-                            </Col>
-                        </Row>
-                    </Container>
+                    <Route path='/recepcion' exact render={ Main }/>
                 </div>
             </Wrapper>
         </React.Fragment>

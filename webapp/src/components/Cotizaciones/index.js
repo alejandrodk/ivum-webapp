@@ -5,8 +5,9 @@ import useDataFetching from '../hooks/useDataFetching';
 
 const Cotizaciones = () => {
 
-    const { loading, data, error } = useDataFetching(`http://localhost:3000/cotizaciones`);
+    const { data, error } = useDataFetching(`http://localhost:3000/cotizaciones`);
     
+    if(error) console.error(error);
 
     return (
         <CurrentsDiv className="wrap">

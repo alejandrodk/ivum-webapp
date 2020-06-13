@@ -6,7 +6,6 @@ const Button = styled.button`
     color: var(--blanco);
     border-radius: var(--border-radius);
     font-weight: 400;
-    width: 10%;
     border: none;
 `;
 
@@ -15,8 +14,8 @@ const SubmitButton = (props) => {
     const prevent = (e) => {
         if(props.prevent){
             e.preventDefault()
+            props.handler()
         }
-        props.handler()
     }
 
     return (
