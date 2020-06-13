@@ -31,6 +31,12 @@ module.exports = (sequelize, dataTypes) => {
         Examen.hasMany(models.consultas, {
             as : 'consulta'
         })
+        Examen.belongsToMany(models.medicos, {
+            as : 'medicos',
+            through : 'medico_examen',
+            foreignKey : 'examen_id',
+            timestamps : false
+        })
     }
 
     return Examen

@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
 
     if(!token){
         return res
-        .status(401)
+        .status(res.statusCode)
         .json({
             message : 'Authentication Failed',
             description : 'Validation token not found',
@@ -16,9 +16,9 @@ module.exports = (req, res, next) => {
         const decoded = jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
             if(err) {
                 return res
-                .status(401)
+                .status(res.statusCode)
                 .json({
-                    message : 'Authentication Failer',
+                    message : 'Authentication Failed',
                     error : err
                 })
             }

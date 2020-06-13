@@ -27,7 +27,7 @@ module.exports = {
         let id = req.params.id;
 
         try {
-            let medico = await db.medicos.findByPk(id);
+            let medico = await db.medicos.findOne({where : { id }});
             return res
             .status(200)
             .json({ medico })
@@ -90,7 +90,7 @@ module.exports = {
             let medico = await db.medicos.update({
                 ...req.body
             },{
-                where : { id : id },
+                where : { id },
                 logging : false
             })
             if(medico){

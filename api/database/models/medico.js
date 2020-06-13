@@ -2,6 +2,7 @@ module.exports = (sequelize, dataTypes) => {
     const alias = 'medicos';
     const cols = {
         id: {
+            primaryKey: true,
             autoIncrement: true,
             type: dataTypes.INTEGER
         },
@@ -14,7 +15,6 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         cedula : {
-            primaryKey: true,
             type: dataTypes.INTEGER,
             allowNull: false
         },
@@ -50,6 +50,12 @@ module.exports = (sequelize, dataTypes) => {
         })
         Medico.hasMany(models.consultas, {
             as : 'consulta'
+        })
+        Medico.belongsToMany(models.examenes, {
+            as : 'examenes',
+            through : 'medico_examen',
+            foreignKey : 'medico_id',
+            timestamps : false
         })
     }
 

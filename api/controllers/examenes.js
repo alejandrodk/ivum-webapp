@@ -186,4 +186,30 @@ module.exports = {
             })  
         }
     },
+    doctors : async (req, res) => {
+        let id = req.params.id;
+
+        try {
+            let doctors = await db.examenes.findOne({
+                where : { id },
+                attributes : ['nombre'],
+                include : [
+                    { model : db.medicos, as : 'medicos', attributes : { exclude : ['createdAt','updatedAt','comision']}}
+                ],
+                logging: false
+            });
+
+            return res
+            .status(200)
+            .json(doctors)
+        }
+        catch (err){
+            return res
+            .status(res.statusCode)
+            .json({
+                message : 'Failed load resource',
+                error : err
+            }) 
+        }
+    }
 }
