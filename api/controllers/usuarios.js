@@ -186,7 +186,7 @@ module.exports = {
                 logging : false
             })
             if(result){
-                return res.status(204)
+                return res.status(204).send('Successful deleting resource')
             }
         }
         catch(err){
