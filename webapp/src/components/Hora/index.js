@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from 'styled-components';
 
 const HoraDiv = styled.div`
@@ -11,6 +11,11 @@ const HoraDiv = styled.div`
     color: var(--gris-med);
     font-weight: 300;
     transition: 03s all;
+    font-size: 14px;
+
+    i{
+        font-size: 12px;
+    }
 `;
 
 const fechaActual = () => {
@@ -38,10 +43,18 @@ const fechaActual = () => {
 
 const Hora = () => {
     const [ horaState, setHora ] = useState(fechaActual())
+    const [ counter, setCounter ] = useState(0);
 
-    setTimeout(()=>{
+    useEffect(()=> {
         setHora(fechaActual())
-    }, 1000)
+
+        return () => { }
+    },[counter])
+
+    setTimeout( () => {
+        setCounter(counter + 1)
+    }, 60000)
+
 
     const spanRef = useRef();
 

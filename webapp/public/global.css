@@ -29,11 +29,12 @@ a {
   --azul: #0c73db;
   --gris: #737373;
   /* App */
-    --verde: #23e8b4;
+    --verde: #26e8ba;
     --azul-dark: #00288c;
     --azul-claro: #10a0f9;
     --gris-dark: #4d4c4c;
     --gris-med: #7c7c7c;
+    --gris-normal: #a7a7a7;
     --gris-light: #f9fafd;
     --blanco: white;
 

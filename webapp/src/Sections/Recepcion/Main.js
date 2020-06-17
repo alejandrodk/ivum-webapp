@@ -1,15 +1,15 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import BusquedaExamen from '../BusquedaExamen';
-import Cotizaciones from '../Cotizaciones';
-import DataTable from '../DataTable';
+import BusquedaExamen from '../../components/BusquedaExamen';
+import Cotizaciones from '../../components/Cotizaciones';
+import ConsultationsPending from '../../components/ConsultationsPending';
 
 const Main = () => (
     <Container>
         <Row>
             <Col md={9} lg={9}>
                 <BusquedaExamen />
-                <DataTable 
+                <ConsultationsPending 
                     title='Consultas Pendientes'
                     elements={[
                         {

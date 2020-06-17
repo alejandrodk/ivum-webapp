@@ -1,11 +1,10 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import styled from 'styled-components';
 import Header from './components/Header/';
 import Sidebar from './components/Sidebar';
-import Main from './components/Recepcion/Main';
-
-
+import Main from './Sections/Recepcion/Main';
+import NuevaConsulta from './Sections/Recepcion/NuevaConsulta';
 
 const Wrapper = styled.div`
     background: var(--gris-light);
@@ -20,7 +19,7 @@ const Wrapper = styled.div`
     }
 `;
 
-const Recepcion = ({match}) => {
+const Recepcion = ({ match }) => {
     return (
         <React.Fragment>
             <Header />
@@ -33,47 +32,50 @@ const Recepcion = ({match}) => {
                             category : 'Consultas',
                             icon : 'fas fa-book-medical',
                             links : [
-                                { title : 'Programar consulta', url : 'recepcion/consultas/nueva'}, 
-                                { title : 'consultas', url : 'recepcion/consultas' }
+                                { title : 'Programar consulta', url : `${match.path}/consultas/nueva`}, 
+                                { title : 'consultas', url : `${match.path}/consultas` }
                             ]
                         },
                         {   
                             category : 'Pagos',
                             icon : 'fas fa-file-invoice-dollar',
                             links : [
-                                { title : 'Procesar pago', url : 'recepcion/pagos/nuevo'},
-                                { title : 'Historial de pagos', url : 'recepcion/pagos'}
+                                { title : 'Procesar pago', url : `${match.path}/pagos/nuevo`},
+                                { title : 'Historial de pagos', url : `${match.path}/pagos`}
                             ]
                         },
                         {   
                             category : 'Pacientes',
                             icon : 'fas fa-users',
                             links : [
-                                { title : 'Datos de pacientes', url : 'recepcion/pacientes'}, 
-                                { title : 'Registrar nuevo paciente', url : 'recepcion/pacientes/nuevo' },
-                                { title : 'Modificar datos de paciente', url : 'recepcion/pacientes/modificar' }
+                                { title : 'Datos de pacientes', url : `${match.path}/pacientes`}, 
+                                { title : 'Registrar nuevo paciente', url : `${match.path}/pacientes/nuevo`},
+                                { title : 'Modificar datos de paciente', url : `${match.path}/pacientes/modificar` }
                             ]
                         },
                         {   
                             category : 'Médicos',
                             icon : 'fas fa-user-md',
                             links : [
-                                { title : 'Listado de médicos', url : 'recepcion/medicos'},
-                                { title : 'Consultas', url : 'recepcion/medicos/consultas'}
+                                { title : 'Listado de médicos', url : `${match.path}/medicos`},
+                                { title : 'Consultas', url : `${match.path}/medicos/consultas`}
                             ]
                         },
                         {   
                             category : 'Exámenes',
                             icon : 'fas fa-file-medical-alt',
                             links : [
-                                { title : 'Listado de Exámenes', url : 'recepcion/examenes'},
-                                { title : 'Precios', url : 'recepcion/examenes/precios'}
+                                { title : 'Listado de Exámenes', url : `${match.path}/examenes`},
+                                { title : 'Precios', url : `${match.path}/examenes/precios`}
                             ]
                         },
                     ]}
                 />
                 <div className="content">
-                    <Route path='/recepcion' exact render={ Main }/>
+                    <Switch>
+                        <Route path={match.path} exact render={ Main }/>
+                        <Route path={`${match.path}/consultas/nueva`} exact render={ NuevaConsulta }/>
+                    </Switch>
                 </div>
             </Wrapper>
         </React.Fragment>

@@ -1,11 +1,11 @@
 import React from 'react';
 import Div from './style';
+import FunctionalContainer from '../FunctionalContainer';
 
-const DataTable = (props) => {
+const ConsultationsPending = (props) => {
     return (
-        <Div>
-            <h2>Consultas Pendientes</h2>
-            <div className='wrap'>
+        <FunctionalContainer title='Consultas Pendientes'>
+            <Div>
                 {props.elements.map( item => (
                     <ul className='wrap' key={item.first + Math.random()}>
                         <li>{item.first}</li>
@@ -14,12 +14,12 @@ const DataTable = (props) => {
                         <li>{item.four}</li>
                     </ul>
                 ))}
-            </div>
-        </Div>
+            </Div>
+        </FunctionalContainer>
     )
 }
 
-DataTable.defaultProps = {
+ConsultationsPending.defaultProps = {
     title : 'Default Title',
     elements : [
         {
@@ -31,4 +31,4 @@ DataTable.defaultProps = {
     ]
 }
 
-export default DataTable;
+export default ConsultationsPending;

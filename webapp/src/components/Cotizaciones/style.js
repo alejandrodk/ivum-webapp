@@ -7,6 +7,21 @@ const CurrentsDiv = styled.div`
     background: var(--blanco);
     font-size: var(--texto);
     border-radius: var(--border-radius);
+    position: relative;
+
+    &::after {
+	content: '$';
+	    width: 30px;
+	    height: 20px;
+	    position: absolute;
+	    right: 2%;
+	    background: var(--azul);
+        top: 5%;
+        color: var(--blanco);
+        text-align: center;
+        font-weight: 600;
+	    border-radius: var(--border-radius-med);
+    }
 
     h3 {
         font-size: var(--titulo);
