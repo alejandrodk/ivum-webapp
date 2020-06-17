@@ -61,7 +61,8 @@ module.exports = (sequelize, dataTypes) => {
 
     Comprobante.associate = function(models){
         Comprobante.hasMany(models.consultas, {
-            as : 'consulta'
+            as : 'consulta',
+            foreignKey : 'comprobante_id'
         })
     }
 

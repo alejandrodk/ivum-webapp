@@ -49,7 +49,8 @@ module.exports = (sequelize, dataTypes) => {
             foreignKey : 'cedula'
         })
         Medico.hasMany(models.consultas, {
-            as : 'consulta'
+            as : 'consulta',
+            foreignKey : 'medico_id'
         })
         Medico.belongsToMany(models.examenes, {
             as : 'examenes',

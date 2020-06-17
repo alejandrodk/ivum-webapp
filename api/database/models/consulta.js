@@ -6,7 +6,7 @@ module.exports = (sequelize, dataTypes) => {
             autoIncrement: true,
             type: dataTypes.INTEGER
         },
-        paciente_id : {
+        cedula_paciente : {
             type: dataTypes.INTEGER,
             allowNull: false
         },
@@ -57,7 +57,7 @@ module.exports = (sequelize, dataTypes) => {
         })
         Consulta.belongsTo(models.pacientes, {
             as : 'paciente',
-            foreignKey : 'paciente_id'
+            foreignKey : 'cedula_paciente'
         })
         Consulta.belongsTo(models.examenes, {
             as : 'examen',
