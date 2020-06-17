@@ -2,11 +2,22 @@ const db = require("../database/models");
 
 module.exports = {
     consultas : async (req, res) => {
+        let full_data = req.query.full_data;
+
         try {
             let consultas = await db.consultas.findAll({
-                attributes : {
-                    exclude : ['createdAt','updatedAt']
-                },
+                attributes : full_data ?
+                    { exclude : ['cedula_paciente','medico_id','examen_id','createdAt','updatedAt']}
+                    :
+                    { exclude : ['createdAt','updatedAt'] },
+                include : full_data ? 
+                    [
+                        { model : db.pacientes, as : 'paciente', attributes : {exclude : ['createdAt','updatedAt']}},
+                        { model : db.medicos, as : 'medico', attributes : {exclude : ['createdAt','updatedAt']}},
+                        { model : db.examenes, as : 'examen', attributes : {exclude : ['createdAt','updatedAt']}}
+                    ] 
+                    : 
+                    [],
                 logging : false
             });
             return res
