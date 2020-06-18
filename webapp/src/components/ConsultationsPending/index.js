@@ -1,21 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Div from './style';
 import FunctionalContainer from '../FunctionalContainer';
+import Axios from 'axios';
 
 const ConsultationsPending = (props) => {
+
+    const [ consultas, setConsultas ] = useState([])
+    const [ loading, setLoading ] = useState(false)
+
+    useEffect(()=> {
+        setLoading(true)
+        Axios.get('http://localhost:3000/consultas?full_data=true')
+        .then(res => {
+            if(res.data){
+                setConsultas(res.data)
+                setLoading(false)
+            }
+        })
+        .catch(error => console.log(error))
+    },[])
+
     return (
-        <FunctionalContainer title='Consultas Pendientes'>
+        !loading ?
+            <FunctionalContainer title='Consultas Pendientes'>
             <Div>
-                {props.elements.map( item => (
-                    <ul className='wrap' key={item.first + Math.random()}>
-                        <li>{item.first}</li>
-                        <li>{item.second}</li>
-                        <li>{item.third}</li>
-                        <li>{item.four}</li>
+                {consultas.map( item => (
+                    <ul className='wrap' key={item.id + Math.random()}>
+                        <li>{`${item.paciente.nombre} ${item.paciente.apellido}`}</li>
+                        <li>{item.examen.nombre}</li>
+                        <li>{`${item.medico.nombre} ${item.medico.apellido}`}</li>
+                        <li>{`${item.fecha} ${item.hora}`}</li>
                     </ul>
                 ))}
             </Div>
         </FunctionalContainer>
+        :
+        'Cargando....'
     )
 }
 
