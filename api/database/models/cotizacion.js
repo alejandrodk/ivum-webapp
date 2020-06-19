@@ -15,7 +15,7 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: true
         },
         valor_usd : {
-            type: dataTypes.FLOAT,
+            type: dataTypes.DECIMAL,
             allowNull: false
         },
         createdAt: {

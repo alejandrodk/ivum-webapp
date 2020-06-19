@@ -35,11 +35,11 @@ module.exports = (sequelize, dataTypes) => {
             allowNull: false
         },
         monto : {
-            type: dataTypes.FLOAT,
+            type: dataTypes.DECIMAL,
             allowNull: false
         },
         iva : {
-            type: dataTypes.FLOAT,
+            type: dataTypes.DECIMAL,
             allowNull: false
         },
         observacion : {
