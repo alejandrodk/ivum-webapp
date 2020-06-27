@@ -41,9 +41,9 @@ app.use(session({
 // CORS
 app.use(cors())
 app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
 });
 // Routes
 const usuariosRouter = require('./routes/usuarios')
@@ -52,6 +52,7 @@ const pacientesRouter = require('./routes/pacientes')
 const consultasRouter = require('./routes/consultas')
 const examenesRouter = require('./routes/examenes')
 const cotizacionesRouter = require('./routes/cotizaciones')
+const comprobantesRouter = require('./routes/comprobantes')
 
 app.use('/usuarios', usuariosRouter);
 app.use('/medicos', medicosRouter);
@@ -59,6 +60,7 @@ app.use('/pacientes', pacientesRouter);
 app.use('/consultas', consultasRouter);
 app.use('/examenes', examenesRouter);
 app.use('/cotizaciones', cotizacionesRouter);
+app.use('/comprobantes', comprobantesRouter);
 
 // catch 404 
 app.use(function(req, res, next) {
