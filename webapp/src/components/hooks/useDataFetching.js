@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from 'axios';
+import { getToken } from '../../Helpers/auth';
 
 const useDataFetching = (dataSource) => {
 
@@ -10,7 +11,9 @@ const useDataFetching = (dataSource) => {
     useEffect( () => {
         async function fetchData(){
             try {  
-                let response = await axios.get(dataSource);
+                let response = await axios.get(dataSource,{ 
+                    headers: {'token': getToken()} 
+                });
     
                 if(response.data){
                     setData(response.data);
@@ -31,7 +34,7 @@ const useDataFetching = (dataSource) => {
     
     return {
         loading,
-        data : data,
+        data,
         error
     };
 }
