@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 import { setToken, authSessionClient } from '../../Helpers/auth';
-import SubmitButton from '../SubmitButton';
-import logo from './ivum_logo.png';
-import Div from './style';
 import Axios from 'axios';
+
+import Div from './style';
+import logo from './ivum_logo.png';
+import SubmitButton from '../SubmitButton';
+import Confirmation from '../Confirmation';
 
 const LoginForm = () => {
 
@@ -58,11 +60,11 @@ const LoginForm = () => {
             <form action="/usuarios/login" className="wrap" method='POST' onSubmit={formHandler}>
             {error ? <h3>Usuario o contraseña inválidos</h3> : ''}
                 <label htmlFor="username">Usuario</label>
-                <input type="text" name="username" id=""/>
+                <input type="text" name="username"/>
                 <label htmlFor="password">Clave</label>
-                <input type="password" name="password" id=""/>
+                <input type="password" name="password"/>
                 { loading ? 
-                    'cargando...'
+                    <Confirmation message="Cargando" loading={true}/>
                     :
                     <SubmitButton
                         type='submit'

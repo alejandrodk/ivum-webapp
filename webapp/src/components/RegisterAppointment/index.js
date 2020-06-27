@@ -3,6 +3,7 @@ import { getToken } from '../../Helpers/auth';
 import AppointmentForm from './style';
 import SubmitButton from '../SubmitButton';
 import Axios from 'axios';
+import Confirmation from '../Confirmation';
 
 const RegisterAppointment = () => {
 
@@ -113,11 +114,13 @@ const RegisterAppointment = () => {
                 <input onChange={inputHandler} type="date" name="fecha" required value={fecha} placeholder='Fecha'/>
                 <input onChange={inputHandler} type="time" name="hora" min='08:00' max='17:00' required value={hora} placeholder='Hora'/>
                 {(error ? <p>Error al registrar la consulta, verifique los datos ingresados</p> : <p>Complete todos los datos</p> )}
-                {(loading && <p>Cargando...</p> )}
+                {(loading && <Confirmation message='Cargando' loading={true} /> )}
                 <SubmitButton name='Registrar' loading='false' />
             </AppointmentForm> 
         :
-        'Consulta registrada exitosamente'
+        <Confirmation message='Consulta registrada exitosamente' success={true}>
+            <a href="/recepcion/pagos/nuevo">Registrar Pago</a>
+        </Confirmation>
     )
 }
 

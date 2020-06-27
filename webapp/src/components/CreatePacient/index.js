@@ -3,6 +3,7 @@ import { getToken } from '../../Helpers/auth';
 import NewPacientForm from './style';
 import SubmitButton from '../SubmitButton';
 import Axios from 'axios';
+import Confirmation from '../Confirmation';
 
 const CreatePacient = () => {
 
@@ -70,11 +71,11 @@ const CreatePacient = () => {
                 <input onChange={inputHandler} type="text" name="direccion" required value={direccion} placeholder='Dirección'/>
                 <input onChange={inputHandler} type="text" name="telefono" required value={telefono} placeholder='Teléfono'/>
                 {(error ? <p>Error al registrar paciente, verifique los datos ingresados</p> : <p>Complete todos los datos</p> )}
-                {(loading && <p>Cargando...</p> )}
+                {(loading && <Confirmation message='Cargando' loading={true} /> )}
                 <SubmitButton name='Registrar' loading='false' />
             </NewPacientForm> 
         :
-        'Paciente creado exitosamente'
+        <Confirmation message='Paciente Creado' success={true} />
     )
 }
 
