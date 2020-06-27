@@ -6,15 +6,24 @@ const BusquedaDiv = styled.div`
     min-height: 150px;
     padding: var(--padding);
     border-radius: var(--border-radius);
+    margin-bottom: 2%;
     
+    form ~ div{
+        width: 100%;
+    }
+    .titles{
+        font-size: var(--texto);
+        color: var(--gris-med);
+        margin-top: 3%;
+    }
     .data {
         width: 100%;
         border: solid 2px var(--azul-claro);
         border-radius: var(--border-radius);
         padding: 5px;
-        margin : 2% 0;
+        margin : 1% 0;
     }
-    ul {
+    .data ul, ul {
         width: 100%;
     }
     ul li{
@@ -23,12 +32,8 @@ const BusquedaDiv = styled.div`
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    .data ul:nth-child(1){
-        font-size: var(--texto);
-        color: var(--gris-med);
-    }
     ul li:nth-child(1){
-        width: 30%;
+        width: 40%;
     }
     ul li:nth-child(2){
         width: 20%;

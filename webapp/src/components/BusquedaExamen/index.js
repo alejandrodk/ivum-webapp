@@ -7,8 +7,8 @@ const BusquedaExamen = () => {
 
     const [ params, setParams ] = useState(null);
     
-    const { loading, data, error } = useDataFetching(`http://localhost:3000/examenes?search=${params}&price_detail=true&limit=1`)
-
+    const { loading, data, error } = useDataFetching(`http://localhost:3000/examenes?search=${params}&price_detail=true&limit=3`)
+    
     if(error) console.error(error)
     
     const stateHandler = (search) => {
@@ -26,17 +26,21 @@ const BusquedaExamen = () => {
                 stateHandler={stateHandler}
             />
             { !loading && data.length > 0 ?
-                <div className="data">
-                    <ul className="wrap">
+                <div>
+                    <ul className="wrap titles">
                         <li>Exámen</li>
                         <li>Especialidad</li>
                         <li>Precio</li>
                     </ul>
-                    <ul className="wrap">
-                        <li>{data[0].nombre}</li>
-                        <li>{data[0].especialidad}</li>
-                        <li><b>USD</b> ${data[0].precio.usd} / <b>BsF</b> {new Intl.NumberFormat(["de-DE"]).format(data[0].precio.bsf)}</li>
-                    </ul>
+                    <div className="data">
+                        {data.map(item => (
+                            <ul className="wrap" key={item.nombre}>
+                                <li>{item.nombre}</li>
+                                <li>{item.especialidad}</li>
+                                <li><b>USD</b> ${item.precio.usd} / <b>BsF</b> {new Intl.NumberFormat(["de-DE"]).format(item.precio.bsf)}</li>
+                            </ul>
+                        ))}
+                    </div>
                 </div>
              : ''
             }
