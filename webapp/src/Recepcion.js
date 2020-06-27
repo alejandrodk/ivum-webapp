@@ -5,6 +5,7 @@ import Header from './components/Header/';
 import Sidebar from './components/Sidebar';
 import Main from './Sections/Recepcion/Main';
 import NuevaConsulta from './Sections/Recepcion/NuevaConsulta';
+import NuevoPago from './Sections/Recepcion/NuevoPago';
 
 const Wrapper = styled.div`
     background: var(--gris-light);
@@ -75,6 +76,7 @@ const Recepcion = ({ match }) => {
                     <Switch>
                         <Route path={match.path} exact render={ Main }/>
                         <Route path={`${match.path}/consultas/nueva`} exact render={ NuevaConsulta }/>
+                        <Route path={`${match.path}/pagos/nuevo`} exact render={ NuevoPago }/>
                     </Switch>
                 </div>
             </Wrapper>
