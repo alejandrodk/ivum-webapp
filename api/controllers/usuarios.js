@@ -29,7 +29,7 @@ module.exports = {
         try {
             let user = await db.usuarios.findOne({ 
                 where : { id },
-                attributes : ['id','']
+                attributes : ['id','usuario','tipo','cedula']
             })
             return res
             .status(200)
