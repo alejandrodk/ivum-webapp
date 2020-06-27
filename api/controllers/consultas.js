@@ -1,11 +1,21 @@
 const db = require("../database/models");
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 module.exports = {
     consultas : async (req, res) => {
         let full_data = req.query.full_data;
+        let pacient = req.query.pacient;
+        let state = req.query.state
+
+        let where = {};
+        if(pacient) where.cedula_paciente = pacient;
+        if(state == 'unpaid') where.estado = null;
+        if(state == 'paid') where.estado = 'Pagado';
 
         try {
             let consultas = await db.consultas.findAll({
+                where,
                 attributes : full_data ?
                     { exclude : ['cedula_paciente','medico_id','examen_id','createdAt','updatedAt']}
                     :
