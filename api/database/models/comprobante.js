@@ -11,7 +11,7 @@ module.exports = (sequelize, dataTypes) => {
             allowNull : false
         },
         cedula : {
-            type: dataTypes.STRING(15),
+            type: dataTypes.STRING(11),
             allowNull : false
         },
         direccion : {
@@ -23,15 +23,23 @@ module.exports = (sequelize, dataTypes) => {
             allowNull : false
         },
         paciente_id : {
-            type: dataTypes.INTEGER,
+            type: dataTypes.STRING(11),
+            allowNull: false
+        },
+        observacion : {
+            type: dataTypes.STRING,
             allowNull: false
         },
         metodo_pago : {
-            type: dataTypes.STRING(15),
+            type: dataTypes.STRING(20),
             allowNull: false
         },
         moneda : {
             type: dataTypes.STRING(5),
+            allowNull: false
+        },
+        fecha : {
+            type: dataTypes.DATE,
             allowNull: false
         },
         monto : {
@@ -42,12 +50,8 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.DECIMAL,
             allowNull: false
         },
-        observacion : {
-            type: dataTypes.STRING,
-            allowNull: false
-        },
-        fecha : {
-            type: dataTypes.DATE,
+        total : {
+            type: dataTypes.DECIMAL,
             allowNull: false
         },
         createdAt: {
