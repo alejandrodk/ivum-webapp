@@ -13,7 +13,7 @@ const Recepcion = () => {
                     <img src={logo} alt="Instituto Venezolano de Ultrasonido"/>
                     <div className="opciones wrap">
                         <Hora/>
-                        <LinkButton texto={'Salir'}/>
+                        <LinkButton texto={'Salir'} link='/logout'/>
                     </div>
                 </DivHeader>
             </Col>

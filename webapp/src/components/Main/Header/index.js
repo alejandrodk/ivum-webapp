@@ -19,6 +19,7 @@ const HeaderComp = () => {
                   <li><Link to="#h_nosotros">Nosotros</Link></li>
                   <li><Link to="#h_servicios">Servicios</Link></li>
                   <li><Link to="#h_contacto">Contacto</Link></li>
+                  <li><Link to="ingresar">Ingresar</Link></li>
                 </ul>
               </nav>
             </div>
