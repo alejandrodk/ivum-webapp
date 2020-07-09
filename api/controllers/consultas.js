@@ -20,7 +20,6 @@ module.exports = {
             [Op.gt]: date_from || new Date() - 300 * 24 * 60 * 60 * 100,
             [Op.lt]: date_to || new Date() + 100 * 24 * 60 * 60 * 100
         }
-        console.log({ date_from, date_to})
         try {
             let consultas = await db.consultas.findAll({
                 where,
