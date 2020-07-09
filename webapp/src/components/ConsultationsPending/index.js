@@ -10,7 +10,7 @@ const ConsultationsPending = (props) => {
 
     useEffect(()=> {
         setLoading(true)
-        Axios.get('http://localhost:3000/consultas?full_data=true')
+        Axios.get('http://localhost:3000/consultas?full_data=true&state=pendiente')
         .then(res => {
             if(res.data){
                 setConsultas(res.data)

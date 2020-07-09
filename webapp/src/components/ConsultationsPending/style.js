@@ -15,6 +15,9 @@ const Div = styled.div`
         width: 25%;
         text-align: center;
         padding: 0 2.5%;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
     ul li:nth-child(1){
         border-right: 2px solid gray;
