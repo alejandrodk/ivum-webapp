@@ -6,13 +6,19 @@ module.exports = {
     consultas : async (req, res) => {
         let full_data = req.query.full_data;
         let pacient = req.query.pacient;
-        let state = req.query.state
+        let state = req.query.state;
+        let date_from = req.query.date_from;
+        let date_to = req.query.date_to;
 
         let where = {};
         if(pacient) where.cedula_paciente = pacient;
-        if(state == 'unpaid') where.estado = null;
-        if(state == 'paid') where.estado = 'Pagado';
-
+        if(state == 'unpaid') where.comprobante_id = null;
+        if(state == 'paid') where.comprobante_id = {[Op.is]: true};
+        if(date_from || date_to) where.fecha = {
+            [Op.gt]: date_from || new Date() - 300 * 24 * 60 * 60 * 100,
+            [Op.lt]: date_to || new Date() + 100 * 24 * 60 * 60 * 100
+        }
+        console.log({ date_from, date_to})
         try {
             let consultas = await db.consultas.findAll({
                 where,
@@ -28,6 +34,7 @@ module.exports = {
                     ] 
                     : 
                     [],
+                order : [['fecha', 'DESC']],
                 logging : false
             });
             return res

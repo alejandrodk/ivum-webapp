@@ -1,11 +1,13 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+
 import styled from 'styled-components';
 import Header from './components/Header/';
 import Sidebar from './components/Sidebar';
 import Main from './Sections/Recepcion/Main';
 import NuevaConsulta from './Sections/Recepcion/NuevaConsulta';
 import NuevoPago from './Sections/Recepcion/NuevoPago';
+import Consultas from './Sections/Recepcion/Consultas';
 
 const Wrapper = styled.div`
     background: var(--gris-light);
@@ -21,6 +23,7 @@ const Wrapper = styled.div`
 `;
 
 const Recepcion = ({ match }) => {
+    
     return (
         <React.Fragment>
             <Header />
@@ -75,6 +78,7 @@ const Recepcion = ({ match }) => {
                 <div className="content">
                     <Switch>
                         <Route path={match.path} exact render={ Main }/>
+                        <Route path={`${match.path}/consultas`} exact render={ Consultas }/>
                         <Route path={`${match.path}/consultas/nueva`} exact render={ NuevaConsulta }/>
                         <Route path={`${match.path}/pagos/nuevo`} exact render={ NuevoPago }/>
                     </Switch>
