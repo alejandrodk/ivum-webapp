@@ -1,9 +1,48 @@
 const db = require('../database/models');
 const sequelize = db.sequelize;
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 module.exports = {
     comprobantes : async (req, res) => {
+        let full_data = req.query.full_data;
+        let pacient = req.query.pacient;
+        let date_from = req.query.date_from;
+        let date_to = req.query.date_to;
 
+        let where = {};
+        if(pacient) where.paciente_id = pacient;
+        if(date_from || date_to) where.fecha = {
+            [Op.gt]: date_from || new Date() - 300 * 24 * 60 * 60 * 100,
+            [Op.lt]: date_to || new Date() + 100 * 24 * 60 * 60 * 100
+        }
+
+        try {
+            let comprobantes = await db.comprobantes.findAll({
+                where,
+                attributes : { exclude : ['createdAt','updatedAt'] },
+                include : full_data ?
+                    [
+                        { model: db.consultas, as : 'consulta' }
+                    ]
+                    :
+                    [],
+                order : [['fecha','DESC']],
+                logging : false
+            })
+            return res
+            .status(200)
+            .json(comprobantes)
+        }
+        catch(err){
+            return res
+            .status(200)
+            .json({
+                message : 'Failed load collection',
+                collection : 'comprobantes',
+                error : err
+            }) 
+        }
     },
     detail : async (req, res) => {
         
