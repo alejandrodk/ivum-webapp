@@ -25,7 +25,6 @@ module.exports = {
 
             for(consulta of consultas){
                 await db.consultas.update({
-                    estado : 'Pagado',
                     comprobante_id : comprobante.id
                 },{
                     where : { id : consulta.id },
