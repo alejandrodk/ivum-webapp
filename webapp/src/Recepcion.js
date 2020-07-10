@@ -9,6 +9,7 @@ import NuevaConsulta from './Sections/Recepcion/NuevaConsulta';
 import NuevoPago from './Sections/Recepcion/NuevoPago';
 import Consultas from './Sections/Recepcion/Consultas';
 import Pagos from './Sections/Recepcion/Pagos';
+import Pacientes from './Sections/Recepcion/Pacientes';
 
 const Wrapper = styled.div`
     background: var(--gris-light);
@@ -83,6 +84,7 @@ const Recepcion = ({ match }) => {
                         <Route path={`${match.path}/consultas/nueva`} exact render={ NuevaConsulta }/>
                         <Route path={`${match.path}/pagos`} exact render={ Pagos }/>
                         <Route path={`${match.path}/pagos/nuevo`} exact render={ NuevoPago }/>
+                        <Route path={`${match.path}/pacientes`} exact render={ Pacientes }/>
                     </Switch>
                 </div>
             </Wrapper>
