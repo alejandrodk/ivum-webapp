@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 import FunctionalContainer from '../FunctionalContainer';
 import {Div, DataDiv } from './style';
@@ -86,7 +87,7 @@ const SearchPacients = () => {
                                         <li>{item.cedula}</li>
                                         <li>{item.correo}</li> 
                                         <li>{item.telefono}</li>
-                                        <li><a href={`pacientes/${item.cedula}`}><i className="far fa-eye"></i></a></li>
+                                        <li><NavLink to={`pacientes/${item.cedula}`}><i className="far fa-eye"></i></NavLink></li>
                                     </ul>
                                 ))}
                             </div>
