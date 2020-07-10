@@ -9,7 +9,7 @@ const NewPacientForm = styled.form`
         overflow: hidden;
     }
 
-    input {
+    input, select {
         width: 100%;
         border-radius: var(--border-radius-med);
         border: solid 1px var(--gris-normal);

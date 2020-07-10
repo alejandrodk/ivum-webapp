@@ -13,6 +13,8 @@ const CreatePacient = () => {
     
     const [ nombre, setNombre ] = useState('');
     const [ apellido, setApellido ] = useState('');
+    const [ sexo, setSexo ] = useState('');
+    const [ nacimiento, setNacimiento ] = useState('');
     const [ cedula, setCedula ] = useState('');
     const [ correo, setCorreo ] = useState('');
     const [ direccion, setDireccion ] = useState('');
@@ -25,6 +27,8 @@ const CreatePacient = () => {
 
         if(name === 'nombre') setNombre(value)
         if(name === 'apellido') setApellido(value)
+        if(name === 'sexo') setSexo(value)
+        if(name === 'nacimiento') setNacimiento(value)
         if(name === 'cedula') setCedula(value)
         if(name === 'correo') setCorreo(value)
         if(name === 'direccion') setDireccion(value)
@@ -40,6 +44,8 @@ const CreatePacient = () => {
         await Axios.post('http://localhost:3000/pacientes/',{
             nombre,
             apellido,
+            sexo,
+            nacimiento,
             cedula,
             correo,
             direccion,
@@ -66,6 +72,12 @@ const CreatePacient = () => {
             <NewPacientForm className='wrap' onSubmit={formHandler}>
                 <input onChange={inputHandler} type="text" name="nombre" required value={nombre} placeholder='Nombre'/>
                 <input onChange={inputHandler} type="text" name="apellido" required value={apellido} placeholder='Apellido'/>
+                <select onChange={inputHandler} name="sexo" required>
+                    <option value="null">Sexo</option>
+                    <option value="M">masculino</option>
+                    <option value="F">femenino</option>
+                </select>
+                <input onChange={inputHandler} type="date" name="nacimiento" required value={nacimiento}/>
                 <input onChange={inputHandler} type='text' name="cedula" required value={cedula} placeholder='Cédula'/>
                 <input onChange={inputHandler} type="email" name="correo" value={correo} placeholder='Correo'/>
                 <input onChange={inputHandler} type="text" name="direccion" required value={direccion} placeholder='Dirección'/>
