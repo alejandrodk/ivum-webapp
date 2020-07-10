@@ -2,8 +2,14 @@ const db = require("../database/models");
 
 module.exports = {
     pacientes : async (req, res) => {
+        let pacient = req.query.pacient;
+
+        let where = {};
+        if(pacient) where.cedula = pacient;
+
         try {
             let pacientes = await db.pacientes.findAll({
+                where,
                 attributes : {
                     exclude : ['createdAt','updatedAt']
                 },
@@ -11,7 +17,7 @@ module.exports = {
             });
             return res
             .status(200)
-            .json({ pacientes })
+            .json(pacientes)
         }
         catch (err){
             return res
@@ -30,7 +36,7 @@ module.exports = {
             let paciente = await db.pacientes.findByPk(id);
             return res
             .status(200)
-            .json({ paciente })
+            .json(paciente)
         }
         catch (err){
             return res

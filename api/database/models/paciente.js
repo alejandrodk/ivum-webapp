@@ -13,6 +13,14 @@ module.exports = (sequelize, dataTypes) => {
             type: dataTypes.STRING(25),
             allowNull: false
         },
+        sexo : {
+            type: dataTypes.STRING(10),
+            allowNull: false
+        },
+        nacimiento : {
+            type: dataTypes.DATE,
+            allowNull: false
+        },
         cedula : {
             primaryKey: true,
             type: dataTypes.INTEGER,
