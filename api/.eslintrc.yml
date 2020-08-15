@@ -12,8 +12,9 @@ parserOptions:
   ecmaVersion: 2020
   sourceType: module
 parser: 'babel-eslint'
-rules: {
-  "prettier/prettier": "error",
-  "max-len": ["error", {"code": 100, "ignoreUrls": true, "ignoreComments": false}],
-  "no-unused-vars": 1,
-}
+rules:
+  {
+    'prettier/prettier': 'error',
+    'max-len': ['error', { 'code': 100, 'ignoreUrls': true, 'ignoreComments': false }],
+    'no-unused-vars': 1,
+  }

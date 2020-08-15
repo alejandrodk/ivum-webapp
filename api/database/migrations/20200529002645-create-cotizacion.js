@@ -6,28 +6,28 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.INTEGER,
       },
       moneda: {
-        type: Sequelize.DataTypes.STRING
+        type: Sequelize.DataTypes.STRING,
       },
       simbolo: {
-        type: Sequelize.DataTypes.STRING
+        type: Sequelize.DataTypes.STRING,
       },
       valor_usd: {
-        type: Sequelize.DataTypes.FLOAT
+        type: Sequelize.DataTypes.FLOAT,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DataTypes.DATE
+        type: Sequelize.DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DataTypes.DATE
-      }
+        type: Sequelize.DataTypes.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('cotizacions');
-  }
+  },
 };

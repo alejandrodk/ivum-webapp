@@ -17,4 +17,4 @@ parserOptions:
   sourceType: module
 plugins:
   - react
-rules: {"react/jsx-uses-react":2, "react/jsx-uses-vars":2, "react/react-in-jsx-scope":2}
+rules: { 'react/jsx-uses-react': 2, 'react/jsx-uses-vars': 2, 'react/react-in-jsx-scope': 2 }

@@ -1,46 +1,46 @@
 .mainHeader {
-    background-image: url('./banner_home.jpg');
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    min-height: 700px;
+  background-image: url('./banner_home.jpg');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  min-height: 700px;
 }
 .mainServices {
-    background: url("./pattern_servicios.png");
-    background-size: 100% auto;
-    background-repeat: no-repeat;
-    background-position: bottom;
+  background: url('./pattern_servicios.png');
+  background-size: 100% auto;
+  background-repeat: no-repeat;
+  background-position: bottom;
 }
 .mainPresentation {
-	justify-content: center;
-	background: url("./pattern_presentacion.png");
-	background-repeat: repeat;
-	background-size: contain;
+  justify-content: center;
+  background: url('./pattern_presentacion.png');
+  background-repeat: repeat;
+  background-size: contain;
 }
 .mainContact {
-	background: var(--azul);
-	justify-content: space-between;
-	padding: 5% 0%;
+  background: var(--azul);
+  justify-content: space-between;
+  padding: 5% 0%;
 }
 .mainFooter {
-	background-color: #0059b3;
-	height: 200px;
-	color: white;
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-between;
+  background-color: #0059b3;
+  height: 200px;
+  color: white;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 @media (max-width: 768px) {
   .mainHeader {
-	overflow: hidden;
-	background-size: auto 100%;
-	background-position: center;
+    overflow: hidden;
+    background-size: auto 100%;
+    background-position: center;
   }
   .mainServices {
-	  margin: 10% 0;
+    margin: 10% 0;
   }
   .mainFooter {
-	  height: auto;
-	  padding-bottom: 10%;
+    height: auto;
+    padding-bottom: 10%;
   }
 }

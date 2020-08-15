@@ -6,52 +6,52 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.INTEGER,
       },
       id: {
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.INTEGER,
       },
       paciente_id: {
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.INTEGER,
       },
       medico_id: {
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.INTEGER,
       },
       examen_id: {
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.INTEGER,
       },
       observacion: {
-        type: Sequelize.DataTypes.STRING
+        type: Sequelize.DataTypes.STRING,
       },
       fecha: {
-        type: Sequelize.DataTypes.DATEONLY
+        type: Sequelize.DataTypes.DATEONLY,
       },
       hora: {
-        type: Sequelize.DataTypes.TIME
+        type: Sequelize.DataTypes.TIME,
       },
       estado: {
-        type: Sequelize.DataTypes.STRING
+        type: Sequelize.DataTypes.STRING,
       },
       comprobante_id: {
-        type: Sequelize.DataTypes.INTEGER
+        type: Sequelize.DataTypes.INTEGER,
       },
       createdAt: {
-        type: Sequelize.DataTypes.DATE
+        type: Sequelize.DataTypes.DATE,
       },
       updatedAt: {
-        type: Sequelize.DataTypes.DATE
+        type: Sequelize.DataTypes.DATE,
       },
       createdAt: {
         allowNull: false,
-        type: Sequelize.DataTypes.DATE
+        type: Sequelize.DataTypes.DATE,
       },
       updatedAt: {
         allowNull: false,
-        type: Sequelize.DataTypes.DATE
-      }
+        type: Sequelize.DataTypes.DATE,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('consulta');
-  }
+  },
 };

@@ -1,15 +1,14 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
-import Home from './Home';
-import Recepcion from './Recepcion';
-import Login from './Login';
+import Router from './Router/Router';
+import { AppContext } from './common/AppContext';
 
-const App = () => (
-	<BrowserRouter>
-		<Route path='/' exact render={ Home }/>
-		<Route path='/ingresar' render={ Login }/>
-		<Route path='/recepcion' render={ Recepcion }/>
-	</BrowserRouter>
-)
+const App = () => {
+  const context = {};
+  return (
+    <AppContext.Provider value={context}>
+      <Router />
+    </AppContext.Provider>
+  );
+};
 
 export default App;

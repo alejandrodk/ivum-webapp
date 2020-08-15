@@ -5,63 +5,63 @@ module.exports = {
       id: {
         primaryKey: true,
         autoIncrement: true,
-        type: Sequelize.DataTypes.INTEGER
-    },
-    nombre : {
-        type: Sequelize.DataTypes.STRING,
-        allowNull : false
-    },
-    cedula : {
-        type: Sequelize.DataTypes.STRING,
-        allowNull : false
-    },
-    direccion : {
-        type: Sequelize.DataTypes.STRING,
-        allowNull : false
-    },
-    telefono : {
-        type: Sequelize.DataTypes.STRING,
-        allowNull : false
-    },
-    paciente_id : {
         type: Sequelize.DataTypes.INTEGER,
-        allowNull: false
-    },
-    metodo_pago : {
+      },
+      nombre: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+      cedula: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+      direccion: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+      telefono: {
+        type: Sequelize.DataTypes.STRING,
+        allowNull: false,
+      },
+      paciente_id: {
+        type: Sequelize.DataTypes.INTEGER,
+        allowNull: false,
+      },
+      metodo_pago: {
         type: Sequelize.DataTypes.STRING(15),
-        allowNull: false
-    },
-    moneda : {
+        allowNull: false,
+      },
+      moneda: {
         type: Sequelize.DataTypes.STRING(5),
-        allowNull: false
-    },
-    monto : {
+        allowNull: false,
+      },
+      monto: {
         type: Sequelize.DataTypes.FLOAT,
-        allowNull: false
-    },
-    iva : {
+        allowNull: false,
+      },
+      iva: {
         type: Sequelize.DataTypes.INTEGER,
-        allowNull: false
-    },
-    observacion : {
+        allowNull: false,
+      },
+      observacion: {
         type: Sequelize.DataTypes.STRING,
-        allowNull: false
-    },
-    fecha : {
+        allowNull: false,
+      },
+      fecha: {
         type: Sequelize.DataTypes.DATE,
-        allowNull: false
-    },
-    createdAt: {
+        allowNull: false,
+      },
+      createdAt: {
         type: Sequelize.DataTypes.DATE,
-        allowNull: false
-    },
-    updatedAt: {
+        allowNull: false,
+      },
+      updatedAt: {
         type: Sequelize.DataTypes.DATE,
-        allowNull: false
-    }
+        allowNull: false,
+      },
     });
   },
   down: (queryInterface, Sequelize) => {
     return queryInterface.dropTable('comprobantes');
-  }
+  },
 };

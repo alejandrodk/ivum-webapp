@@ -6,19 +6,19 @@ import LinkButton from '../LinkButton';
 import DivHeader from './style';
 
 const Recepcion = () => {
-    return (
-        <Row>
-            <Col>
-                <DivHeader className="wrap">
-                    <img src={logo} alt="Instituto Venezolano de Ultrasonido"/>
-                    <div className="opciones wrap">
-                        <Hora/>
-                        <LinkButton texto={'Salir'} link='/logout'/>
-                    </div>
-                </DivHeader>
-            </Col>
-        </Row>
-    )
-}
+  return (
+    <Row>
+      <Col>
+        <DivHeader className="wrap">
+          <img src={logo} alt="Instituto Venezolano de Ultrasonido" />
+          <div className="opciones wrap">
+            <Hora />
+            <LinkButton texto={'Salir'} link="/logout" />
+          </div>
+        </DivHeader>
+      </Col>
+    </Row>
+  );
+};
 
 export default Recepcion;
