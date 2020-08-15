@@ -1,0 +1,20 @@
+env:
+  browser: true
+  es2020: true
+  es6: true
+  node: true
+extends:
+  - 'plugin:react/recommended'
+  - google
+globals:
+  Atomic: readonly
+  SharedArrayBuffer: readonly
+parserOptions:
+  ecmaFeatures:
+    jsx: true
+    modules: true
+  ecmaVersion: 2018
+  sourceType: module
+plugins:
+  - react
+rules: {"react/jsx-uses-react":2, "react/jsx-uses-vars":2, "react/react-in-jsx-scope":2}
