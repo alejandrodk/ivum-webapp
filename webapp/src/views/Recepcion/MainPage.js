@@ -1,8 +1,9 @@
+/* eslint-disable max-len */
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import BusquedaExamen from '../../components/BusquedaExamen';
-import Cotizaciones from '../../components/Cotizaciones';
-import ConsultationsPending from '../../components/ConsultationsPending';
+import {Container, Row, Col} from 'react-bootstrap';
+import BusquedaExamen from '../../components/BusquedaExamen/BusquedaExamen';
+import Cotizaciones from '../../components/Cotizaciones/Cotizaciones';
+import ConsultationsPending from '../../components/ConsultationsPending/ConsultationsPending';
 
 const Main = () => {
   return (

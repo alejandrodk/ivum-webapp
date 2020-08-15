@@ -9,8 +9,8 @@ const Button = styled.button`
   border: none;
 `;
 
-const SubmitButton = props => {
-  const prevent = e => {
+const SubmitButton = (props) => {
+  const prevent = (e) => {
     if (props.prevent) {
       e.preventDefault();
       props.handler();

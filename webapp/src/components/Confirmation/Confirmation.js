@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import success from './success.gif';
 import loading from './loading.gif';
+import PropTypes from 'prop-types';
 
 const Div = styled.div`
   justify-content: center;
@@ -32,7 +33,7 @@ const Div = styled.div`
   }
 `;
 
-const Confirmation = props => {
+const Confirmation = (props) => {
   return (
     <Div className="wrap">
       <h3>{props.message}</h3>
@@ -50,4 +51,12 @@ Confirmation.defaultProps = {
   loading: false,
 };
 
+Confirmation.propTypes = {
+  props: {
+    message: PropTypes.string,
+    success: PropTypes.bool,
+    loading: PropTypes.bool,
+    children: PropTypes.node,
+  },
+};
 export default Confirmation;

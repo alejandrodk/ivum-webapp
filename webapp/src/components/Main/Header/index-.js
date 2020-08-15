@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { Header } from './style-';
+import {Container, Row, Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import {Header} from './style-';
 import ivum_logo from './ivum_logo_blanco.png';
 
 const HeaderComp = () => {

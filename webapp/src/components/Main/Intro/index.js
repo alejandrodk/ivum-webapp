@@ -1,7 +1,7 @@
 import React from 'react';
-import { DivIntro, DivButtons } from './style';
+import {DivIntro, DivButtons} from './style';
 
-const Intro = props => {
+const Intro = (props) => {
   return (
     <DivIntro>
       <h1>Instituto Venezolano de Ultrasonido en Medicina</h1>

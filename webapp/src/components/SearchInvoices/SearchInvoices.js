@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {Container, Row, Col} from 'react-bootstrap';
 
-import FunctionalContainer from '../FunctionalContainer';
-import { Div, DataDiv } from './style';
-import SearchBar from '../SearchBar';
+import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
+import {Div, DataDiv} from './style';
+import SearchBar from '../SearchBar/SearchBar';
 import Axios from 'axios';
-import Confirmation from '../Confirmation';
+import SearchFromTo from '../SearchFromTo/SearchFromTo';
+import Confirmation from '../Confirmation/Confirmation';
 
-const SearchPacients = () => {
+const SearchInvoices = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -20,7 +20,7 @@ const SearchPacients = () => {
     setLoading(true);
 
     const getData = async () => {
-      let url = 'http://localhost:3000/pacientes?';
+      let url = 'http://localhost:3000/comprobantes?';
 
       if (pacient || date) url += '&';
       if (pacient) url += `pacient=${pacient}&`;
@@ -28,7 +28,7 @@ const SearchPacients = () => {
       if (date && date.to_date) url += `date_to=${date.to_date}&`;
 
       try {
-        let result = await Axios.get(url);
+        const result = await Axios.get(url);
         setLoading(false);
         if (result.data) {
           setData(result.data);
@@ -44,9 +44,18 @@ const SearchPacients = () => {
     getData();
   }, [pacient, date]);
 
-  const pacientHandler = search => {
+  const pacientHandler = (search) => {
     setPacient(search);
   };
+
+  const dateHandler = (search) => {
+    setDate(search);
+  };
+
+  function formatearFecha(fecha) {
+    const date = new Date(fecha);
+    return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+  }
 
   return (
     <Container>
@@ -55,40 +64,43 @@ const SearchPacients = () => {
           <Div>
             <SearchBar
               input_name="client_search"
-              label="Búsqueda por cédula"
+              label="Búsqueda por paciente"
               placeholder="Ingresa la cédula del paciente"
               stateHandler={pacientHandler}
             />
+          </Div>
+        </Col>
+        <Col md={6} lg={6}>
+          <Div>
+            <SearchFromTo stateHandler={dateHandler} />
           </Div>
         </Col>
       </Row>
       <Row>
         <Col md={12} lg={12}>
           {!loading ? (
-            <FunctionalContainer title="Pacientes">
+            <FunctionalContainer title="Pagos">
               <DataDiv className="wrap">
                 <ul className="wrap">
                   <li>N°</li>
                   <li>Nombre</li>
-                  <li>Apellido</li>
-                  <li>Cédula</li>
-                  <li>Correo</li>
-                  <li>Teléfono</li>
+                  <li>Método de pago</li>
+                  <li>Moneda</li>
+                  <li>Monto</li>
+                  <li>Fecha</li>
                   <li>Detalle</li>
                 </ul>
                 <div className="data">
-                  {data.map(item => (
+                  {data.map((item) => (
                     <ul key={item.id} className="wrap">
                       <li>{item.id}</li>
                       <li>{item.nombre}</li>
-                      <li>{item.apellido}</li>
-                      <li>{item.cedula}</li>
-                      <li>{item.correo}</li>
-                      <li>{item.telefono}</li>
+                      <li>{item.metodo_pago}</li>
+                      <li>{item.moneda}</li>
+                      <li>{item.total}</li>
+                      <li>{formatearFecha(item.fecha)}</li>
                       <li>
-                        <NavLink to={`pacientes/${item.cedula}`}>
-                          <i className="far fa-eye"></i>
-                        </NavLink>
+                        <i className="far fa-file-alt"></i>
                       </li>
                     </ul>
                   ))}
@@ -106,4 +118,4 @@ const SearchPacients = () => {
   );
 };
 
-export default SearchPacients;
+export default SearchInvoices;

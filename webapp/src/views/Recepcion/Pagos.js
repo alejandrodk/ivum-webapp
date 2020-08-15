@@ -1,13 +1,13 @@
 import React from 'react';
 
-import SearchConsults from '../../components/SearchConsults/';
+import SearchInvoices from '../../components/SearchInvoices/SearchInvoices';
 
-const Consultas = () => {
-  /* 
+const Pagos = () => {
+  /*
     Tuve que crear un nuevo componente y traer todo junto, ya que
     este componente no me permite utilizar estados
     */
-  return <SearchConsults />;
+  return <SearchInvoices />;
 };
 
-export default Consultas;
+export default Pagos;

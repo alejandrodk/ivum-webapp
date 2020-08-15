@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import styled from 'styled-components';
 
 const CurrentDiv = styled.div`
@@ -25,12 +25,12 @@ const CurrentDiv = styled.div`
   }
 `;
 
-const CurrentConverter = props => {
+const CurrentConverter = (props) => {
   const [value, setValue] = useState('');
 
-  const inputHandler = e => {
-    let amount = e.target.value;
-    let total = amount * props.current_value;
+  const inputHandler = (e) => {
+    const amount = e.target.value;
+    const total = amount * props.current_value;
     setValue(new Intl.NumberFormat(['de-DE']).format(total));
   };
 

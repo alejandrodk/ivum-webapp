@@ -1,10 +1,10 @@
 import React from 'react';
 import CurrentsDiv from './style';
-import CurrentConverter from '../CurrentConverter';
+import CurrentConverter from '../CurrentConverter/CurrentConverter';
 import useDataFetching from '../hooks/useDataFetching';
 
 const Cotizaciones = () => {
-  const { data, error } = useDataFetching(`http://localhost:3000/cotizaciones`);
+  const {data, error} = useDataFetching(`http://localhost:3000/cotizaciones`);
 
   if (error) console.error(error);
 

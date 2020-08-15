@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
-import { getToken } from '../../Helpers/auth';
+import {getToken} from '../../Helpers/auth';
 
-const useDataFetching = dataSource => {
+const useDataFetching = (dataSource) => {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
@@ -10,8 +10,8 @@ const useDataFetching = dataSource => {
   useEffect(() => {
     async function fetchData() {
       try {
-        let response = await axios.get(dataSource, {
-          headers: { token: getToken() },
+        const response = await axios.get(dataSource, {
+          headers: {token: getToken()},
         });
 
         if (response.data) {

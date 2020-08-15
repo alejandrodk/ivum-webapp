@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, {useState, useEffect} from 'react';
+import {Container, Row, Col} from 'react-bootstrap';
 import Axios from 'axios';
 
-import FunctionalContainer from '../FunctionalContainer';
-import { Avatar, Info, DataDiv } from './style';
+import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
+import {Avatar, Info, DataDiv} from './style';
 import img from './avatar.png';
 
-const PacientDetail = props => {
+const PacientDetail = (props) => {
   const [data, setData] = useState([]);
   const [consults, setConsults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,12 +15,12 @@ const PacientDetail = props => {
   useEffect(() => {
     setLoading(true);
     const getData = async () => {
-      let user = Axios.get(`http://localhost:3000/pacientes/${props.cedula}`);
-      let consult = Axios.get(
-        `http://localhost:3000/consultas?pacient=${props.cedula}&full_data=true`
+      const user = Axios.get(`http://localhost:3000/pacientes/${props.cedula}`);
+      const consult = Axios.get(
+          `http://localhost:3000/consultas?pacient=${props.cedula}&full_data=true`,
       );
       try {
-        let result = await Axios.all([user, consult]);
+        const result = await Axios.all([user, consult]);
         setLoading(false);
 
         result[0].data && setData(result[0].data);

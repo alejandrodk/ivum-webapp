@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import styled from 'styled-components';
 
 const HoraDiv = styled.div`
@@ -19,19 +19,19 @@ const HoraDiv = styled.div`
 `;
 
 const fechaActual = () => {
-  let date = new Date();
-  let dd = date.getDay();
-  let mm = date.getDate() - 1;
-  let yyyy = date.getFullYear();
+  const date = new Date();
+  const dd = date.getDay();
+  const mm = date.getDate() - 1;
+  const yyyy = date.getFullYear();
 
   function formatAMPM(date) {
-    var hours = date.getHours();
-    var minutes = date.getMinutes();
-    var ampm = hours >= 12 ? 'pm' : 'am';
+    let hours = date.getHours();
+    let minutes = date.getMinutes();
+    const ampm = hours >= 12 ? 'pm' : 'am';
     hours = hours % 12;
     hours = hours ? hours : 12; // the hour '0' should be '12'
     minutes = minutes < 10 ? '0' + minutes : minutes;
-    var strTime = hours + ':' + minutes + ' ' + ampm;
+    const strTime = hours + ':' + minutes + ' ' + ampm;
     return strTime;
   }
 

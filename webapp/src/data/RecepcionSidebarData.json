@@ -1,0 +1,41 @@
+[{
+    "category": "Consultas",
+    "icon": "fas fa-book-medical",
+    "links": [
+      {"title": "Programar consulta", "url": "/consultas/nueva"},
+      {"title": "consultas", "url": "/consultas"}
+    ]
+  },
+  {
+    "category": "Pagos",
+    "icon": "fas fa-file-invoice-dollar",
+    "links": [
+      {"title": "Procesar pago", "url": "/pagos/nuevo"},
+      {"title": "Historial de pagos", "url": "/pagos"},
+    ]
+  },
+  {
+    "category": "Pacientes",
+    "icon": "fas fa-users",
+    "links": [
+      {"title": "Datos de pacientes", "url": "/pacientes"},
+      {"title": "Registrar nuevo paciente", "url": "/pacientes/nuevo"},
+      {"title": "Modificar datos de paciente", "url": "/pacientes/modificar"},
+    ]
+  },
+  {
+    "category": "Médicos",
+    "icon": "fas fa-user-md",
+    "links": [
+      {"title": "Listado de médicos", "url": "/medicos"},
+      {"title": "Consultas", "url": "/medicos/consultas"},
+    ]
+  },
+  {
+    "category": "Exámenes",
+    "icon": "fas fa-file-medical-alt",
+    "links": [
+      {"title": "Listado de Exámenes", "url": "/examenes"},
+      {"title": "Precios", "url": "/examenes/precios"},
+    ]
+  }]

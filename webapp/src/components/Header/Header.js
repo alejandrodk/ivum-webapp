@@ -1,7 +1,7 @@
 import React from 'react';
-import { Row, Col } from 'react-bootstrap';
+import {Row, Col} from 'react-bootstrap';
 import logo from './ivum_logo_blanco.png';
-import Hora from '../Hora';
+import Hora from '../Hora/Hora';
 import LinkButton from '../LinkButton';
 import DivHeader from './style';
 

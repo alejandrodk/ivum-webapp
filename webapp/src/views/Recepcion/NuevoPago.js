@@ -1,8 +1,8 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import FunctionalContainer from '../../components/FunctionalContainer';
-import CreateInvoice from '../../components/CreateInvoice';
-import Cotizaciones from '../../components/Cotizaciones';
+import {Container, Row, Col} from 'react-bootstrap';
+import FunctionalContainer from '../../components/FunctionalContainer/FunctionalContainer';
+import CreateInvoice from '../../components/CreateInvoice/CreateInvoice';
+import Cotizaciones from '../../components/Cotizaciones/Cotizaciones';
 
 const NuevoPago = () => (
   <Container>

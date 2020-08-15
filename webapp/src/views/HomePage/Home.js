@@ -1,16 +1,16 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { contact, services } from './components/Main/data';
-import HeaderComp from './components/Main/Header/index.js';
-import Intro from './components/Main/Intro';
-import ActionButton from './components/Main/ActionButton';
-import Services from './components/Main/Services';
-import Presentation from './components/Main/Presentation';
-import Contact from './components/Main/Contact';
-import ItemContact from './components/Main/ItemContact';
-import Footer from './components/Main/Footer';
-import styles from './components/Main/container.module.css';
+import {Container, Row, Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
+import {contact, services} from '../../components/Main/data';
+import HeaderComp from '../../components/Main/Header/index.js';
+import Intro from '../../components/Main/Intro';
+import ActionButton from '../../components/Main/ActionButton';
+import Services from '../../components/Main/Services/Services';
+import Presentation from '../../components/Main/Presentation';
+import Contact from '../../components/Main/Contact';
+import ItemContact from '../../components/Main/ItemContact';
+import Footer from '../../components/Main/Footer';
+import styles from '../../components/Main/container.module.css';
 
 const Home = () => {
   return (
@@ -73,8 +73,9 @@ const Home = () => {
           <Row>
             <Col>
               <Contact>
-                {contact.map(item => (
+                {contact.map((item, i) => (
                   <ItemContact
+                    key={i}
                     link={item.link}
                     alt={item.alt}
                     icon={item.icon}

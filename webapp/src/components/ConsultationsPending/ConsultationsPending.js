@@ -1,28 +1,28 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import Div from './style';
-import FunctionalContainer from '../FunctionalContainer';
+import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
 import Axios from 'axios';
 
-const ConsultationsPending = props => {
+const ConsultationsPending = (props) => {
   const [consultas, setConsultas] = useState([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setLoading(true);
     Axios.get('http://localhost:3000/consultas?full_data=true&state=pendiente')
-      .then(res => {
-        if (res.data) {
-          setConsultas(res.data);
-          setLoading(false);
-        }
-      })
-      .catch(error => console.log(error));
+        .then((res) => {
+          if (res.data) {
+            setConsultas(res.data);
+            setLoading(false);
+          }
+        })
+        .catch((error) => console.log(error));
   }, []);
 
   return !loading ? (
     <FunctionalContainer title="Consultas Pendientes">
       <Div>
-        {consultas.map(item => (
+        {consultas.map((item) => (
           <ul className="wrap" key={item.id + Math.random()}>
             <li>{`${item.paciente.nombre} ${item.paciente.apellido}`}</li>
             <li>{item.examen.nombre}</li>

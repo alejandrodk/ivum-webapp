@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, {useState, useEffect} from 'react';
+import {Container, Row, Col} from 'react-bootstrap';
 
-import FunctionalContainer from '../FunctionalContainer';
-import { Div, DataDiv } from './style';
-import SearchBar from '../SearchBar';
+import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
+import {Div, DataDiv} from './style';
+import SearchBar from '../SearchBar/SearchBar';
 import Axios from 'axios';
-import SearchFromTo from '../SearchFromTo';
-import Confirmation from '../Confirmation';
+import SearchFromTo from '../SearchFromTo/SearchFromTo';
+import Confirmation from '../Confirmation/Confirmation';
 
-const SearchInvoices = () => {
+const SearchConsults = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -20,7 +20,7 @@ const SearchInvoices = () => {
     setLoading(true);
 
     const getData = async () => {
-      let url = 'http://localhost:3000/comprobantes?';
+      let url = 'http://localhost:3000/consultas?full_data=true';
 
       if (pacient || date) url += '&';
       if (pacient) url += `pacient=${pacient}&`;
@@ -28,8 +28,9 @@ const SearchInvoices = () => {
       if (date && date.to_date) url += `date_to=${date.to_date}&`;
 
       try {
-        let result = await Axios.get(url);
+        const result = await Axios.get(url);
         setLoading(false);
+        console.log(result);
         if (result.data) {
           setData(result.data);
         } else {
@@ -44,19 +45,18 @@ const SearchInvoices = () => {
     getData();
   }, [pacient, date]);
 
-  const pacientHandler = search => {
+  const pacientHandler = (search) => {
     setPacient(search);
   };
 
-  const dateHandler = search => {
+  const dateHandler = (search) => {
     setDate(search);
   };
 
   function formatearFecha(fecha) {
-    let date = new Date(fecha);
+    const date = new Date(fecha);
     return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
   }
-
   return (
     <Container>
       <Row>
@@ -78,44 +78,42 @@ const SearchInvoices = () => {
       </Row>
       <Row>
         <Col md={12} lg={12}>
-          {!loading ? (
-            <FunctionalContainer title="Pagos">
-              <DataDiv className="wrap">
-                <ul className="wrap">
-                  <li>N°</li>
-                  <li>Nombre</li>
-                  <li>Método de pago</li>
-                  <li>Moneda</li>
-                  <li>Monto</li>
-                  <li>Fecha</li>
-                  <li>Detalle</li>
-                </ul>
-                <div className="data">
-                  {data.map(item => (
-                    <ul key={item.id} className="wrap">
-                      <li>{item.id}</li>
-                      <li>{item.nombre}</li>
-                      <li>{item.metodo_pago}</li>
-                      <li>{item.moneda}</li>
-                      <li>{item.total}</li>
-                      <li>{formatearFecha(item.fecha)}</li>
+          <FunctionalContainer title="Consultas">
+            <DataDiv className="wrap">
+              <ul className="wrap">
+                <li>Paciente</li>
+                <li>Especialista</li>
+                <li>Examen</li>
+                <li>Fecha</li>
+                <li>Estado</li>
+                <li>Pago</li>
+              </ul>
+              <div className="data">
+                {data.map((item) => (
+                  <ul key={item.id} className="wrap">
+                    <li>{`${item.paciente.nombre} ${item.paciente.apellido}`}</li>
+                    <li>{`${item.medico.nombre} ${item.medico.apellido}`}</li>
+                    <li>{item.examen.nombre}</li>
+                    <li>{formatearFecha(item.fecha)}</li>
+                    <li>{item.estado}</li>
+                    {item.comprobante_id ? (
                       <li>
                         <i className="far fa-file-alt"></i>
                       </li>
-                    </ul>
-                  ))}
-                </div>
-                {/* <button>Anterior</button>
+                    ) : (
+                      <li></li>
+                    )}
+                  </ul>
+                ))}
+              </div>
+              {/* <button>Anterior</button>
                             <button>Siguiente</button> */}
-              </DataDiv>
-            </FunctionalContainer>
-          ) : (
-            <Confirmation loading={true} message="Cargando" />
-          )}
+            </DataDiv>
+          </FunctionalContainer>
         </Col>
       </Row>
     </Container>
   );
 };
 
-export default SearchInvoices;
+export default SearchConsults;

@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { getToken } from '../../Helpers/auth';
+import React, {useState, useEffect} from 'react';
+import {getToken} from '../../Helpers/auth';
 import AppointmentForm from './style';
 import SubmitButton from '../SubmitButton';
 import Axios from 'axios';
-import Confirmation from '../Confirmation';
+import Confirmation from '../Confirmation/Confirmation';
 
 const RegisterAppointment = () => {
   const [loading, setLoading] = useState(false);
@@ -23,21 +23,21 @@ const RegisterAppointment = () => {
   // Cargar examenes en select
   useEffect(() => {
     Axios.get('http://localhost:3000/examenes/', {
-      headers: { token: getToken() },
-    }).then(res => {
+      headers: {token: getToken()},
+    }).then((res) => {
       setExamenes(res.data);
     });
   }, []);
   // cargar especialistas del examen seleccionado
-  const selectExamenHandler = e => {
-    let value = e.target.value;
+  const selectExamenHandler = (e) => {
+    const value = e.target.value;
     setExamen(value);
     Axios.get(`http://localhost:3000/examenes/${value}/especialistas`, {
-      headers: { token: getToken() },
-    }).then(res => setEspecialistas(res.data.medicos));
+      headers: {token: getToken()},
+    }).then((res) => setEspecialistas(res.data.medicos));
   };
 
-  const inputHandler = e => {
+  const inputHandler = (e) => {
     const target = e.target;
     const value = target.value;
     const name = target.name;
@@ -49,7 +49,7 @@ const RegisterAppointment = () => {
     if (name === 'hora') setHora(value);
   };
 
-  const formHandler = e => {
+  const formHandler = (e) => {
     e.preventDefault();
     console.log({
       cedula_paciente: paciente,
@@ -64,31 +64,31 @@ const RegisterAppointment = () => {
   };
   const submitData = async () => {
     await Axios.post(
-      'http://localhost:3000/consultas/',
-      {
-        cedula_paciente: paciente,
-        medico_id: especialista,
-        examen_id: examen,
-        observacion,
-        fecha,
-        hora,
-      },
-      {
-        headers: { token: getToken() },
-      }
+        'http://localhost:3000/consultas/',
+        {
+          cedula_paciente: paciente,
+          medico_id: especialista,
+          examen_id: examen,
+          observacion,
+          fecha,
+          hora,
+        },
+        {
+          headers: {token: getToken()},
+        },
     )
-      .then(res => {
-        setLoading(false);
-        if (res.status === 201) {
-          setCreated(true);
-        } else {
+        .then((res) => {
+          setLoading(false);
+          if (res.status === 201) {
+            setCreated(true);
+          } else {
+            setError(true);
+          }
+        })
+        .catch((error) => {
           setError(true);
-        }
-      })
-      .catch(error => {
-        setError(true);
-        console.error(error);
-      });
+          console.error(error);
+        });
   };
 
   return !created ? (
@@ -96,7 +96,7 @@ const RegisterAppointment = () => {
       <input onChange={inputHandler} type="text" name="paciente" placeholder="Cédula paciente" />
       <select name="examen" onChange={selectExamenHandler} value={examen} required>
         <option value="null">Selecciona un Exámen</option>
-        {examenes.map(item => (
+        {examenes.map((item) => (
           <option key={item.id + Math.random()} value={item.id}>
             {item.nombre}
           </option>
@@ -104,7 +104,7 @@ const RegisterAppointment = () => {
       </select>
       <select name="especialista" onChange={inputHandler} required>
         <option value="null">Selecciona un especialista</option>
-        {especialistas.map(item => (
+        {especialistas.map((item) => (
           <option
             key={item.id + Math.random()}
             value={item.id}

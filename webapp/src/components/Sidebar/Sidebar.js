@@ -1,9 +1,9 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 import NavStyled from './styles';
 
-const Sidebar = React.memo(props => {
-  const { title, links, home } = props;
+const Sidebar = React.memo((props) => {
+  const {title, links, home} = props;
 
   return (
     <NavStyled>
@@ -15,14 +15,14 @@ const Sidebar = React.memo(props => {
       </div>
       <div className="navigation">
         <NavLink to={home}>Inicio</NavLink>
-        {links.map(item => (
+        {links.map((item) => (
           <React.Fragment key={item.category + 1}>
             <div className="header wrap" key={item.category + 2}>
               <i className={item.icon}></i>
               <h3>{item.category}</h3>
             </div>
             <ul key={item.category + 3} className="wrap">
-              {item.links.map(link => (
+              {item.links.map((link) => (
                 <li key={link.title}>
                   <NavLink to={link.url}>{link.title}</NavLink>
                 </li>

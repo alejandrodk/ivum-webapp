@@ -1,6 +1,6 @@
 import React from 'react';
-import { Col } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import {Col} from 'react-bootstrap';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
 import logo from './ivum_logo_blanco.png';
 

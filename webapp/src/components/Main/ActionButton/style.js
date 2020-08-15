@@ -10,7 +10,7 @@ export const Div = styled.div`
   }
   i {
     font-size: 30px;
-    color: ${props => props.color};
+    color: ${(props) => props.color};
   }
   align-items: center;
   transition: 0.3s all;

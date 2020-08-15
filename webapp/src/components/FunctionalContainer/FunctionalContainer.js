@@ -1,7 +1,7 @@
 import React from 'react';
 import Div from './style';
 
-const FunctionalContainer = props => {
+const FunctionalContainer = (props) => {
   return (
     <Div label_color={props.label_color} width={props.width}>
       <h2>{props.title}</h2>

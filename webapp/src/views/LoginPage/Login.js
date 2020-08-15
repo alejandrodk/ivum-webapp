@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 import styled from 'styled-components';
-import LoginForm from './components/LoginForm';
+import LoginForm from '../../components/LoginForm/LoginForm';
 
 const Wrapper = styled.div`
   background: var(--gris-light);

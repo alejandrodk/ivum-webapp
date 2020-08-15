@@ -1,12 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Header } from './style';
+import {Link} from 'react-router-dom';
+import {Header} from './style';
 import ivum_logo from './ivum_logo_blanco.png';
 
 const HeaderComp = () => {
   return (
     <Header>
-      <div class="container">
+      <div className="container">
         <nav id="navigation">
           <Link to="/" className="logo">
             <img src={ivum_logo} alt="IVUM Ecografías" />
@@ -16,7 +16,7 @@ const HeaderComp = () => {
             <span></span>
             <span></span>
           </a>
-          <ul class="menu-left">
+          <ul className="menu-left">
             <li>
               <Link to="#h_inicio">Inicio</Link>
             </li>
