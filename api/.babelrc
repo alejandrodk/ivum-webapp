@@ -1,7 +1,5 @@
 {
-  "presets":[
-    ["@babel/presets-env", {"targets": {"node":"current"}, "debug": true, "useBuiltIns": false}]
-  ],
+  "presets":[],
   "plugins": [
     ["@babel/plugin-transform-runtime"],
     "@babel/plugin-syntax-dynamic-import",
