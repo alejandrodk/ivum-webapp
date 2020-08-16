@@ -36,7 +36,7 @@ module.exports = {
     }
   },
   create: async (req, res) => {
-    let { usuario, clave, tipo } = req.body;
+    let { usuario, clave, tipo, cedula } = req.body;
 
     try {
       let existUser = await db.usuarios.findOne({
@@ -54,6 +54,7 @@ module.exports = {
         usuario,
         clave: hashPass,
         tipo,
+        cedula,
       });
       if (user) {
         return res.status(201).header('Location', `/usuarios/${user.id}`).json({
