@@ -12,7 +12,7 @@ const dotenv = require('dotenv');
 // ENV variable config
 const result = dotenv.config();
 if (result.error) throw result.error;
-//console.log(result.parsed)
+// console.log(result.parsed)
 
 // Express()
 const app = express();
@@ -22,7 +22,7 @@ app.use(compression());
 
 // Middlewares
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 app.use(logger('dev'));
 app.use(express.json());
@@ -32,17 +32,17 @@ app.use(cookieParser());
 
 // Session Storage
 app.use(
-  session({
-    resave: true,
-    saveUninitialized: true,
-    secret: process.env.SESSION_SECRET,
-    _expires: 600000,
-  })
+    session({
+      resave: true,
+      saveUninitialized: true,
+      secret: process.env.SESSION_SECRET,
+      _expires: 600000,
+    }),
 );
 
 // CORS
 app.use(cors());
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   res.header('Access-Control-Allow-Origin', '*');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
@@ -65,12 +65,12 @@ app.use('/cotizaciones', cotizacionesRouter);
 app.use('/comprobantes', comprobantesRouter);
 
 // catch 404
-app.use(function (req, res, next) {
+app.use(function(req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
