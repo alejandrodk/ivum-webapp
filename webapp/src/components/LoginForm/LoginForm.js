@@ -1,60 +1,73 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {Redirect} from 'react-router-dom';
-import {setToken, authSessionClient} from '../../Helpers/auth';
-import Axios from 'axios';
 
+import {AppContext} from '../../common/AppContext';
+import User from '../../Helpers/User';
 import Div from './style';
 import logo from './ivum_logo.png';
 import SubmitButton from '../SubmitButton';
 import Confirmation from '../Confirmation/Confirmation';
 
 const LoginForm = () => {
+  const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [usuario, setUsuario] = useState(null);
+  const [redirect, setRedirect] = useState(null);
   const [error, setError] = useState(false);
-  const [accessData, setAccessData] = useState({user: null, paswd: null});
+  const {user, setUser} = useContext(AppContext);
 
   useEffect(() => {
-    authSessionClient().then((res) => {
-      if (res) {
-        setUsuario(true);
-      }
-    });
+    if (user.tipo !== 'guest') {
+      const validateToken = async () => {
+        setLoading(true);
+        const isTokenValid = await User.validateSessionToken(user);
+        setLoading(false);
+        setRedirect(getRedirectionPage());
+        setIsLogin(isTokenValid);
+      };
+      validateToken();
+    }
   }, []);
 
   const formHandler = (e) => {
     e.preventDefault();
     setLoading(true);
-    setAccessData({
-      user: e.target[0].value,
-      paswd: e.target[1].value,
+    validateLogin({
+      username: e.target[0].value,
+      password: e.target[1].value,
     });
-    validateLogin();
   };
 
-  const validateLogin = async () => {
-    await Axios.post('http://localhost:3000/usuarios/login', {
-      usuario: accessData.user,
-      clave: accessData.paswd,
-    })
-        .then((res) => {
-          setLoading(false);
-          const data = res.data;
-          if (data.token) {
-            setUsuario(true);
-            setToken(data.token);
-            sessionStorage.setItem('ivum_user', JSON.stringify(data.user));
-          } else {
-            setError(true);
-          }
-        })
-        .catch((err) => console.error(err));
+  const validateLogin = async ({username, password}) => {
+    try {
+      const userData = await User.validateUser(username, password);
+      setLoading(false);
+      console.log(userData);
+      if (userData) {
+        setIsLogin(true);
+        setUser(userData);
+        User.saveUserInStorage(userData);
+      } else {
+        setError(true);
+      }
+    } catch (err) {
+      console.error(err);
+    }
   };
 
-  return !usuario ? (
+  const getRedirectionPage = () => {
+    console.log('DEBUG USER');
+    console.log(user);
+    if (user.tipo == 'admin') return '/admin';
+    if (user.tipo == 'medico') return '/medicos';
+    if (user.tipo == 'recepcion') return '/recepcion';
+    if (user.tipo == 'cliente') return '/recepcion';
+  };
+
+  return !isLogin ? (
     <Div className="wrap">
       <img src={logo} alt="Instituto Venezolano de Ultrasonido en Medicina" />
-      <form action="/usuarios/login" className="wrap" method="POST" onSubmit={formHandler}>
+      <form action="/usuarios/login"
+        className="wrap" method="POST" onSubmit={formHandler}>
         {error ? <h3>Usuario o contraseña inválidos</h3> : ''}
         <label htmlFor="username">Usuario</label>
         <input type="text" name="username" />
@@ -63,12 +76,13 @@ const LoginForm = () => {
         {loading ? (
           <Confirmation message="Cargando" loading={true} />
         ) : (
-          <SubmitButton type="submit" name="Ingresar" prevent={false} width="50%" />
+          <SubmitButton type="submit" name="Ingresar"
+            prevent={false} width="50%" />
         )}
       </form>
     </Div>
   ) : (
-    <Redirect to="/recepcion" />
+    <Redirect to={redirect} />
   );
 };
 

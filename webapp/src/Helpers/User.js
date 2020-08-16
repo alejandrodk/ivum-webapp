@@ -19,16 +19,76 @@ class User {
           usuario: username,
           clave: password,
         });
+        console.log(data);
         if (data.token) {
           resolve(data);
         } else {
-          reject(data.message);
+          resolve(null);
         }
       } catch (error) {
         console.error('Backend not available');
         reject(error);
       }
     });
+  };
+  /**
+   * get User info from localStorage
+   * @return {Object}
+   */
+  static getUserFromStorage() {
+    const stored = JSON.parse(localStorage.getItem('user_IVUM'));
+    return stored ? stored : {
+      id: null,
+      tipo: 'guest',
+      cedula: null,
+      token: null,
+    };
+  };
+  /**
+   * Save user data in LocalStorage
+   * @param {Object} data user data response from validateUser
+   */
+  static saveUserInStorage(data) {
+    if (data) {
+      const {user, token} = data;
+      localStorage.setItem('user_IVUM', JSON.stringify({
+        id: user.id,
+        tipo: user.tipo,
+        cedula: user.cedula,
+        token,
+      }));
+    }
+  }
+  /**
+   * Validate token from user (async)
+   * @param {Object} user User object from App Context
+   * @return {Bool} True or False
+   */
+  static async validateSessionToken(user) {
+    try {
+      const {data} = await Axios.get(`http://localhost:3000/usuarios/${user.id}`, {
+        headers: {token: user.token},
+      });
+      if (data.usuario) {
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error({
+        message: 'Error validation user token',
+        error,
+      });
+      return false;
+    }
+  }
+
+  /**
+   * Logout handler
+   * @param {Function} callback setUser function from App context
+   */
+  static closeUserSession(callback) {
+    localStorage.removeItem('user_IVUM');
+    callback(null);
   }
 }
 
