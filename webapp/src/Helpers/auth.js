@@ -1,7 +1,7 @@
 import Axios from 'axios';
 const TOKEN_KEY = 'ivum_token';
 
-export const setToken = (token) => {
+export const setToken = token => {
   return localStorage.setItem(TOKEN_KEY, token);
 };
 
@@ -18,7 +18,7 @@ export const authSessionClient = async () => {
     const user = JSON.parse(sessionStorage.getItem('ivum_user'));
     try {
       const res = await Axios.get(`http://localhost:3000/usuarios/${user.id}`, {
-        headers: {token: getToken()},
+        headers: { token: getToken() },
       });
       return res;
     } catch (error) {
@@ -29,25 +29,25 @@ export const authSessionClient = async () => {
 
 export const AxiosInterceptors = () => {
   Axios.interceptors.request.use(
-      (config) => {
-        const token = getToken();
+    config => {
+      const token = getToken();
 
-        if (token) {
-          config.headers.Authorization = `Bearer ${token}`;
-        }
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      },
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
+      return config;
+    },
+    error => {
+      return Promise.reject(error);
+    }
   );
 
   Axios.interceptors.response.use(
-      (response) => {
-        return response;
-      },
-      (error) => {
-        console.error(error);
-      },
+    response => {
+      return response;
+    },
+    error => {
+      console.error(error);
+    }
   );
 };

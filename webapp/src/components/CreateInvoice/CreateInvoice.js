@@ -1,7 +1,7 @@
-import React, {useReducer, useEffect} from 'react';
+import React, { useReducer, useEffect } from 'react';
 import Form from './style';
 import SubmitButton from '../SubmitButton';
-import {getToken} from '../../Helpers/auth';
+import { getToken } from '../../Helpers/auth';
 import axios from 'axios';
 import Confirmation from '../Confirmation/Confirmation';
 
@@ -78,8 +78,8 @@ const CreateInvoice = () => {
         };
       }
       case 'SET_PRICE_CONVERTER': {
-        const valor_usd = state.currencies.filter((item) => item.moneda == action.currency)[0]
-            .valor_usd;
+        const valor_usd = state.currencies.filter(item => item.moneda == action.currency)[0]
+          .valor_usd;
         return {
           ...state,
           moneda: action.currency,
@@ -88,7 +88,7 @@ const CreateInvoice = () => {
       }
       case 'CALC_SUB_TOTAL': {
         let monto = 0;
-        state.consultas.map((item) => (monto += parseInt(item.price)));
+        state.consultas.map(item => (monto += parseInt(item.price)));
 
         return {
           ...state,
@@ -133,10 +133,10 @@ const CreateInvoice = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
-          `http://localhost:3000/consultas?full_data=true&pacient=${state.paciente_id}&state=unpaid`,
-          {
-            headers: {token: getToken()},
-          },
+        `http://localhost:3000/consultas?full_data=true&pacient=${state.paciente_id}&state=unpaid`,
+        {
+          headers: { token: getToken() },
+        }
       );
       if (response.data.length !== 0) {
         dispatch({
@@ -163,7 +163,7 @@ const CreateInvoice = () => {
   useEffect(() => {
     async function fetchCurrency() {
       const response = await axios.get(`http://localhost:3000/cotizaciones`, {
-        headers: {token: getToken()},
+        headers: { token: getToken() },
       });
       if (response.data) {
         dispatch({
@@ -177,15 +177,15 @@ const CreateInvoice = () => {
 
   // Totales
   useEffect(() => {
-    dispatch({type: 'CALC_SUB_TOTAL'});
+    dispatch({ type: 'CALC_SUB_TOTAL' });
   }, [state.consultas]);
 
   useEffect(() => {
-    dispatch({type: 'CALC_TOTAL'});
+    dispatch({ type: 'CALC_TOTAL' });
   }, [state.moneda, state.price_converter, state.consultas]);
 
   // handlers
-  const inputHandler = (e) => {
+  const inputHandler = e => {
     dispatch({
       type: 'SET_DATA',
       input_name: e.target.name,
@@ -193,11 +193,11 @@ const CreateInvoice = () => {
     });
   };
 
-  const addConsult = (e) => {
+  const addConsult = e => {
     e.preventDefault();
     dispatch({
       type: 'ADD_CONSULT',
-      consultas: [...state.consultas, {id: null, price: 0.0}],
+      consultas: [...state.consultas, { id: null, price: 0.0 }],
     });
   };
 
@@ -212,7 +212,7 @@ const CreateInvoice = () => {
 
   const consultHandler = (e, index) => {
     const value = e.target.value;
-    const price = state.pacient_consults.filter((item) => item.id == value)[0].examen.precio;
+    const price = state.pacient_consults.filter(item => item.id == value)[0].examen.precio;
 
     dispatch({
       type: 'UPDATE_CONSULT',
@@ -224,45 +224,45 @@ const CreateInvoice = () => {
     });
   };
 
-  const currencyHandler = (e) => {
+  const currencyHandler = e => {
     dispatch({
       type: 'SET_PRICE_CONVERTER',
       currency: e.target.value,
     });
   };
 
-  const submitHandler = (e) => {
+  const submitHandler = e => {
     e.preventDefault();
-    dispatch({type: 'LOADING', value: true});
+    dispatch({ type: 'LOADING', value: true });
 
     async function submitForm() {
       const response = await axios.post(
-          `http://localhost:3000/comprobantes`,
-          {
-            nombre: state.nombre,
-            cedula: state.cedula,
-            direccion: state.direccion,
-            telefono: state.telefono,
-            paciente_id: state.paciente_id,
-            consultas: state.consultas,
-            observacion: state.observacion,
-            metodo_pago: state.metodo_pago,
-            moneda: state.moneda,
-            fecha: state.fecha,
-            monto: state.monto,
-            iva: state.iva,
-            total: state.total,
-          },
-          {
-            headers: {token: getToken()},
-          },
+        `http://localhost:3000/comprobantes`,
+        {
+          nombre: state.nombre,
+          cedula: state.cedula,
+          direccion: state.direccion,
+          telefono: state.telefono,
+          paciente_id: state.paciente_id,
+          consultas: state.consultas,
+          observacion: state.observacion,
+          metodo_pago: state.metodo_pago,
+          moneda: state.moneda,
+          fecha: state.fecha,
+          monto: state.monto,
+          iva: state.iva,
+          total: state.total,
+        },
+        {
+          headers: { token: getToken() },
+        }
       );
 
-      dispatch({type: 'LOADING', value: false});
+      dispatch({ type: 'LOADING', value: false });
 
-      response.status === 201 ?
-        dispatch({type: 'SUCCESS', value: true}) :
-        dispatch({type: 'ERROR', value: true});
+      response.status === 201
+        ? dispatch({ type: 'SUCCESS', value: true })
+        : dispatch({ type: 'ERROR', value: true });
     }
     submitForm();
   };
@@ -330,12 +330,12 @@ const CreateInvoice = () => {
         <div className="consult wrap" key={i}>
           <select
             name="consulta"
-            onChange={(e) => {
+            onChange={e => {
               consultHandler(e, i);
             }}
           >
             <option value="">Consulta</option>
-            {state.pacient_consults.map((item) => {
+            {state.pacient_consults.map(item => {
               if (item.examen && state.isPacientExist) {
                 return (
                   <option key={item.id + item.paciente.nombre} value={item.id}>
@@ -351,7 +351,7 @@ const CreateInvoice = () => {
             <i className="fas fa-plus-circle"></i>
           </button>
           {state.consultas.length > 1 && (
-            <button onClick={(e) => deleteConsult(e, i)}>
+            <button onClick={e => deleteConsult(e, i)}>
               <i className="fas fa-minus-circle delete"></i>
             </button>
           )}
@@ -367,7 +367,7 @@ const CreateInvoice = () => {
         </select>
         <select name="moneda" onChange={currencyHandler}>
           <option value="">Moneda</option>
-          {state.currencies.map((item) => (
+          {state.currencies.map(item => (
             <option key={item.id} value={item.moneda}>
               {item.moneda}
             </option>

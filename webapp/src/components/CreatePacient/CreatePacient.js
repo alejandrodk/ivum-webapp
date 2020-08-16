@@ -1,5 +1,5 @@
-import React, {useState} from 'react';
-import {getToken} from '../../Helpers/auth';
+import React, { useState } from 'react';
+import { getToken } from '../../Helpers/auth';
 import NewPacientForm from './style';
 import SubmitButton from '../SubmitButton';
 import Axios from 'axios';
@@ -19,7 +19,7 @@ const CreatePacient = () => {
   const [direccion, setDireccion] = useState('');
   const [telefono, setTelefono] = useState('');
 
-  const inputHandler = (e) => {
+  const inputHandler = e => {
     const target = e.target;
     const value = target.value;
     const name = target.name;
@@ -34,40 +34,40 @@ const CreatePacient = () => {
     if (name === 'telefono') setTelefono(value);
   };
 
-  const formHandler = (e) => {
+  const formHandler = e => {
     e.preventDefault();
     setLoading(true);
     submitData();
   };
   const submitData = async () => {
     await Axios.post(
-        'http://localhost:3000/pacientes/',
-        {
-          nombre,
-          apellido,
-          sexo,
-          nacimiento,
-          cedula,
-          correo,
-          direccion,
-          telefono,
-        },
-        {
-          headers: {token: getToken()},
-        },
+      'http://localhost:3000/pacientes/',
+      {
+        nombre,
+        apellido,
+        sexo,
+        nacimiento,
+        cedula,
+        correo,
+        direccion,
+        telefono,
+      },
+      {
+        headers: { token: getToken() },
+      }
     )
-        .then((res) => {
-          setLoading(false);
-          if (res.status === 201) {
-            setCreated(true);
-          } else {
-            setError(true);
-          }
-        })
-        .catch((error) => {
+      .then(res => {
+        setLoading(false);
+        if (res.status === 201) {
+          setCreated(true);
+        } else {
           setError(true);
-          console.error(error);
-        });
+        }
+      })
+      .catch(error => {
+        setError(true);
+        console.error(error);
+      });
   };
 
   return !created ? (

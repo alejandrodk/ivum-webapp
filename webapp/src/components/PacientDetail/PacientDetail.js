@@ -1,12 +1,12 @@
-import React, {useState, useEffect} from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import Axios from 'axios';
 
 import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
-import {Avatar, Info, DataDiv} from './style';
+import { Avatar, Info, DataDiv } from './style';
 import img from './avatar.png';
 
-const PacientDetail = (props) => {
+const PacientDetail = props => {
   const [data, setData] = useState([]);
   const [consults, setConsults] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -17,7 +17,7 @@ const PacientDetail = (props) => {
     const getData = async () => {
       const user = Axios.get(`http://localhost:3000/pacientes/${props.cedula}`);
       const consult = Axios.get(
-          `http://localhost:3000/consultas?pacient=${props.cedula}&full_data=true`,
+        `http://localhost:3000/consultas?pacient=${props.cedula}&full_data=true`
       );
       try {
         const result = await Axios.all([user, consult]);

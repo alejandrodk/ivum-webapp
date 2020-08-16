@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const Div = styled.div`
   width: 20%;
 `;
 
-const ItemContact = (props) => {
+const ItemContact = props => {
   return (
     <Div className="wrap">
       <Link to={props.link} alt={props.alt} className="wrap">

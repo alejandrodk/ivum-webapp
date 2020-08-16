@@ -1,11 +1,11 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import Search from './styles';
 
-const SearchFromTo = (props) => {
+const SearchFromTo = props => {
   const input_from = useRef();
   const input_to = useRef();
 
-  const buttonHandler = (e) => {
+  const buttonHandler = e => {
     e.preventDefault();
     props.stateHandler({
       from_date: input_from.current.value,

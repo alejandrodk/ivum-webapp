@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
-import {NavLink} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import { NavLink } from 'react-router-dom';
 
 import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
-import {Div, DataDiv} from './style';
+import { Div, DataDiv } from './style';
 import SearchBar from '../SearchBar/SearchBar';
 import Axios from 'axios';
 import Confirmation from '../Confirmation/Confirmation';
@@ -44,7 +44,7 @@ const SearchPacients = () => {
     getData();
   }, [pacient, date]);
 
-  const pacientHandler = (search) => {
+  const pacientHandler = search => {
     setPacient(search);
   };
 
@@ -77,7 +77,7 @@ const SearchPacients = () => {
                   <li>Detalle</li>
                 </ul>
                 <div className="data">
-                  {data.map((item) => (
+                  {data.map(item => (
                     <ul key={item.id} className="wrap">
                       <li>{item.id}</li>
                       <li>{item.nombre}</li>

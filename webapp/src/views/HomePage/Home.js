@@ -1,7 +1,7 @@
 import React from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
-import {Link} from 'react-router-dom';
-import {contact, services} from '../../components/Main/data';
+import { Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { contact, services } from '../../components/Main/data';
 import HeaderComp from '../../components/Main/Header/index.js';
 import Intro from '../../components/Main/Intro';
 import ActionButton from '../../components/Main/ActionButton';

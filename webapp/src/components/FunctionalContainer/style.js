@@ -4,7 +4,7 @@ const Div = styled.div`
   position: relative;
   background: var(--blanco);
   margin-bottom: 2%;
-  width: ${(props) => props.width};
+  width: ${props => props.width};
   min-height: 150px;
   padding: var(--padding);
   border-radius: var(--border-radius);
@@ -15,7 +15,7 @@ const Div = styled.div`
     height: 20px;
     position: absolute;
     right: 2%;
-    background: ${(props) => props.label_color};
+    background: ${props => props.label_color};
     top: 10px;
     border-radius: var(--border-radius-med);
   }

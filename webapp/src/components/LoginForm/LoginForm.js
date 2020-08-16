@@ -1,7 +1,7 @@
-import React, {useState, useEffect, useContext} from 'react';
-import {Redirect} from 'react-router-dom';
+import React, { useState, useEffect, useContext } from 'react';
+import { Redirect } from 'react-router-dom';
 
-import {AppContext} from '../../common/AppContext';
+import { AppContext } from '../../common/AppContext';
 import User from '../../Helpers/User';
 import Div from './style';
 import logo from './ivum_logo.png';
@@ -13,7 +13,7 @@ const LoginForm = () => {
   const [loading, setLoading] = useState(false);
   const [redirect, setRedirect] = useState(null);
   const [error, setError] = useState(false);
-  const {user, setUser} = useContext(AppContext);
+  const { user, setUser } = useContext(AppContext);
 
   useEffect(() => {
     if (user.tipo !== 'guest') {
@@ -28,7 +28,7 @@ const LoginForm = () => {
     }
   }, []);
 
-  const formHandler = (e) => {
+  const formHandler = e => {
     e.preventDefault();
     setLoading(true);
     validateLogin({
@@ -37,11 +37,10 @@ const LoginForm = () => {
     });
   };
 
-  const validateLogin = async ({username, password}) => {
+  const validateLogin = async ({ username, password }) => {
     try {
       const userData = await User.validateUser(username, password);
       setLoading(false);
-      console.log(userData);
       if (userData) {
         setIsLogin(true);
         setUser(userData);
@@ -55,8 +54,6 @@ const LoginForm = () => {
   };
 
   const getRedirectionPage = () => {
-    console.log('DEBUG USER');
-    console.log(user);
     if (user.tipo == 'admin') return '/admin';
     if (user.tipo == 'medico') return '/medicos';
     if (user.tipo == 'recepcion') return '/recepcion';
@@ -66,8 +63,7 @@ const LoginForm = () => {
   return !isLogin ? (
     <Div className="wrap">
       <img src={logo} alt="Instituto Venezolano de Ultrasonido en Medicina" />
-      <form action="/usuarios/login"
-        className="wrap" method="POST" onSubmit={formHandler}>
+      <form action="/usuarios/login" className="wrap" method="POST" onSubmit={formHandler}>
         {error ? <h3>Usuario o contraseña inválidos</h3> : ''}
         <label htmlFor="username">Usuario</label>
         <input type="text" name="username" />
@@ -76,8 +72,7 @@ const LoginForm = () => {
         {loading ? (
           <Confirmation message="Cargando" loading={true} />
         ) : (
-          <SubmitButton type="submit" name="Ingresar"
-            prevent={false} width="50%" />
+          <SubmitButton type="submit" name="Ingresar" prevent={false} width="50%" />
         )}
       </form>
     </Div>

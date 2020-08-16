@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Item} from './style';
+import { Link } from 'react-router-dom';
+import { Item } from './style';
 
-const ItemService = (props) => {
+const ItemService = props => {
   return (
     <Item>
       <Link to={props.link}>

@@ -1,8 +1,8 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Div} from './style';
+import { Link } from 'react-router-dom';
+import { Div } from './style';
 
-const ActionButton = (props) => {
+const ActionButton = props => {
   return (
     <Div className="wrap" color={props.color}>
       <Link to={props.link} className="wrap">

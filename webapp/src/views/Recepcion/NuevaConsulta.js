@@ -1,5 +1,5 @@
 import React from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import FunctionalContainer from '../../components/FunctionalContainer/FunctionalContainer';
 import CreatePacient from '../../components/CreatePacient/CreatePacient';
 import RegisterAppointment from '../../components/RegisterAppointment/RegisterAppointment';

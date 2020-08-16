@@ -1,6 +1,6 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import {Header} from './style';
+import { Link } from 'react-router-dom';
+import { Header } from './style';
 import ivum_logo from './ivum_logo_blanco.png';
 
 const HeaderComp = () => {

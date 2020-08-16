@@ -1,6 +1,0 @@
-{
-    "eslint.codeAction.showDocumentation": {
-        "eslint.options": { "configFile": "D:/PROYECTOS/ivum_node/webapp/.eslintrc.yml"},
-        "enable": true
-    }
-}

@@ -55,7 +55,7 @@ const Div = styled.div`
   }
 `;
 
-const Contact = (props) => {
+const Contact = props => {
   return (
     <Div>
       <div className="mapa">
@@ -64,7 +64,7 @@ const Contact = (props) => {
           width={600}
           height={450}
           frameBorder={0}
-          style={{border: 0}}
+          style={{ border: 0 }}
           allowFullScreen
           title="Dónde Estamos"
         ></iframe>

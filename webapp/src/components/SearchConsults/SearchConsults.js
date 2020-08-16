@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
-import {Div, DataDiv} from './style';
+import { Div, DataDiv } from './style';
 import SearchBar from '../SearchBar/SearchBar';
 import Axios from 'axios';
 import SearchFromTo from '../SearchFromTo/SearchFromTo';
@@ -45,11 +45,11 @@ const SearchConsults = () => {
     getData();
   }, [pacient, date]);
 
-  const pacientHandler = (search) => {
+  const pacientHandler = search => {
     setPacient(search);
   };
 
-  const dateHandler = (search) => {
+  const dateHandler = search => {
     setDate(search);
   };
 
@@ -89,7 +89,7 @@ const SearchConsults = () => {
                 <li>Pago</li>
               </ul>
               <div className="data">
-                {data.map((item) => (
+                {data.map(item => (
                   <ul key={item.id} className="wrap">
                     <li>{`${item.paciente.nombre} ${item.paciente.apellido}`}</li>
                     <li>{`${item.medico.nombre} ${item.medico.apellido}`}</li>

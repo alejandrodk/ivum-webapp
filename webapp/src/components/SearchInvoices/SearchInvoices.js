@@ -1,8 +1,8 @@
-import React, {useState, useEffect} from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 
 import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
-import {Div, DataDiv} from './style';
+import { Div, DataDiv } from './style';
 import SearchBar from '../SearchBar/SearchBar';
 import Axios from 'axios';
 import SearchFromTo from '../SearchFromTo/SearchFromTo';
@@ -44,11 +44,11 @@ const SearchInvoices = () => {
     getData();
   }, [pacient, date]);
 
-  const pacientHandler = (search) => {
+  const pacientHandler = search => {
     setPacient(search);
   };
 
-  const dateHandler = (search) => {
+  const dateHandler = search => {
     setDate(search);
   };
 
@@ -91,7 +91,7 @@ const SearchInvoices = () => {
                   <li>Detalle</li>
                 </ul>
                 <div className="data">
-                  {data.map((item) => (
+                  {data.map(item => (
                     <ul key={item.id} className="wrap">
                       <li>{item.id}</li>
                       <li>{item.nombre}</li>

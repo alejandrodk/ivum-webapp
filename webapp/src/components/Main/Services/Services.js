@@ -1,8 +1,8 @@
 import React from 'react';
 import ItemService from '../ItemService';
-import {Div} from './style';
+import { Div } from './style';
 
-const Services = (props) => {
+const Services = props => {
   return (
     <Div className="wrap">
       {props.data.map((item, i) => (

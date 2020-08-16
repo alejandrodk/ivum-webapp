@@ -1,10 +1,10 @@
-import React, {useRef} from 'react';
+import React, { useRef } from 'react';
 import Search from './styles';
 
-const SearchBar = (props) => {
+const SearchBar = props => {
   const input = useRef();
 
-  const buttonHandler = (e) => {
+  const buttonHandler = e => {
     e.preventDefault();
     props.stateHandler(input.current.value);
   };

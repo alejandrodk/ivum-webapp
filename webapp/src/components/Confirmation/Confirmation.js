@@ -33,7 +33,7 @@ const Div = styled.div`
   }
 `;
 
-const Confirmation = (props) => {
+const Confirmation = props => {
   return (
     <Div className="wrap">
       <h3>{props.message}</h3>
@@ -52,11 +52,6 @@ Confirmation.defaultProps = {
 };
 
 Confirmation.propTypes = {
-  props: {
-    message: PropTypes.string,
-    success: PropTypes.bool,
-    loading: PropTypes.bool,
-    children: PropTypes.node,
-  },
+  props: PropTypes.object,
 };
 export default Confirmation;

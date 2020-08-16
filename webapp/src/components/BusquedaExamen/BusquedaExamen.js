@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import BusquedaDiv from './style';
 import SearchBar from '../SearchBar/SearchBar';
 import useDataFetching from '../hooks/useDataFetching';
@@ -6,13 +6,13 @@ import useDataFetching from '../hooks/useDataFetching';
 const BusquedaExamen = () => {
   const [params, setParams] = useState(null);
 
-  const {loading, data, error} = useDataFetching(
-      `http://localhost:3000/examenes?search=${params}&price_detail=true&limit=3`,
+  const { loading, data, error } = useDataFetching(
+    `http://localhost:3000/examenes?search=${params}&price_detail=true&limit=3`
   );
 
   if (error) console.error(error);
 
-  const stateHandler = (search) => {
+  const stateHandler = search => {
     setParams(search);
   };
 
@@ -34,7 +34,7 @@ const BusquedaExamen = () => {
             <li>Precio</li>
           </ul>
           <div className="data">
-            {data.map((item) => (
+            {data.map(item => (
               <ul className="wrap" key={item.nombre}>
                 <li>{item.nombre}</li>
                 <li>{item.especialidad}</li>

@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Router from './Router/Router';
-import {AppContext} from './common/AppContext';
+import { AppContext } from './common/AppContext';
 import User from './Helpers/User';
 
 const App = () => {

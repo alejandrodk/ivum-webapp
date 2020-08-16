@@ -14,7 +14,7 @@ const Link = styled.a`
   transition: 03s all;
 `;
 
-const LinkButton = (props) => {
+const LinkButton = props => {
   return <Link href={props.link}>{props.texto}</Link>;
 };
 
