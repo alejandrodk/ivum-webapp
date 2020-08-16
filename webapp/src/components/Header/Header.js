@@ -1,6 +1,5 @@
 import React from 'react';
 import { Row, Col } from 'react-bootstrap';
-import logo from './ivum_logo_blanco.png';
 import Hora from '../Hora/Hora';
 import LinkButton from '../LinkButton';
 import DivHeader from './style';
@@ -10,7 +9,10 @@ const Recepcion = () => {
     <Row>
       <Col>
         <DivHeader className="wrap">
-          <img src={logo} alt="Instituto Venezolano de Ultrasonido" />
+          <img
+            src="http://localhost:3000/img/ivum_logo_blanco.png"
+            alt="Instituto Venezolano de Ultrasonido"
+          />
           <div className="opciones wrap">
             <Hora />
             <LinkButton texto={'Salir'} link="/logout" />

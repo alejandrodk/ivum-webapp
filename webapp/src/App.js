@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import Router from './Router/Router';
+import React, { useState } from 'react';
+import Router from './Routers/AppRouter';
 import { AppContext } from './common/AppContext';
 import User from './Helpers/User';
 

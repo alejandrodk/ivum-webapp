@@ -93,9 +93,8 @@ class User {
    * Logout handler
    * @param {Function} callback setUser function from App context
    */
-  static closeUserSession(callback) {
+  static closeUserSession() {
     localStorage.removeItem('user_IVUM');
-    callback(null);
   }
 }
 

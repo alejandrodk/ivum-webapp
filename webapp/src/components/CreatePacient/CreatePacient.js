@@ -1,15 +1,16 @@
-import React, { useState } from 'react';
-import { getToken } from '../../Helpers/auth';
+import React, { useState, useContext } from 'react';
+import Axios from 'axios';
+
+import { AppContext } from '../../common/AppContext';
 import NewPacientForm from './style';
 import SubmitButton from '../SubmitButton';
-import Axios from 'axios';
 import Confirmation from '../Confirmation/Confirmation';
 
 const CreatePacient = () => {
+  const { user } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [created, setCreated] = useState(false);
   const [error, setError] = useState(false);
-
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
   const [sexo, setSexo] = useState('');
@@ -53,7 +54,7 @@ const CreatePacient = () => {
         telefono,
       },
       {
-        headers: { token: getToken() },
+        headers: { token: user.token },
       }
     )
       .then(res => {

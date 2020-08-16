@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
-import { getToken } from '../../Helpers/auth';
+
+import { AppContext } from '../../common/AppContext';
 
 const useDataFetching = dataSource => {
+  const { user } = useContext(AppContext);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([]);
   const [error, setError] = useState('');
@@ -11,7 +13,7 @@ const useDataFetching = dataSource => {
     async function fetchData() {
       try {
         const response = await axios.get(dataSource, {
-          headers: { token: getToken() },
+          headers: { token: user.token },
         });
 
         if (response.data) {
@@ -26,7 +28,7 @@ const useDataFetching = dataSource => {
     fetchData();
 
     return () => {};
-  }, [dataSource]);
+  }, [user, dataSource]);
 
   return {
     loading,

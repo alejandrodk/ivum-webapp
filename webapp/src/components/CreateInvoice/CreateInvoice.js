@@ -1,8 +1,9 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer, useEffect, useContext } from 'react';
+import axios from 'axios';
+
+import { AppContext } from '../../common/AppContext';
 import Form from './style';
 import SubmitButton from '../SubmitButton';
-import { getToken } from '../../Helpers/auth';
-import axios from 'axios';
 import Confirmation from '../Confirmation/Confirmation';
 
 const CreateInvoice = () => {
@@ -128,14 +129,14 @@ const CreateInvoice = () => {
   };
 
   const [state, dispatch] = useReducer(formReducer, initialState);
-
+  const { user } = useContext(AppContext);
   // Consultas del paciente
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
         `http://localhost:3000/consultas?full_data=true&pacient=${state.paciente_id}&state=unpaid`,
         {
-          headers: { token: getToken() },
+          headers: { token: user.token },
         }
       );
       if (response.data.length !== 0) {
@@ -163,7 +164,7 @@ const CreateInvoice = () => {
   useEffect(() => {
     async function fetchCurrency() {
       const response = await axios.get(`http://localhost:3000/cotizaciones`, {
-        headers: { token: getToken() },
+        headers: { token: user.token },
       });
       if (response.data) {
         dispatch({
@@ -254,7 +255,7 @@ const CreateInvoice = () => {
           total: state.total,
         },
         {
-          headers: { token: getToken() },
+          headers: { token: user.token },
         }
       );
 
