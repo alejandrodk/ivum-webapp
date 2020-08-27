@@ -11,7 +11,7 @@ const ConsultationsPending = props => {
 
   useEffect(() => {
     setLoading(true);
-    Axios.get('http://Api.ivum.org/consultas?full_data=true&state=pendiente', {
+    Axios.get('http://api.ivum.org/consultas?full_data=true&state=pendiente', {
       headers: { token: user.token },
     })
       .then(res => {

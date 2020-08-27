@@ -19,11 +19,11 @@ const PacientDetail = props => {
       setLoading(true);
       const getData = async () => {
         try {
-          const userData = await Axios.get(`http://Api.ivum.org/pacientes/${cedula}`, {
+          const userData = await Axios.get(`http://api.ivum.org/pacientes/${cedula}`, {
             headers: { token: user.token },
           });
           const consultData = await Axios.get(
-            `http://Api.ivum.org/consultas?pacient=${cedula}&full_data=true`,
+            `http://api.ivum.org/consultas?pacient=${cedula}&full_data=true`,
             {
               headers: { token: user.token },
             }
@@ -49,7 +49,7 @@ const PacientDetail = props => {
         <Col className="wrap">
           <Avatar className="wrap">
             <div className="image wrap">
-              <img src="http://Api.ivum.org/img/userAvatar.png" alt="user avatar" />
+              <img src="http://api.ivum.org/img/userAvatar.png" alt="user avatar" />
             </div>
           </Avatar>
           <Info className="wrap">

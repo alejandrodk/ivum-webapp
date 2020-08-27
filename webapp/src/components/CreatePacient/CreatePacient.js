@@ -42,7 +42,7 @@ const CreatePacient = () => {
   };
   const submitData = async () => {
     await Axios.post(
-      'http://Api.ivum.org/pacientes/',
+      'http://api.ivum.org/pacientes/',
       {
         nombre,
         apellido,
