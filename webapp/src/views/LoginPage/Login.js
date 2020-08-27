@@ -76,7 +76,7 @@ const Login = props => {
           <Col>
             <Div className="wrap">
               <img
-                src={'http://localhost:3000/img/ivum_logo.png'}
+                src={'http://api.ivum.org/img/ivum_logo.png'}
                 alt="Instituto Venezolano de Ultrasonido en Medicina"
               />
               <form action="/usuarios/login" className="wrap" method="POST" onSubmit={formHandler}>

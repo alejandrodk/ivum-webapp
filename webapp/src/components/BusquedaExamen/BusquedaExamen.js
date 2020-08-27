@@ -7,7 +7,7 @@ const BusquedaExamen = () => {
   const [params, setParams] = useState(null);
 
   const { loading, data, error } = useDataFetching(
-    `http://localhost:3000/examenes?search=${params}&price_detail=true&limit=3`
+    `http://api.ivum.org/examenes?search=${params}&price_detail=true&limit=3`
   );
 
   if (error) console.error(error);

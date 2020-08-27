@@ -15,7 +15,7 @@ class User {
   static validateUser(username, password) {
     return new Promise(async (resolve, reject) => {
       try {
-        const { data } = await Axios.post('http://localhost:3000/usuarios/login', {
+        const { data } = await Axios.post('http://api.ivum.org/usuarios/login', {
           usuario: username,
           clave: password,
         });
@@ -73,7 +73,7 @@ class User {
    */
   static async validateSessionToken(user) {
     try {
-      const { data } = await Axios.get(`http://localhost:3000/usuarios/${user.id}`, {
+      const { data } = await Axios.get(`http://api.ivum.org/usuarios/${user.id}`, {
         headers: { token: user.token },
       });
       if (data.usuario) {

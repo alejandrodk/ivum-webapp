@@ -15,9 +15,9 @@ const PacientDetail = props => {
   useEffect(() => {
     setLoading(true);
     const getData = async () => {
-      const user = Axios.get(`http://localhost:3000/pacientes/${props.cedula}`);
+      const user = Axios.get(`http://api.ivum.org/pacientes/${props.cedula}`);
       const consult = Axios.get(
-        `http://localhost:3000/consultas?pacient=${props.cedula}&full_data=true`
+        `http://api.ivum.org/consultas?pacient=${props.cedula}&full_data=true`
       );
       try {
         const result = await Axios.all([user, consult]);
