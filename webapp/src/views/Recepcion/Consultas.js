@@ -19,7 +19,7 @@ const Consultas = ({ user }) => {
   useEffect(() => {
     setLoading(true);
     const getData = async () => {
-      let url = `http://api.ivum.org/consultas?full_data=true`;
+      let url = `http://Api.ivum.org/consultas?full_data=true`;
 
       if (pacient || date) url += '&';
       if (pacient) url += `pacient=${pacient}&`;

@@ -22,7 +22,7 @@ const Pagos = props => {
     setLoading(true);
 
     const getData = async () => {
-      let url = 'http://api.ivum.org/comprobantes?';
+      let url = 'http://Api.ivum.org/comprobantes?';
 
       if (pacient || date) url += '&';
       if (pacient) url += `pacient=${pacient}&`;

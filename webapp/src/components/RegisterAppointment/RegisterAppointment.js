@@ -25,7 +25,7 @@ const RegisterAppointment = () => {
   // Cargar examenes en select
   useEffect(() => {
     if (!examenes) {
-      Axios.get('http://api.ivum.org/examenes/', {
+      Axios.get('http://Api.ivum.org/examenes/', {
         headers: { token: user.token },
       }).then(res => {
         setExamenes(res.data);
@@ -36,7 +36,7 @@ const RegisterAppointment = () => {
   const selectExamenHandler = e => {
     const value = e.target.value;
     setExamen(value);
-    Axios.get(`http://api.ivum.org/examenes/${value}/especialistas`, {
+    Axios.get(`http://Api.ivum.org/examenes/${value}/especialistas`, {
       headers: { token: user.token },
     }).then(res => setEspecialistas(res.data.medicos));
   };
@@ -68,7 +68,7 @@ const RegisterAppointment = () => {
   };
   const submitData = async () => {
     await Axios.post(
-      'http://api.ivum.org/consultas/',
+      'http://Api.ivum.org/consultas/',
       {
         cedula_paciente: paciente,
         medico_id: especialista,

@@ -134,7 +134,7 @@ const CreateInvoice = () => {
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
-        `http://api.ivum.org/consultas?full_data=true&pacient=${state.paciente_id}&state=unpaid`,
+        `http://Api.ivum.org/consultas?full_data=true&pacient=${state.paciente_id}&state=unpaid`,
         {
           headers: { token: user.token },
         }
@@ -163,7 +163,7 @@ const CreateInvoice = () => {
   // Cotizaciones
   useEffect(() => {
     async function fetchCurrency() {
-      const response = await axios.get(`http://api.ivum.org/cotizaciones`, {
+      const response = await axios.get(`http://Api.ivum.org/cotizaciones`, {
         headers: { token: user.token },
       });
       if (response.data) {
@@ -238,7 +238,7 @@ const CreateInvoice = () => {
 
     async function submitForm() {
       const response = await axios.post(
-        `http://api.ivum.org/comprobantes`,
+        `http://Api.ivum.org/comprobantes`,
         {
           nombre: state.nombre,
           cedula: state.cedula,

@@ -4,7 +4,7 @@ import CurrentConverter from '../CurrentConverter/CurrentConverter';
 import useDataFetching from '../hooks/useDataFetching';
 
 const Cotizaciones = () => {
-  const { data, error } = useDataFetching(`http://api.ivum.org/cotizaciones`);
+  const { data, error } = useDataFetching(`http://Api.ivum.org/cotizaciones`);
 
   if (error) console.error(error);
 
