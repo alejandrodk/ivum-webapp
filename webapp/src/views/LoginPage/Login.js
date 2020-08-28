@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { Redirect } from 'react-router-dom';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, {useState, useEffect} from 'react';
+import {Redirect} from 'react-router-dom';
+import {Container, Row, Col} from 'react-bootstrap';
 import styled from 'styled-components';
 
 import User from '../../Helpers/User';
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 `;
 
 const Login = props => {
-  const { user, setUser } = props;
+  const {user, setUser} = props;
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(false);
   const [redirect, setRedirect] = useState(null);
@@ -46,14 +46,14 @@ const Login = props => {
     });
   };
 
-  const validateLogin = async ({ username, password }) => {
+  const validateLogin = async ({username, password}) => {
     try {
       const userData = await User.validateUser(username, password);
       setLoading(false);
       if (userData) {
+        User.saveUserInStorage(userData);
         setIsLogin(true);
         setUser(userData);
-        User.saveUserInStorage(userData);
       } else {
         setError(true);
       }
@@ -67,6 +67,7 @@ const Login = props => {
     if (user.tipo === 'medico') return '/medicos';
     if (user.tipo === 'recepcion') return '/recepcion';
     if (user.tipo === 'cliente') return '/clientes';
+    return '/ingresar';
   };
 
   return !isLogin ? (
@@ -79,7 +80,8 @@ const Login = props => {
                 src={'http://api.ivum.org/img/ivum_logo.png'}
                 alt="Instituto Venezolano de Ultrasonido en Medicina"
               />
-              <form action="/usuarios/login" className="wrap" method="POST" onSubmit={formHandler}>
+              <form action="/usuarios/login"
+                className="wrap" method="POST" onSubmit={formHandler}>
                 {error ? <h3>Usuario o contraseña inválidos</h3> : ''}
                 <label htmlFor="username">Usuario</label>
                 <input type="text" name="username" />
@@ -88,7 +90,8 @@ const Login = props => {
                 {loading ? (
                   <Confirmation message="Cargando" loading={true} />
                 ) : (
-                  <SubmitButton type="submit" name="Ingresar" prevent={false} width="50%" />
+                  <SubmitButton
+                    type="submit" name="Ingresar" prevent={false} width="50%" />
                 )}
               </form>
             </Div>

@@ -13,21 +13,24 @@ class User {
    * @return {String} Return valid token
    */
   static validateUser(username, password) {
-    return new Promise(async (resolve, reject) => {
-      try {
-        const { data } = await Axios.post('http://api.ivum.org/usuarios/login', {
-          usuario: username,
-          clave: password,
-        });
-        if (data.token) {
-          resolve(data);
-        } else {
-          resolve(null);
+    return new Promise((resolve, reject) => {
+      const getUserData = async () => {
+        try {
+          const {data} = await Axios.post('http://api.ivum.org/usuarios/login', {
+            usuario: username,
+            clave: password,
+          });
+          if (data.token) {
+            resolve(data);
+          } else {
+            resolve(null);
+          }
+        } catch (error) {
+          console.error('Backend not available');
+          reject(error);
         }
-      } catch (error) {
-        console.error('Backend not available');
-        reject(error);
-      }
+      };
+      getUserData();
     });
   }
   /**
@@ -36,14 +39,14 @@ class User {
    */
   static getUserFromStorage() {
     const stored = JSON.parse(localStorage.getItem('user_IVUM'));
-    return stored
-      ? stored
-      : {
-          id: null,
-          tipo: 'guest',
-          cedula: null,
-          token: null,
-        };
+    return stored ?
+      stored :
+      {
+        id: null,
+        tipo: 'guest',
+        cedula: null,
+        token: null,
+      };
   }
   /**
    * Save user data in LocalStorage
@@ -51,15 +54,15 @@ class User {
    */
   static saveUserInStorage(data) {
     if (data) {
-      const { user, token } = data;
+      const {user, token} = data;
       localStorage.setItem(
-        'user_IVUM',
-        JSON.stringify({
-          id: user.id,
-          tipo: user.tipo,
-          cedula: user.cedula,
-          token,
-        })
+          'user_IVUM',
+          JSON.stringify({
+            id: user.id,
+            tipo: user.tipo,
+            cedula: user.cedula,
+            token,
+          }),
       );
       Axios.defaults.headers.common = {
         token: token,
@@ -73,8 +76,8 @@ class User {
    */
   static async validateSessionToken(user) {
     try {
-      const { data } = await Axios.get(`http://api.ivum.org/usuarios/${user.id}`, {
-        headers: { token: user.token },
+      const {data} = await Axios.get(`http://api.ivum.org/usuarios/${user.id}`, {
+        headers: {token: user.token},
       });
       if (data.usuario) {
         return true;
@@ -91,10 +94,11 @@ class User {
 
   /**
    * Logout handler
-   * @param {Function} callback setUser function from App context
+   * @param {Function} setUser setUser function from App context
    */
-  static closeUserSession() {
+  static closeUserSession(setUser) {
     localStorage.removeItem('user_IVUM');
+    setUser(null);
   }
 }
 
