@@ -25,7 +25,7 @@ const Login = props => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (user.tipo !== 'guest') {
+    if (user && user.tipo !== 'guest') {
       const validateToken = async () => {
         setLoading(true);
         const isTokenValid = await User.validateSessionToken(user);
@@ -67,7 +67,6 @@ const Login = props => {
     if (user.tipo === 'medico') return '/medicos';
     if (user.tipo === 'recepcion') return '/recepcion';
     if (user.tipo === 'cliente') return '/clientes';
-    return '/ingresar';
   };
 
   return !isLogin ? (
@@ -100,7 +99,7 @@ const Login = props => {
       </Container>
     </Wrapper>
   ) : (
-    <Redirect to={redirect} />
+   isLogin && <Redirect to={redirect} />
   );
 };
 
