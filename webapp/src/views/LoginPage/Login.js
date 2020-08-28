@@ -30,7 +30,7 @@ const Login = props => {
         setLoading(true);
         const isTokenValid = await User.validateSessionToken(user);
         setLoading(false);
-        setRedirect(getRedirectionPage());
+        setRedirect(getRedirectionPage(user));
         setIsLogin(isTokenValid);
       };
       validateToken();
@@ -48,12 +48,13 @@ const Login = props => {
 
   const validateLogin = async ({username, password}) => {
     try {
-      const userData = await User.validateUser(username, password);
+      const data = await User.validateUser(username, password);
       setLoading(false);
-      if (userData) {
-        User.saveUserInStorage(userData);
+      if (data) {
+        User.saveUserInStorage(data);
         setIsLogin(true);
-        setUser(userData);
+        setUser(data);
+        setRedirect(getRedirectionPage(data));
       } else {
         setError(true);
       }
@@ -62,7 +63,7 @@ const Login = props => {
     }
   };
 
-  const getRedirectionPage = () => {
+  const getRedirectionPage = (user) => {
     if (user.tipo === 'admin') return '/admin';
     if (user.tipo === 'medico') return '/medicos';
     if (user.tipo === 'recepcion') return '/recepcion';
@@ -99,7 +100,7 @@ const Login = props => {
       </Container>
     </Wrapper>
   ) : (
-   isLogin && <Redirect to={redirect} />
+   redirect && <Redirect to={redirect} />
   );
 };
 
