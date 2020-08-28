@@ -16,7 +16,7 @@ class User {
     return new Promise((resolve, reject) => {
       const getUserData = async () => {
         try {
-          const {data: {data}} = await Axios.post('http://api.ivum.org/usuarios/login', {
+          const {data} = await Axios.post('http://api.ivum.org/usuarios/login', {
             usuario: username,
             clave: password,
           });

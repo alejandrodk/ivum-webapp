@@ -48,13 +48,13 @@ const Login = props => {
 
   const validateLogin = async ({username, password}) => {
     try {
-      const data = await User.validateUser(username, password);
+      const {user} = await User.validateUser(username, password);
       setLoading(false);
-      if (data) {
-        User.saveUserInStorage(data);
+      if (user) {
+        User.saveUserInStorage(user);
         setIsLogin(true);
-        setUser(data);
-        setRedirect(getRedirectionPage(data));
+        setUser(user);
+        setRedirect(getRedirectionPage(user));
       } else {
         setError(true);
       }
