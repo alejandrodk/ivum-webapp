@@ -19,14 +19,11 @@ const Router = () => {
       />
       <Route path="/recepcion"
         render={props => <Recepcion {...props} user={user} />} />
-      <Route
-        path="/logout"
-        exact
+      <Route path="/logout" exact
         render={() => {
           User.closeUserSession(setUser);
-          return <Redirect to="/ingresar" />;
-        }}
-      />
+          return <Redirect to='/ingresar' />;
+        }} />
     </BrowserRouter>
   );
 };

@@ -15,12 +15,21 @@ const Link = styled.a`
 `;
 
 const LinkButton = props => {
-  return <Link href={props.link}>{props.texto}</Link>;
+  const onClickButton = e => {
+    if (props.prevent) {
+      e.preventDefault();
+      props.onClick();
+    }
+  };
+  if (props.loading) return 'cargando....';
+  return <Link href={props.link} onClick={onClickButton}>{props.texto}</Link>;
 };
 
 LinkButton.defaultProps = {
   link: '/',
-  texto: 'Texto',
+  texto: 'Text button',
+  prevent: false,
+  loading: false,
 };
 
 export default LinkButton;
