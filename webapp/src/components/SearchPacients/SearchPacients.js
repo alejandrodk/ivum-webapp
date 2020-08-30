@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import React, {useState, useEffect} from 'react';
+import {Container, Row, Col} from 'react-bootstrap';
+import {NavLink} from 'react-router-dom';
 
 import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
-import { Div, DataDiv } from './style';
+import {Div, DataDiv} from './style';
 import SearchBar from '../SearchBar/SearchBar';
 import Axios from 'axios';
 import Confirmation from '../Confirmation/Confirmation';
@@ -20,7 +20,7 @@ const SearchPacients = () => {
     setLoading(true);
 
     const getData = async () => {
-      let url = 'http://api.ivum.org/pacientes?';
+      let url = `${process.env.REACT_APP_API_URL}/pacientes?`;
 
       if (pacient || date) url += '&';
       if (pacient) url += `pacient=${pacient}&`;

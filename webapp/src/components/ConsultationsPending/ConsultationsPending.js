@@ -14,7 +14,8 @@ const ConsultationsPending = props => {
       const getConsultas = async () => {
         setLoading(true);
         try {
-          const {data} = await Axios.get('http://api.ivum.org/consultas?full_data=true&state=pendiente', {
+          // eslint-disable-next-line max-len
+          const {data} = await Axios.get(`${process.env.REACT_APP_API_URL}/consultas?full_data=true&state=pendiente`, {
             headers: {token: user.token},
           });
           if (data) {

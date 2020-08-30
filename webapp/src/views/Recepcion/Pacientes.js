@@ -21,7 +21,7 @@ const SearchPacients = ({ user }) => {
     setLoading(true);
 
     const getData = async () => {
-      let url = 'http://api.ivum.org/pacientes?';
+      let url = `${process.env.REACT_APP_API_URL}/pacientes?`;
 
       if (pacient || date) url += '&';
       if (pacient) url += `pacient=${pacient}&`;

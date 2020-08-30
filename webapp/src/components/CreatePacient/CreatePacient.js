@@ -1,13 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, {useState, useContext} from 'react';
 import Axios from 'axios';
 
-import { AppContext } from '../../common/AppContext';
+import {AppContext} from '../../common/AppContext';
 import NewPacientForm from './style';
 import SubmitButton from '../SubmitButton';
 import Confirmation from '../Confirmation/Confirmation';
 
 const CreatePacient = () => {
-  const { user } = useContext(AppContext);
+  const {user} = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [created, setCreated] = useState(false);
   const [error, setError] = useState(false);
@@ -42,33 +42,33 @@ const CreatePacient = () => {
   };
   const submitData = async () => {
     await Axios.post(
-      'http://api.ivum.org/pacientes/',
-      {
-        nombre,
-        apellido,
-        sexo,
-        nacimiento,
-        cedula,
-        correo,
-        direccion,
-        telefono,
-      },
-      {
-        headers: { token: user.token },
-      }
+        `${process.env.REACT_APP_API_URL}/pacientes/`,
+        {
+          nombre,
+          apellido,
+          sexo,
+          nacimiento,
+          cedula,
+          correo,
+          direccion,
+          telefono,
+        },
+        {
+          headers: {token: user.token},
+        },
     )
-      .then(res => {
-        setLoading(false);
-        if (res.status === 201) {
-          setCreated(true);
-        } else {
+        .then(res => {
+          setLoading(false);
+          if (res.status === 201) {
+            setCreated(true);
+          } else {
+            setError(true);
+          }
+        })
+        .catch(error => {
           setError(true);
-        }
-      })
-      .catch(error => {
-        setError(true);
-        console.error(error);
-      });
+          console.error(error);
+        });
   };
 
   return !created ? (
@@ -94,7 +94,8 @@ const CreatePacient = () => {
         <option value="M">masculino</option>
         <option value="F">femenino</option>
       </select>
-      <input onChange={inputHandler} type="date" name="nacimiento" required value={nacimiento} />
+      <input onChange={inputHandler} type="date"
+        name="nacimiento" required value={nacimiento} />
       <input
         onChange={inputHandler}
         type="text"

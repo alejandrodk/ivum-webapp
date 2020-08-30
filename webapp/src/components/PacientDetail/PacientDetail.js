@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
+import React, {useState, useEffect} from 'react';
+import {Container, Row, Col} from 'react-bootstrap';
 import Axios from 'axios';
 
 import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
-import { Avatar, Info, DataDiv } from './style';
-import img from './avatar.png';
+import {Avatar, Info, DataDiv} from './style';
 
 const PacientDetail = props => {
   const [data, setData] = useState([]);
@@ -15,9 +14,11 @@ const PacientDetail = props => {
   useEffect(() => {
     setLoading(true);
     const getData = async () => {
-      const user = Axios.get(`http://api.ivum.org/pacientes/${props.cedula}`);
+      // eslint-disable-next-line max-len
+      const user = Axios.get(`${process.env.REACT_APP_API_URL}/pacientes/${props.cedula}`);
       const consult = Axios.get(
-        `http://api.ivum.org/consultas?pacient=${props.cedula}&full_data=true`
+          // eslint-disable-next-line max-len
+          `${process.env.REACT_APP_API_URL}/consultas?pacient=${props.cedula}&full_data=true`,
       );
       try {
         const result = await Axios.all([user, consult]);
@@ -39,7 +40,7 @@ const PacientDetail = props => {
         <Col className="wrap">
           <Avatar className="wrap">
             <div className="image wrap">
-              <img src={img} />
+              <img src={`${process.env.REACT_APP_API_URL}/img/userAvatar.png`} />
             </div>
           </Avatar>
           <Info className="wrap">

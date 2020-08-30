@@ -11,7 +11,7 @@ const Recepcion = () => {
       <Col>
         <DivHeader className="wrap">
           <img
-            src="http://api.ivum.org/img/ivum_logo_blanco.png"
+            src={`${process.env.REACT_APP_API_URL}/img/ivum_logo_blanco.png`}
             alt="Instituto Venezolano de Ultrasonido"
           />
           <div className="opciones wrap">

@@ -4,7 +4,8 @@ import CurrentConverter from '../CurrentConverter/CurrentConverter';
 import useDataFetching from '../hooks/useDataFetching';
 
 const Cotizaciones = () => {
-  const { data, error } = useDataFetching(`http://api.ivum.org/cotizaciones`);
+  // eslint-disable-next-line max-len
+  const {data, error} = useDataFetching(`${process.env.REACT_APP_API_URL}/cotizaciones`);
 
   if (error) console.error(error);
 

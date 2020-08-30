@@ -16,7 +16,8 @@ class User {
     return new Promise((resolve, reject) => {
       const getUserData = async () => {
         try {
-          const {data} = await Axios.post('http://api.ivum.org/usuarios/login', {
+          // eslint-disable-next-line max-len
+          const {data} = await Axios.post(`${process.env.REACT_APP_API_URL}/usuarios/login`, {
             usuario: username,
             clave: password,
           });
@@ -76,7 +77,8 @@ class User {
    */
   static async validateSessionToken(user) {
     try {
-      const {data} = await Axios.get(`http://api.ivum.org/usuarios/${user.id}`, {
+      // eslint-disable-next-line max-len
+      const {data} = await Axios.get(`${process.env.REACT_APP_API_URL}/usuarios/${user.id}`, {
         headers: {token: user.token},
       });
       if (data.usuario) {
