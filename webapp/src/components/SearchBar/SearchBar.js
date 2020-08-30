@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, {useRef} from 'react';
 import Search from './styles';
 
 const SearchBar = props => {
@@ -12,7 +12,8 @@ const SearchBar = props => {
   return (
     <Search action={props.action} method={props.method} className="wrap">
       <label htmlFor={props.input_name}>{props.label}</label>
-      <input ref={input} type="text" name={props.input_name} placeholder={props.placeholder} />
+      <input ref={input} type="text" name={props.input_name}
+        placeholder={props.placeholder} />
       <button onClick={buttonHandler}>
         <i className="fas fa-search"></i>
       </button>

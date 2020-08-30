@@ -1,42 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React from 'react';
 import Div from './style';
 import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
-import Axios from 'axios';
-import { AppContext } from '../../common/AppContext';
+import useDataFetching from '../hooks/useDataFetching';
 
 const ConsultationsPending = props => {
-  const [consultas, setConsultas] = useState(null);
-  const [loading, setLoading] = useState(false);
-  const { user } = useContext(AppContext);
-
-  useEffect(() => {
-    if (!consultas) {
-      const getConsultas = async () => {
-        setLoading(true);
-        try {
-          // eslint-disable-next-line max-len
-          const { data } = await Axios.get(
-            `${process.env.REACT_APP_API_URL}/consultas?full_data=true&state=pendiente`,
-            {
-              headers: { token: user.token },
-            }
-          );
-          if (data) {
-            setConsultas(data);
-            setLoading(false);
-          }
-        } catch (err) {
-          console.error(err);
-        }
-      };
-      getConsultas();
-    }
-  }, [user, consultas]);
-
-  return !loading ? (
+  const {data: consultas, error} = useDataFetching(
+      '/consultas?full_data=true&state=pendiente',
+  );
+  error && console.error(error);
+  return (
     <FunctionalContainer title="Consultas Pendientes">
       <Div>
-        {consultas &&
+        {consultas !== [] ?
           consultas.map((item, i) => (
             <ul className="wrap" key={i}>
               <li>{`${item.paciente.nombre} ${item.paciente.apellido}`}</li>
@@ -44,11 +19,9 @@ const ConsultationsPending = props => {
               <li>{`${item.medico.nombre} ${item.medico.apellido}`}</li>
               <li>{`${item.fecha} ${item.hora}`}</li>
             </ul>
-          ))}
+          )) : 'cargando...'}
       </Div>
     </FunctionalContainer>
-  ) : (
-    'Cargando....'
   );
 };
 

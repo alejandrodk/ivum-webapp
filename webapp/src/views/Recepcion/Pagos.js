@@ -1,50 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import Axios from 'axios';
+import React, {useState, useEffect} from 'react';
+import {Container, Row, Col} from 'react-bootstrap';
 
-import { Div, DataDiv } from './styles/PagosPageStyles';
+import {Div, DataDiv} from './styles/PagosPageStyles';
 // eslint-disable-next-line max-len
 import FunctionalContainer from '../../components/FunctionalContainer/FunctionalContainer';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import SearchFromTo from '../../components/SearchFromTo/SearchFromTo';
 import Confirmation from '../../components/Confirmation/Confirmation';
+import useDataFetching from '../../components/hooks/useDataFetching';
 
 const Pagos = props => {
-  const { user } = props;
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-
+  const [uri, setUri] = useState(null);
   const [pacient, setPacient] = useState(null);
   const [date, setDate] = useState(null);
+  const {data, error, loading} = useDataFetching(uri);
 
   useEffect(() => {
-    setLoading(true);
+    let url = '/comprobantes?';
+    if (pacient || date) url += '&';
+    if (pacient) url += `pacient=${pacient}&`;
+    if (date && date.from_date) url += `date_from=${date.from_date}&`;
+    if (date && date.to_date) url += `date_to=${date.to_date}&`;
+    setUri(url);
+  }, [pacient, date]);
 
-    const getData = async () => {
-      let url = `${process.env.REACT_APP_API_URL}/comprobantes?`;
-
-      if (pacient || date) url += '&';
-      if (pacient) url += `pacient=${pacient}&`;
-      if (date && date.from_date) url += `date_from=${date.from_date}&`;
-      if (date && date.to_date) url += `date_to=${date.to_date}&`;
-
-      try {
-        const result = await Axios.get(url, { headers: { token: user.token } });
-        setLoading(false);
-        if (result.data) {
-          setData(result.data);
-        } else {
-          setError(true);
-        }
-      } catch (error) {
-        setError(true);
-        console.log(error);
-      }
-    };
-
-    getData();
-  }, [pacient, date, user]);
+  error && console.error(error);
 
   const pacientHandler = search => {
     setPacient(search);
@@ -93,7 +73,7 @@ const Pagos = props => {
                   <li>Detalle</li>
                 </ul>
                 <div className="data">
-                  {data.map(item => (
+                  {data && data.map(item => (
                     <ul key={item.id} className="wrap">
                       <li>{item.id}</li>
                       <li>{item.nombre}</li>

@@ -1,39 +1,43 @@
-import { useState, useEffect, useContext } from 'react';
+/* eslint-disable no-undef, max-len */
+import {useState, useEffect, useContext} from 'react';
 import axios from 'axios';
 
-import { AppContext } from '../../common/AppContext';
+import {AppContext} from '../../common/AppContext';
 
 const useDataFetching = dataSource => {
-  const { user } = useContext(AppContext);
-  const [loading, setLoading] = useState(true);
+  const {user} = useContext(AppContext);
   const [data, setData] = useState([]);
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(null);
 
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await axios.get(dataSource, {
-          headers: { token: user.token },
-        });
+    if (dataSource) {
+      const fetchData = async () => {
+        setLoading(true);
+        try {
+          const {data: response} = await axios.get(`${process.env.REACT_APP_API_URL}${dataSource}`, {
+            headers: {token: user.token},
+          });
+          response.error && setError(response.error);
 
-        if (response.data) {
-          setData(response.data);
-          setLoading(false);
+          if (response && !response.error) {
+            setData(response);
+          }
+        } catch (err) {
+          setError(err.message);
         }
-      } catch (err) {
         setLoading(false);
-        setError(err.message);
-      }
+      };
+      fetchData();
     }
-    fetchData();
 
     return () => {};
   }, [user, dataSource]);
 
   return {
-    loading,
     data,
     error,
+    loading,
   };
 };
 

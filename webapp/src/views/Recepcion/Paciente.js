@@ -1,55 +1,29 @@
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import Axios from 'axios';
+import React from 'react';
+import {Container, Row, Col} from 'react-bootstrap';
 
 // eslint-disable-next-line max-len
 import FunctionalContainer from '../../components/FunctionalContainer/FunctionalContainer';
-import { Avatar, Info, DataDiv } from './styles/PacientDetailStyles';
+import useDataFetching from '../../components/hooks/useDataFetching';
+import {Avatar, Info, DataDiv} from './styles/PacientDetailStyles';
 
-const PacientDetail = props => {
-  const { match, user } = props;
-  const { cedula } = match.params;
-  const [data, setData] = useState(null);
-  const [consults, setConsults] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    if (!data) {
-      setLoading(true);
-      const getData = async () => {
-        try {
-          const userData = await Axios.get(`${process.env.REACT_APP_API_URL}/pacientes/${cedula}`, {
-            headers: { token: user.token },
-          });
-          const consultData = await Axios.get(
-            `${process.env.REACT_APP_API_URL}/consultas?pacient=${cedula}&full_data=true`,
-            {
-              headers: { token: user.token },
-            }
-          );
-          setLoading(false);
-          setData(userData.data);
-          setConsults(consultData.data);
-        } catch (error) {
-          setError(true);
-          console.log(error);
-        }
-      };
-      getData();
-    }
-  }, [user, cedula, data]);
-
-  if (error) {
+const PacientDetail = ({match}) => {
+  const {cedula} = match.params;
+  const {data, error} = useDataFetching(`/pacientes/${cedula}`);
+  const {data: consults, error: consultsError} = useDataFetching(
+      // eslint-disable-next-line max-len
+      `/consultas?pacient=${cedula}&full_data=true`,
+  );
+  if (error || consultsError) {
     return 'Error';
   }
-  return !loading && data ? (
+  return data ? (
     <Container>
       <Row>
         <Col className="wrap">
           <Avatar className="wrap">
             <div className="image wrap">
-              <img src={`${process.env.REACT_APP_API_URL}/img/userAvatar.png`} alt="user avatar" />
+              <img src={`${process.env.REACT_APP_API_URL}/img/userAvatar.png`}
+                alt="user avatar" />
             </div>
           </Avatar>
           <Info className="wrap">
@@ -86,7 +60,7 @@ const PacientDetail = props => {
                 <li>resultado</li>
               </ul>
               <div className="data">
-                {consults.map((item, index) => (
+                {consults && consults.map((item, index) => (
                   <ul className="wrap" key={index}>
                     <li>{item.examen.nombre}</li>
                     <li>{`${item.medico.nombre} ${item.medico.apellido}`}</li>

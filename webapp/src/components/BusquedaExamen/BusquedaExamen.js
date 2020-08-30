@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import BusquedaDiv from './style';
 import SearchBar from '../SearchBar/SearchBar';
 import useDataFetching from '../hooks/useDataFetching';
@@ -6,9 +6,8 @@ import useDataFetching from '../hooks/useDataFetching';
 const BusquedaExamen = () => {
   const [params, setParams] = useState(null);
 
-  const { loading, data, error } = useDataFetching(
-    // eslint-disable-next-line max-len
-    `${process.env.REACT_APP_API_URL}/examenes?search=${params}&price_detail=true&limit=3`
+  const {data, error} = useDataFetching(
+      `/examenes?search=${params}&price_detail=true&limit=3`,
   );
 
   if (error) console.error(error);
@@ -27,7 +26,7 @@ const BusquedaExamen = () => {
         method="GET"
         stateHandler={stateHandler}
       />
-      {!loading && data.length > 0 ? (
+      {!error && data.length > 0 ? (
         <div>
           <ul className="wrap titles">
             <li>Exámen</li>

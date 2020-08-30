@@ -1,7 +1,6 @@
+/* eslint-disable no-undef */
 import React from 'react';
 import styled from 'styled-components';
-import success from './success.gif';
-import loading from './loading.gif';
 import PropTypes from 'prop-types';
 
 const Div = styled.div`
@@ -37,8 +36,10 @@ const Confirmation = props => {
   return (
     <Div className="wrap">
       <h3>{props.message}</h3>
-      {props.success && <img src={success} alt="" />}
-      {props.loading && <img src={loading} alt="" />}
+      {props.success &&
+        <img src={`${process.env.REACT_APP_API_URL}/img/success.gif`} alt="" />}
+      {props.loading &&
+        <img src={`${process.env.REACT_APP_API_URL}/img/loading.gif`} alt="" />}
       {props.children}
     </Div>
   );
