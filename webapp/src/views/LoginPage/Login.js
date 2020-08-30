@@ -1,6 +1,6 @@
-import React, {useState, useEffect} from 'react';
-import {Redirect} from 'react-router-dom';
-import {Container, Row, Col} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Container, Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
 import User from '../../Helpers/User';
@@ -18,7 +18,7 @@ const Wrapper = styled.div`
 `;
 
 const Login = props => {
-  const {user, setUser} = props;
+  const { user, setUser } = props;
   const [isLogin, setIsLogin] = useState(false);
   const [loading, setLoading] = useState(false);
   const [redirect, setRedirect] = useState(null);
@@ -46,12 +46,12 @@ const Login = props => {
     });
   };
 
-  const validateLogin = async ({username, password}) => {
+  const validateLogin = async ({ username, password }) => {
     try {
-      const {user, token} = await User.validateUser(username, password);
+      const { user, token } = await User.validateUser(username, password);
       setLoading(false);
       if (user) {
-        User.saveUserInStorage({user, token});
+        User.saveUserInStorage({ user, token });
         setIsLogin(true);
         setUser(user);
         setRedirect(getRedirectionPage(user));
@@ -63,7 +63,7 @@ const Login = props => {
     }
   };
 
-  const getRedirectionPage = (user) => {
+  const getRedirectionPage = user => {
     if (user.tipo === 'admin') return '/admin';
     if (user.tipo === 'medico') return '/medicos';
     if (user.tipo === 'recepcion') return '/recepcion';
@@ -80,8 +80,7 @@ const Login = props => {
                 src={`${process.env.REACT_APP_API_URL}/img/ivum_logo.png`}
                 alt="Instituto Venezolano de Ultrasonido en Medicina"
               />
-              <form action="/usuarios/login"
-                className="wrap" method="POST" onSubmit={formHandler}>
+              <form action="/usuarios/login" className="wrap" method="POST" onSubmit={formHandler}>
                 {error ? <h3>Usuario o contraseña inválidos</h3> : ''}
                 <label htmlFor="username">Usuario</label>
                 <input type="text" name="username" />
@@ -90,8 +89,7 @@ const Login = props => {
                 {loading ? (
                   <Confirmation message="Cargando" loading={true} />
                 ) : (
-                  <SubmitButton
-                    type="submit" name="Ingresar" prevent={false} width="50%" />
+                  <SubmitButton type="submit" name="Ingresar" prevent={false} width="50%" />
                 )}
               </form>
             </Div>
@@ -100,7 +98,7 @@ const Login = props => {
       </Container>
     </Wrapper>
   ) : (
-   redirect && <Redirect to={redirect} />
+    redirect && <Redirect to={redirect} />
   );
 };
 

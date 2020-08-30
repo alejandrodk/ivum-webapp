@@ -1,7 +1,7 @@
-import React, {useReducer, useEffect, useContext} from 'react';
+import React, { useReducer, useEffect, useContext } from 'react';
 import axios from 'axios';
 
-import {AppContext} from '../../common/AppContext';
+import { AppContext } from '../../common/AppContext';
 import Form from './style';
 import SubmitButton from '../SubmitButton';
 import Confirmation from '../Confirmation/Confirmation';
@@ -81,7 +81,7 @@ const CreateInvoice = () => {
       case 'SET_PRICE_CONVERTER': {
         // eslint-disable-next-line max-len
         const valor_usd = state.currencies.filter(item => item.moneda == action.currency)[0]
-            .valor_usd;
+          .valor_usd;
         return {
           ...state,
           moneda: action.currency,
@@ -130,16 +130,16 @@ const CreateInvoice = () => {
   };
 
   const [state, dispatch] = useReducer(formReducer, initialState);
-  const {user} = useContext(AppContext);
+  const { user } = useContext(AppContext);
   // Consultas del paciente
   useEffect(() => {
     async function fetchData() {
       const response = await axios.get(
-          // eslint-disable-next-line max-len
-          `${process.env.REACT_APP_API_URL}/consultas?full_data=true&pacient=${state.paciente_id}&state=unpaid`,
-          {
-            headers: {token: user.token},
-          },
+        // eslint-disable-next-line max-len
+        `${process.env.REACT_APP_API_URL}/consultas?full_data=true&pacient=${state.paciente_id}&state=unpaid`,
+        {
+          headers: { token: user.token },
+        }
       );
       if (response.data.length !== 0) {
         dispatch({
@@ -167,7 +167,7 @@ const CreateInvoice = () => {
     async function fetchCurrency() {
       // eslint-disable-next-line max-len
       const response = await axios.get(`${process.env.REACT_APP_API_URL}/cotizaciones`, {
-        headers: {token: user.token},
+        headers: { token: user.token },
       });
       if (response.data) {
         dispatch({
@@ -181,11 +181,11 @@ const CreateInvoice = () => {
 
   // Totales
   useEffect(() => {
-    dispatch({type: 'CALC_SUB_TOTAL'});
+    dispatch({ type: 'CALC_SUB_TOTAL' });
   }, [state.consultas]);
 
   useEffect(() => {
-    dispatch({type: 'CALC_TOTAL'});
+    dispatch({ type: 'CALC_TOTAL' });
   }, [state.moneda, state.price_converter, state.consultas]);
 
   // handlers
@@ -201,7 +201,7 @@ const CreateInvoice = () => {
     e.preventDefault();
     dispatch({
       type: 'ADD_CONSULT',
-      consultas: [...state.consultas, {id: null, price: 0.0}],
+      consultas: [...state.consultas, { id: null, price: 0.0 }],
     });
   };
 
@@ -238,36 +238,36 @@ const CreateInvoice = () => {
 
   const submitHandler = e => {
     e.preventDefault();
-    dispatch({type: 'LOADING', value: true});
+    dispatch({ type: 'LOADING', value: true });
 
     async function submitForm() {
       const response = await axios.post(
-          `${process.env.REACT_APP_API_URL}/comprobantes`,
-          {
-            nombre: state.nombre,
-            cedula: state.cedula,
-            direccion: state.direccion,
-            telefono: state.telefono,
-            paciente_id: state.paciente_id,
-            consultas: state.consultas,
-            observacion: state.observacion,
-            metodo_pago: state.metodo_pago,
-            moneda: state.moneda,
-            fecha: state.fecha,
-            monto: state.monto,
-            iva: state.iva,
-            total: state.total,
-          },
-          {
-            headers: {token: user.token},
-          },
+        `${process.env.REACT_APP_API_URL}/comprobantes`,
+        {
+          nombre: state.nombre,
+          cedula: state.cedula,
+          direccion: state.direccion,
+          telefono: state.telefono,
+          paciente_id: state.paciente_id,
+          consultas: state.consultas,
+          observacion: state.observacion,
+          metodo_pago: state.metodo_pago,
+          moneda: state.moneda,
+          fecha: state.fecha,
+          monto: state.monto,
+          iva: state.iva,
+          total: state.total,
+        },
+        {
+          headers: { token: user.token },
+        }
       );
 
-      dispatch({type: 'LOADING', value: false});
+      dispatch({ type: 'LOADING', value: false });
 
-      response.status === 201 ?
-        dispatch({type: 'SUCCESS', value: true}) :
-        dispatch({type: 'ERROR', value: true});
+      response.status === 201
+        ? dispatch({ type: 'SUCCESS', value: true })
+        : dispatch({ type: 'ERROR', value: true });
     }
     submitForm();
   };
@@ -362,8 +362,7 @@ const CreateInvoice = () => {
           )}
         </div>
       ))}
-      <input type="text" name="observacion"
-        onChange={inputHandler} placeholder="Observación" />
+      <input type="text" name="observacion" onChange={inputHandler} placeholder="Observación" />
       <div className="invoice_info wrap">
         <select name="metodo_pago" onChange={inputHandler}>
           <option value="">Método de pago</option>
@@ -386,10 +385,8 @@ const CreateInvoice = () => {
           name="fecha"
           placeholder="Fecha"
         />
-        <input value={state.monto} type="text"
-          name="monto" placeholder="Monto" disabled />
-        <input value={state.iva} type="text"
-          name="iva" placeholder="IVA" disabled />
+        <input value={state.monto} type="text" name="monto" placeholder="Monto" disabled />
+        <input value={state.iva} type="text" name="iva" placeholder="IVA" disabled />
         <input
           value={new Intl.NumberFormat(['de-DE']).format(state.total)}
           type="text"

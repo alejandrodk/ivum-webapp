@@ -1,9 +1,9 @@
-import React, {useState, useEffect} from 'react';
-import {Container, Row, Col} from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
 import Axios from 'axios';
 
 import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
-import {Avatar, Info, DataDiv} from './style';
+import { Avatar, Info, DataDiv } from './style';
 
 const PacientDetail = props => {
   const [data, setData] = useState([]);
@@ -17,8 +17,8 @@ const PacientDetail = props => {
       // eslint-disable-next-line max-len
       const user = Axios.get(`${process.env.REACT_APP_API_URL}/pacientes/${props.cedula}`);
       const consult = Axios.get(
-          // eslint-disable-next-line max-len
-          `${process.env.REACT_APP_API_URL}/consultas?pacient=${props.cedula}&full_data=true`,
+        // eslint-disable-next-line max-len
+        `${process.env.REACT_APP_API_URL}/consultas?pacient=${props.cedula}&full_data=true`
       );
       try {
         const result = await Axios.all([user, consult]);

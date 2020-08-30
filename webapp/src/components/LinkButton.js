@@ -22,7 +22,11 @@ const LinkButton = props => {
     }
   };
   if (props.loading) return 'cargando....';
-  return <Link href={props.link} onClick={onClickButton}>{props.texto}</Link>;
+  return (
+    <Link href={props.link} onClick={onClickButton}>
+      {props.texto}
+    </Link>
+  );
 };
 
 LinkButton.defaultProps = {

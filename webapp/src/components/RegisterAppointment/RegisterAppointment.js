@@ -1,13 +1,13 @@
-import React, {useState, useEffect, useContext} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Axios from 'axios';
 
-import {AppContext} from '../../common/AppContext';
+import { AppContext } from '../../common/AppContext';
 import AppointmentForm from './style';
 import SubmitButton from '../SubmitButton';
 import Confirmation from '../Confirmation/Confirmation';
 
 const RegisterAppointment = () => {
-  const {user} = useContext(AppContext);
+  const { user } = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [created, setCreated] = useState(false);
   const [error, setError] = useState(false);
@@ -26,8 +26,8 @@ const RegisterAppointment = () => {
     if (!examenes) {
       const getExamenes = async () => {
         try {
-          const {data} = await Axios.get(`${process.env.REACT_APP_API_URL}/examenes/`, {
-            headers: {token: user.token},
+          const { data } = await Axios.get(`${process.env.REACT_APP_API_URL}/examenes/`, {
+            headers: { token: user.token },
           });
           if (data) {
             setExamenes(data);
@@ -44,7 +44,7 @@ const RegisterAppointment = () => {
     const value = e.target.value;
     setExamen(value);
     Axios.get(`${process.env.REACT_APP_API_URL}/examenes/${value}/especialistas`, {
-      headers: {token: user.token},
+      headers: { token: user.token },
     }).then(res => setEspecialistas(res.data.medicos));
   };
 
@@ -75,55 +75,54 @@ const RegisterAppointment = () => {
   };
   const submitData = async () => {
     await Axios.post(
-        `${process.env.REACT_APP_API_URL}/consultas/`,
-        {
-          cedula_paciente: paciente,
-          medico_id: especialista,
-          examen_id: examen,
-          observacion,
-          fecha,
-          hora,
-        },
-        {
-          headers: {token: user.token},
-        },
+      `${process.env.REACT_APP_API_URL}/consultas/`,
+      {
+        cedula_paciente: paciente,
+        medico_id: especialista,
+        examen_id: examen,
+        observacion,
+        fecha,
+        hora,
+      },
+      {
+        headers: { token: user.token },
+      }
     )
-        .then(res => {
-          setLoading(false);
-          if (res.status === 201) {
-            setCreated(true);
-          } else {
-            setError(true);
-          }
-        })
-        .catch(error => {
+      .then(res => {
+        setLoading(false);
+        if (res.status === 201) {
+          setCreated(true);
+        } else {
           setError(true);
-          console.error(error);
-        });
+        }
+      })
+      .catch(error => {
+        setError(true);
+        console.error(error);
+      });
   };
 
   return !created ? (
-    <AppointmentForm className="wrap"
-      onSubmit={formHandler}>
-      <input type="text" name="paciente" placeholder="Cédula paciente"
-        onChange={inputHandler} />
-      <select name="examen" value={examen} required
-        onChange={selectExamenHandler}>
+    <AppointmentForm className="wrap" onSubmit={formHandler}>
+      <input type="text" name="paciente" placeholder="Cédula paciente" onChange={inputHandler} />
+      <select name="examen" value={examen} required onChange={selectExamenHandler}>
         <option value="null">Selecciona un Exámen</option>
-        {examenes && examenes.map(item => (
-          <option key={item.id + Math.random()} value={item.id}>
-            {item.nombre}
-          </option>
-        ))}
+        {examenes &&
+          examenes.map(item => (
+            <option key={item.id + Math.random()} value={item.id}>
+              {item.nombre}
+            </option>
+          ))}
       </select>
       <select name="especialista" onChange={inputHandler} required>
         <option value="null">Selecciona un especialista</option>
-        {especialistas && especialistas.map(item => (
-          <option
-            key={item.id + Math.random()}
-            value={item.id}
-          >{`${item.nombre} ${item.apellido}`}</option>
-        ))}
+        {especialistas &&
+          especialistas.map(item => (
+            <option
+              key={item.id + Math.random()}
+              value={item.id}
+            >{`${item.nombre} ${item.apellido}`}</option>
+          ))}
       </select>
       <input
         onChange={inputHandler}

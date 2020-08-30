@@ -1,13 +1,13 @@
-import React, {useEffect, useState, useContext} from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Div from './style';
 import FunctionalContainer from '../FunctionalContainer/FunctionalContainer';
 import Axios from 'axios';
-import {AppContext} from '../../common/AppContext';
+import { AppContext } from '../../common/AppContext';
 
 const ConsultationsPending = props => {
   const [consultas, setConsultas] = useState(null);
   const [loading, setLoading] = useState(false);
-  const {user} = useContext(AppContext);
+  const { user } = useContext(AppContext);
 
   useEffect(() => {
     if (!consultas) {
@@ -15,9 +15,12 @@ const ConsultationsPending = props => {
         setLoading(true);
         try {
           // eslint-disable-next-line max-len
-          const {data} = await Axios.get(`${process.env.REACT_APP_API_URL}/consultas?full_data=true&state=pendiente`, {
-            headers: {token: user.token},
-          });
+          const { data } = await Axios.get(
+            `${process.env.REACT_APP_API_URL}/consultas?full_data=true&state=pendiente`,
+            {
+              headers: { token: user.token },
+            }
+          );
           if (data) {
             setConsultas(data);
             setLoading(false);

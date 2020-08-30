@@ -5,7 +5,7 @@ import useDataFetching from '../hooks/useDataFetching';
 
 const Cotizaciones = () => {
   // eslint-disable-next-line max-len
-  const {data, error} = useDataFetching(`${process.env.REACT_APP_API_URL}/cotizaciones`);
+  const { data, error } = useDataFetching(`${process.env.REACT_APP_API_URL}/cotizaciones`);
 
   if (error) console.error(error);
 

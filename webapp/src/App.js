@@ -1,6 +1,6 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Router from './Routers/AppRouter';
-import {AppContext} from './common/AppContext';
+import { AppContext } from './common/AppContext';
 import User from './Helpers/User';
 
 const App = () => {

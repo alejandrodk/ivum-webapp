@@ -17,7 +17,7 @@ class User {
       const getUserData = async () => {
         try {
           // eslint-disable-next-line max-len
-          const {data} = await Axios.post(`${process.env.REACT_APP_API_URL}/usuarios/login`, {
+          const { data } = await Axios.post(`${process.env.REACT_APP_API_URL}/usuarios/login`, {
             usuario: username,
             clave: password,
           });
@@ -40,14 +40,14 @@ class User {
    */
   static getUserFromStorage() {
     const stored = JSON.parse(localStorage.getItem('user_IVUM'));
-    return stored ?
-      stored :
-      {
-        id: null,
-        tipo: 'guest',
-        cedula: null,
-        token: null,
-      };
+    return stored
+      ? stored
+      : {
+          id: null,
+          tipo: 'guest',
+          cedula: null,
+          token: null,
+        };
   }
   /**
    * Save user data in LocalStorage
@@ -55,15 +55,15 @@ class User {
    */
   static saveUserInStorage(data) {
     if (data) {
-      const {user, token} = data;
+      const { user, token } = data;
       localStorage.setItem(
-          'user_IVUM',
-          JSON.stringify({
-            id: user.id,
-            tipo: user.tipo,
-            cedula: user.cedula,
-            token,
-          }),
+        'user_IVUM',
+        JSON.stringify({
+          id: user.id,
+          tipo: user.tipo,
+          cedula: user.cedula,
+          token,
+        })
       );
       Axios.defaults.headers.common = {
         token: token,
@@ -78,8 +78,8 @@ class User {
   static async validateSessionToken(user) {
     try {
       // eslint-disable-next-line max-len
-      const {data} = await Axios.get(`${process.env.REACT_APP_API_URL}/usuarios/${user.id}`, {
-        headers: {token: user.token},
+      const { data } = await Axios.get(`${process.env.REACT_APP_API_URL}/usuarios/${user.id}`, {
+        headers: { token: user.token },
       });
       if (data.usuario) {
         return true;
