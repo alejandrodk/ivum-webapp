@@ -1,13 +1,13 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import Axios from 'axios';
 
-import { AppContext } from '../../common/AppContext';
+import {AppContext} from '../../common/AppContext';
 import AppointmentForm from './style';
 import SubmitButton from '../SubmitButton';
 import Confirmation from '../Confirmation/Confirmation';
 
 const RegisterAppointment = () => {
-  const { user } = useContext(AppContext);
+  const {user} = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [created, setCreated] = useState(false);
   const [error, setError] = useState(false);
@@ -20,15 +20,17 @@ const RegisterAppointment = () => {
   const [hora, setHora] = useState('');
   const [examenes, setExamenes] = useState(null);
   const [especialistas, setEspecialistas] = useState(null);
+  const [isValidPacient, setValidPacient] = useState(false);
 
   // Cargar examenes en select
   useEffect(() => {
     if (!examenes) {
       const getExamenes = async () => {
         try {
-          const { data } = await Axios.get(`${process.env.REACT_APP_API_URL}/examenes/`, {
-            headers: { token: user.token },
-          });
+          const {data} = await Axios.get(
+              `${process.env.REACT_APP_API_URL}/examenes/`, {
+                headers: {token: user.token},
+              });
           if (data) {
             setExamenes(data);
           }
@@ -39,13 +41,35 @@ const RegisterAppointment = () => {
       getExamenes();
     }
   }, [examenes, user]);
+
+  useEffect(() => {
+    if (paciente.length > 5) {
+      const validatePacient = async () => {
+        try {
+          const {data} = await Axios.get(
+              `${process.env.REACT_APP_API_URL}/pacientes/${paciente}`, {
+                headers: {token: user.token},
+              });
+          if (data?.cedula) {
+            setValidPacient(true);
+          } else {
+            setValidPacient(false);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      validatePacient();
+    }
+  }, [paciente]);
   // cargar especialistas del examen seleccionado
   const selectExamenHandler = e => {
     const value = e.target.value;
     setExamen(value);
-    Axios.get(`${process.env.REACT_APP_API_URL}/examenes/${value}/especialistas`, {
-      headers: { token: user.token },
-    }).then(res => setEspecialistas(res.data.medicos));
+    Axios.get(
+        `${process.env.REACT_APP_API_URL}/examenes/${value}/especialistas`, {
+          headers: {token: user.token},
+        }).then(res => setEspecialistas(res.data.medicos));
   };
 
   const inputHandler = e => {
@@ -74,38 +98,45 @@ const RegisterAppointment = () => {
     submitData();
   };
   const submitData = async () => {
-    await Axios.post(
-      `${process.env.REACT_APP_API_URL}/consultas/`,
-      {
-        cedula_paciente: paciente,
-        medico_id: especialista,
-        examen_id: examen,
-        observacion,
-        fecha,
-        hora,
-      },
-      {
-        headers: { token: user.token },
-      }
+    if (isValidPacient) {
+      await Axios.post(
+        `${process.env.REACT_APP_API_URL}/consultas/`,
+        {
+          cedula_paciente: paciente,
+          medico_id: especialista,
+          examen_id: examen,
+          observacion,
+          fecha,
+          hora,
+        },
+        {
+          headers: {token: user.token},
+        },
     )
-      .then(res => {
-        setLoading(false);
-        if (res.status === 201) {
-          setCreated(true);
-        } else {
+        .then(res => {
+          setLoading(false);
+          if (res.status === 201) {
+            setCreated(true);
+          } else {
+            setError(true);
+          }
+        })
+        .catch(error => {
           setError(true);
-        }
-      })
-      .catch(error => {
-        setError(true);
-        console.error(error);
-      });
+          console.error(error);
+        });
+    }
   };
 
   return !created ? (
     <AppointmentForm className="wrap" onSubmit={formHandler}>
-      <input type="text" name="paciente" placeholder="Cédula paciente" onChange={inputHandler} />
-      <select name="examen" value={examen} required onChange={selectExamenHandler}>
+      {paciente != '' && !isValidPacient && (
+        <p>El paciente no existe o no posee consultas</p>
+      )}
+      <input type="text" name="paciente" placeholder="Cédula paciente"
+        onChange={inputHandler} />
+      <select name="examen" value={examen} required
+        onChange={selectExamenHandler}>
         <option value="null">Selecciona un Exámen</option>
         {examenes &&
           examenes.map(item => (
@@ -115,12 +146,13 @@ const RegisterAppointment = () => {
           ))}
       </select>
       <select name="especialista" onChange={inputHandler} required>
-        <option value="null">Selecciona un especialista</option>
+        <option value={especialista}>Selecciona un especialista</option>
         {especialistas &&
           especialistas.map(item => (
             <option
               key={item.id + Math.random()}
               value={item.id}
+              selected={especialista == item.id? true : false}
             >{`${item.nombre} ${item.apellido}`}</option>
           ))}
       </select>
@@ -143,9 +175,6 @@ const RegisterAppointment = () => {
         onChange={inputHandler}
         type="time"
         name="hora"
-        min="08:00"
-        max="17:00"
-        required
         value={hora}
         placeholder="Hora"
       />
@@ -159,7 +188,7 @@ const RegisterAppointment = () => {
     </AppointmentForm>
   ) : (
     <Confirmation message="Consulta registrada exitosamente" success={true}>
-      <a href="/recepcion/pagos/nuevo">Registrar Pago</a>
+     {/*  <a href="/recepcion/pagos/nuevo">Registrar Pago</a> */}
     </Confirmation>
   );
 };
