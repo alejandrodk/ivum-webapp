@@ -20,6 +20,7 @@ const RegisterAppointment = () => {
   const [hora, setHora] = useState('');
   const [examenes, setExamenes] = useState(null);
   const [especialistas, setEspecialistas] = useState(null);
+  const [isValidPacient, setValidPacient] = useState(false);
 
   // Cargar examenes en select
   useEffect(() => {
@@ -40,6 +41,27 @@ const RegisterAppointment = () => {
       getExamenes();
     }
   }, [examenes, user]);
+
+  useEffect(() => {
+    if (paciente.length > 5) {
+      const validatePacient = async () => {
+        try {
+          const {data} = await Axios.get(
+              `${process.env.REACT_APP_API_URL}/pacientes/${paciente}`, {
+                headers: {token: user.token},
+              });
+          if (data?.cedula) {
+            setValidPacient(true);
+          } else {
+            setValidPacient(false);
+          }
+        } catch (err) {
+          console.log(err);
+        }
+      };
+      validatePacient();
+    }
+  }, [paciente]);
   // cargar especialistas del examen seleccionado
   const selectExamenHandler = e => {
     const value = e.target.value;
@@ -76,7 +98,8 @@ const RegisterAppointment = () => {
     submitData();
   };
   const submitData = async () => {
-    await Axios.post(
+    if (isValidPacient) {
+      await Axios.post(
         `${process.env.REACT_APP_API_URL}/consultas/`,
         {
           cedula_paciente: paciente,
@@ -102,10 +125,14 @@ const RegisterAppointment = () => {
           setError(true);
           console.error(error);
         });
+    }
   };
 
   return !created ? (
     <AppointmentForm className="wrap" onSubmit={formHandler}>
+      {paciente != '' && !isValidPacient && (
+        <p>El paciente no existe o no posee consultas</p>
+      )}
       <input type="text" name="paciente" placeholder="Cédula paciente"
         onChange={inputHandler} />
       <select name="examen" value={examen} required
@@ -161,7 +188,7 @@ const RegisterAppointment = () => {
     </AppointmentForm>
   ) : (
     <Confirmation message="Consulta registrada exitosamente" success={true}>
-      <a href="/recepcion/pagos/nuevo">Registrar Pago</a>
+     {/*  <a href="/recepcion/pagos/nuevo">Registrar Pago</a> */}
     </Confirmation>
   );
 };
