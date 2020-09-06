@@ -1,13 +1,13 @@
-import React, { useState, useContext } from 'react';
+import React, {useState, useContext} from 'react';
 import Axios from 'axios';
 
-import { AppContext } from '../../common/AppContext';
+import {AppContext} from '../../common/AppContext';
 import NewPacientForm from './style';
 import SubmitButton from '../SubmitButton';
 import Confirmation from '../Confirmation/Confirmation';
 
 const CreatePacient = () => {
-  const { user } = useContext(AppContext);
+  const {user} = useContext(AppContext);
   const [loading, setLoading] = useState(false);
   const [created, setCreated] = useState(false);
   const [error, setError] = useState(false);
@@ -19,6 +19,7 @@ const CreatePacient = () => {
   const [correo, setCorreo] = useState('');
   const [direccion, setDireccion] = useState('');
   const [telefono, setTelefono] = useState('');
+  const [origen, setOrigen] = useState('');
 
   const inputHandler = e => {
     const target = e.target;
@@ -33,6 +34,7 @@ const CreatePacient = () => {
     if (name === 'correo') setCorreo(value);
     if (name === 'direccion') setDireccion(value);
     if (name === 'telefono') setTelefono(value);
+    if (name === 'origen') setOrigen(value);
   };
 
   const formHandler = e => {
@@ -42,33 +44,34 @@ const CreatePacient = () => {
   };
   const submitData = async () => {
     await Axios.post(
-      `${process.env.REACT_APP_API_URL}/pacientes/`,
-      {
-        nombre,
-        apellido,
-        sexo,
-        nacimiento,
-        cedula,
-        correo,
-        direccion,
-        telefono,
-      },
-      {
-        headers: { token: user.token },
-      }
+        `${process.env.REACT_APP_API_URL}/pacientes/`,
+        {
+          nombre,
+          apellido,
+          sexo,
+          nacimiento,
+          cedula,
+          correo,
+          direccion,
+          telefono,
+          origen,
+        },
+        {
+          headers: {token: user.token},
+        },
     )
-      .then(res => {
-        setLoading(false);
-        if (res.status === 201) {
-          setCreated(true);
-        } else {
+        .then(res => {
+          setLoading(false);
+          if (res.status === 201) {
+            setCreated(true);
+          } else {
+            setError(true);
+          }
+        })
+        .catch(error => {
           setError(true);
-        }
-      })
-      .catch(error => {
-        setError(true);
-        console.error(error);
-      });
+          console.error(error);
+        });
   };
 
   return !created ? (
@@ -94,7 +97,8 @@ const CreatePacient = () => {
         <option value="M">masculino</option>
         <option value="F">femenino</option>
       </select>
-      <input onChange={inputHandler} type="date" name="nacimiento" required value={nacimiento} />
+      <input onChange={inputHandler} type="date" name="nacimiento"
+        required value={nacimiento} />
       <input
         onChange={inputHandler}
         type="text"
@@ -125,6 +129,13 @@ const CreatePacient = () => {
         required
         value={telefono}
         placeholder="Teléfono"
+      />
+      <input
+        onChange={inputHandler}
+        type="text"
+        name="origen"
+        value={origen}
+        placeholder="¿Cómo nos conoció?"
       />
       {error ? (
         <p>Error al registrar paciente, verifique los datos ingresados</p>
