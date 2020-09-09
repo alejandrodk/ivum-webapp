@@ -58,7 +58,7 @@ const Recepcion = props => {
             {
               category: 'Pacientes',
               icon: 'fas fa-users',
-              links: [{/*
+              links: [
                 {title: 'Datos de pacientes', url: `${match.path}/pacientes`},
                 {
                   title: 'Registrar nuevo paciente',
@@ -68,9 +68,9 @@ const Recepcion = props => {
                   title: 'Modificar datos de paciente',
                   url: `${match.path}/pacientes/modificar`,
                 },
-               */}],
+              ],
             },
-            {/* {
+            {
               category: 'Médicos',
               icon: 'fas fa-user-md',
               links: [
@@ -85,7 +85,7 @@ const Recepcion = props => {
                 {title: 'Listado de Exámenes', url: `${match.path}/examenes`},
                 {title: 'Precios', url: `${match.path}/examenes/precios`},
               ],
-            } */},
+            },
           ]}
         />
         <div className="content">
