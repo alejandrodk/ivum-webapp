@@ -74,7 +74,6 @@ const Recepcion = props => {
               icon: 'fas fa-user-md',
               links: [
                 {title: 'Listado de médicos', url: `${match.path}/medicos`},
-                {title: 'Consultas', url: `${match.path}/medicos/consultas`},
               ],
             },
             {
