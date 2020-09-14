@@ -11,6 +11,7 @@ import Consultas from '../views/Recepcion/Consultas';
 import Pagos from '../views/Recepcion/Pagos';
 import Pacientes from '../views/Recepcion/Pacientes';
 import Paciente from '../views/Recepcion/Paciente';
+import NuevoPaciente from '../views/Recepcion/NuevoPaciente';
 
 const Wrapper = styled.div`
   background: var(--gris-light);
@@ -64,10 +65,6 @@ const Recepcion = props => {
                   title: 'Registrar nuevo paciente',
                   url: `${match.path}/pacientes/nuevo`,
                 },
-                {
-                  title: 'Modificar datos de paciente',
-                  url: `${match.path}/pacientes/modificar`,
-                },
               ],
             },
             {
@@ -103,6 +100,9 @@ const Recepcion = props => {
               render={NuevoPago} />
             <Route path={`${match.path}/pacientes`}
               exact render={props => <Pacientes {...props} />}
+            />
+            <Route path={`${match.path}/pacientes/nuevo`}
+              exact render={props => <NuevoPaciente {...props} />}
             />
             <Route path={`${match.path}/pacientes/:cedula`}
               exact render={props => <Paciente {...props} />}
