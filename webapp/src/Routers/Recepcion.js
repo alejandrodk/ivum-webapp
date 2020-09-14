@@ -12,6 +12,7 @@ import Pagos from '../views/Recepcion/Pagos';
 import Pacientes from '../views/Recepcion/Pacientes';
 import Paciente from '../views/Recepcion/Paciente';
 import NuevoPaciente from '../views/Recepcion/NuevoPaciente';
+import Medicos from '../views/Recepcion/Medicos';
 
 const Wrapper = styled.div`
   background: var(--gris-light);
@@ -106,6 +107,9 @@ const Recepcion = props => {
             />
             <Route path={`${match.path}/pacientes/:cedula`}
               exact render={props => <Paciente {...props} />}
+            />
+            <Route path={`${match.path}/medicos`}
+              exact render={props => <Medicos {...props} />}
             />
           </Switch>
         </div>
