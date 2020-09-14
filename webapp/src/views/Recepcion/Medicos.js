@@ -25,8 +25,6 @@ const SearchDoctors = () => {
   }, [doctor, date]);
 
   error && console.error(error);
-  console.log('DEBUG');
-  console.log(data);
   const doctorHandler = search => {
     setDoctor(search);
   };
@@ -69,7 +67,7 @@ const SearchDoctors = () => {
                       <li>{item.correo}</li>
                       <li>{item.telefono}</li>
                       <li>
-                        <NavLink to={`medicos/${item.cedula}`}>
+                        <NavLink to={`medicos/${item.id}`}>
                           <i className="far fa-eye"></i>
                         </NavLink>
                       </li>
