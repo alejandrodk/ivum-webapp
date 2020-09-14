@@ -10,9 +10,11 @@ module.exports = {
     let state = req.query.state;
     let date_from = req.query.date_from;
     let date_to = req.query.date_to;
-
+    let specialist = req.query.specialist;
+    
     let where = {};
     if (pacient) where.cedula_paciente = pacient;
+    if (specialist) where.medico_id = specialist;
     if (state) where.estado == state;
     if (payment == 'unpaid') where.comprobante_id = null;
     if (payment == 'paid') where.comprobante_id = { [Op.is]: true };
