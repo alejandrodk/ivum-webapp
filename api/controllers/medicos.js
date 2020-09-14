@@ -1,15 +1,29 @@
 const db = require('../database/models');
+const Sequelize = require('sequelize');
+const Op = Sequelize.Op;
 
 module.exports = {
   medicos: async (req, res) => {
+    let specialist = req.query.specialist;
+
+    let where = {};
+    if (specialist) {
+      where = {
+        [Op.or] : [
+          {nombre: {[Op.like] : `%${specialist}%`}},
+          {apellido: {[Op.like] : `%${specialist}%`}},
+        ]
+      }
+    }
     try {
       let medicos = await db.medicos.findAll({
+        where,
         attributes: {
           exclude: ['createdAt', 'updatedAt'],
         },
         logging: false,
       });
-      return res.status(200).json({ medicos });
+      return res.status(200).json(medicos);
     } catch (err) {
       return res.status(res.statusCode).json({
         message: 'Failed load collection',
@@ -23,7 +37,7 @@ module.exports = {
 
     try {
       let medico = await db.medicos.findOne({ where: { id } });
-      return res.status(200).json({ medico });
+      return res.status(200).json(medico);
     } catch (err) {
       return res.status(res.statusCode).json({
         message: 'Failed load resource',
